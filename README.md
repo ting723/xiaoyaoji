@@ -1,3 +1,22 @@
+## 任务完成排期
+
+12.29 熟悉小幺鸡基本组成,提出相应的改造方案
+
+
+
+# 二次开发目标:
+## 1. 支持mock server
+## 2. 增加注释
+## 3. 转变成spring-boot方式
+
+
+
+
+---
+<br><br><br>
+---
+---
+
 ![LOGO](http://www.xiaoyaoji.cn/assets/img/logo/full.png)
 # 小幺鸡文档管理工具，支持富文本、markdown、http、websocket 及其在线测试
 ## [在线演示地址demo](http://www.xiaoyaoji.cn/project/demo)
