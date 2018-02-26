@@ -6,7 +6,7 @@
   Date: 17/5/7
   Time: 21:40
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%
     Doc doc = (Doc) request.getAttribute("doc");
     List<Doc> docs = DocService.instance().getDocsByParentId(doc.getProjectId(),doc.getId());

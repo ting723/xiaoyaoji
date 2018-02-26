@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <script type="text/template" id="response-args-template" class="hide">
     <div v-bind:class="{'div-editing-table':editing,'response-args':true}" class="placeholder-response-args" :data-pid="pid" :data-module-name="name">
         <div class="div-table-line " v-bind:class="{'div-editing-line':editing}" v-for="(item,index) in responseArgs"

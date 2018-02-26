@@ -25,6 +25,7 @@ require(['utils','vue', 'vueEx'], function (utils, Vue) {
                     utils.post('/login', {
                         email: self.email, password: self.password
                     }, function (rs) {
+                        console.log(rs);
                         utils.login.success(self.from);
                     });
                 }).catch(function(){

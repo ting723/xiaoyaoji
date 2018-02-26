@@ -3,7 +3,7 @@
   Date: 16/9/2
   Time: 19:54
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!doctype html>
 <html>
 <head>

@@ -3,7 +3,7 @@
   Date: 2017/8/30
   Time: 15:16
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <textarea class="hide" id="md-view">${doc.content}</textarea>
 <style>
     #md-view-html ul{

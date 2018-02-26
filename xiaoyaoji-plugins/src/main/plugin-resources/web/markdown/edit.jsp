@@ -3,7 +3,7 @@
   Date: 2017/8/30
   Time: 15:16
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <link rel="stylesheet" type="text/css" href="/simplemd/simplemde.min.css?v=${pluginInfo.version}"/>
 <style>
     .editor-preview-side ul{

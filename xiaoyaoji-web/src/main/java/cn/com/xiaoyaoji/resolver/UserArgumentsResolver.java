@@ -6,6 +6,7 @@ import cn.com.xiaoyaoji.core.common.Constants;
 import cn.com.xiaoyaoji.util.CacheUtils;
 import cn.com.xiaoyaoji.core.exception.ArgumentRequirementException;
 import org.springframework.core.MethodParameter;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author: zhoujingjie
  * @Date: 17/4/15
  */
+@Component
 public class UserArgumentsResolver implements HandlerMethodArgumentResolver {
 
     @Override

@@ -1,6 +1,21 @@
 debug: true
 spring:
-  mvc:
-    view:
-      suffix: .jsp
-      prefix: /WEB-INF/content/
+  freemarker:
+    charset: UTF-8
+    cache: false
+    check-template-location: true
+    content-type: text/html
+    template-loader-path: classpath:/templates/
+    suffix: .ftl
+    enabled: true
+  output:
+    ansi:
+      enabled: detect
+
+server:
+  compression:
+    enabled: true
+  port: 8080
+  tomcat:
+    accesslog:
+      enabled: true

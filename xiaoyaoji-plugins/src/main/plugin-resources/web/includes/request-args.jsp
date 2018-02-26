@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <script type="text/template" id="request-args-template" class="hide">
     <div v-bind:class="{'div-editing-table':editing,'request-args':true}" :data-pid="pid" :data-module-name="name">
         <div class="div-table-line"

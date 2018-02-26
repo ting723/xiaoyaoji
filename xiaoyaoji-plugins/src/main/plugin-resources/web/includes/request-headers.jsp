@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <script type="text/template"  id="request-headers-template" class="hide">
     <div v-bind:class="{'div-editing-table':editing,'request-headers':true}" class="placeholder-request-headers" :data-pid="pid" :data-module-name="name">
     <div class="div-table-line " v-bind:class="{'div-editing-line':editing}" v-for="item in requestHeaders" :key="item.id"  :data-id="item.id">

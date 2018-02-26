@@ -2,7 +2,7 @@
 <%@ page import="cn.com.xiaoyaoji.service.DocService" %>
 <%@ page import="cn.com.xiaoyaoji.data.bean.Doc" %>
 <%@ page import="java.util.List" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%
     Doc doc = (Doc) request.getAttribute("doc");
     List<Doc> docs = DocService.instance().getDocsByParentId(doc.getProjectId(),doc.getId());

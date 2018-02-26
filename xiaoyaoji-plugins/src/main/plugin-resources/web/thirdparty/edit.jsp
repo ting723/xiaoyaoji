@@ -3,7 +3,7 @@
   Date: 17/5/7
   Time: 21:40
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <style>
     .tp-content{
         padding: 10px;

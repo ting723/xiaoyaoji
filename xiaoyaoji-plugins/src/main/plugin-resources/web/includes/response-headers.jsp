@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <script type="text/template" id="response-headers-template" class="hide">
     <div v-bind:class="{'div-editing-table':editing,'response-headers':true}" class="placeholder-response-headers"
          :data-pid="pid" :data-module-name="name">

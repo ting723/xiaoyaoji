@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <link rel="stylesheet" href="${ctx}/proxy/${pluginInfo.id}/css/http.css?v=${v}"/>
 <div class="content-section" id="docApp" style="padding: 0 10px;" v-cloak>
 

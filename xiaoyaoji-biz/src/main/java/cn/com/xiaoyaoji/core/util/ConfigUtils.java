@@ -17,7 +17,7 @@ public class ConfigUtils {
         properties = new Properties();
         ClassLoader classLoader =Thread.currentThread().getContextClassLoader();
         try {
-            properties.load(classLoader.getResourceAsStream("config.properties"));
+            properties.load(classLoader.getResourceAsStream("conf/config.properties"));
         } catch (IOException e) {
             logger.error(e.getMessage(),e);
         }
@@ -33,8 +33,9 @@ public class ConfigUtils {
 
     public static String getProperty(String key,String defaultValue){
         String value = getProperty(key);
-        if(value == null || value.length()==0)
+        if(value == null || value.length()==0) {
             return defaultValue;
+        }
         return value;
     }
 
