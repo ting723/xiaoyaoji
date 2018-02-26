@@ -17,7 +17,7 @@
 <div id="register">
 <div class="login-form mc">
         <form class="form" v-on:submit.prevent>
-            <div class="ta-c logo"><a href="${ctx}/"><img src="${assets}/img/logo/full.png"></a> </div>
+            <div class="ta-c logo"><a href="${ctx}/"><img src="/img/logo/full.png"></a> </div>
             <div class="item">
                 <input type="text" autofocus tabindex="1" name="nickname" v-model="nickname" maxlength="10" v-validate="'required'" initial="off" class="text"  placeholder="输入姓名方便团队识别"/>
                 <p class="tip">{{ errors.first('nickname') }}</p>
@@ -42,7 +42,7 @@
 </div>
 </div>
 <jsp:include page="/WEB-INF/includes/js.jsp"/>
-<script src="${assets}/js/register.js"></script>
+<script src="/js/register.js"></script>
 
 </body>
 </html>

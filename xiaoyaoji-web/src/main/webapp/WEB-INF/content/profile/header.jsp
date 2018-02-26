@@ -10,15 +10,15 @@
 <head>
     <title>小幺鸡</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="${assets}/css/style.css?v=${v}">
-    <link rel="stylesheet" href="${assets}/css/home.css?v=${v}">
+    <link rel="stylesheet" href="/css/style.css?v=${v}">
+    <link rel="stylesheet" href="/css/home.css?v=${v}">
     <jsp:include page="/WEB-INF/includes/meta.jsp"/>
 </head>
 <body class="home">
 
 <div class="home-header">
     <div class="mc cb ta-c">
-        <a href="${ctx}/dashboard" class="fl"><img src="${assets}/img/logo/full.png" alt="logo"></a>
+        <a href="${ctx}/dashboard" class="fl"><img src="/img/logo/full.png" alt="logo"></a>
         <div class="user-account fr">
             <a href=""><img src="${sessionScope.user.avatar}" class="user-account-logo" alt=""><span>${sessionScope.user.nickname}</span></a>
         </div>

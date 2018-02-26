@@ -16,7 +16,7 @@
 <div id="md-view-html"></div>
 <script>
     (function(){
-        requirejs(['${cdn}/assets/simplemd/marked.min.js?v=${pluginInfo.version}'],function(marked){
+        requirejs(['/simplemd/marked.min.js?v=${pluginInfo.version}'],function(marked){
             var html = marked($('#md-view').val());
              $('#md-view-html').html(html);
         });

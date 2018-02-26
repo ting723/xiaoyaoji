@@ -9,8 +9,8 @@
 <html lang="zh-Hans">
 <head>
     <title>${doc.name}-${project.name}</title>
-    <link rel="stylesheet" href="${assets}/css/doc.css?v=${v}"/>
-    <link rel="stylesheet" href="${assets}/css/icons.css?v=${v}"/>
+    <link rel="stylesheet" href="/css/doc.css?v=${v}"/>
+    <link rel="stylesheet" href="/css/icons.css?v=${v}"/>
     <jsp:include page="/WEB-INF/includes/meta.jsp"/>
     <jsp:include page="/WEB-INF/includes/js.jsp"/>
 </head>
@@ -94,7 +94,7 @@
     </div>
 </div>
 <div class="xd-header-placeholder"></div>
-<script src="${assets}/js/project/doc/header.js?v=${v}"></script>
+<script src="/js/project/doc/header.js?v=${v}"></script>
 
 <%--<div class="doc">--%>
 <script>window._isGlobal_ = '${editProjectGlobal}'</script>

@@ -14,13 +14,13 @@
 <head>
     <title>登录 - 小幺鸡</title>
     <jsp:include page="/WEB-INF/includes/meta.jsp"/>
-    <link rel="stylesheet" href="${assets}/css/index.css?v=${v}">
+    <link rel="stylesheet" href="/css/index.css?v=${v}">
 </head>
 <jsp:include page="/WEB-INF/includes/js.jsp"/>
 <body class="login-register-body">
 <div class="login-form mc" id="login">
     <form class="form" v-on:submit.prevent>
-        <div class="ta-c logo"><a href="${ctx}/"><img src="${assets}/img/logo/full.png"></a></div>
+        <div class="ta-c logo"><a href="${ctx}/"><img src="/img/logo/full.png"></a></div>
         <div class="item">
             <input type="text" initial="off" name="email" v-model="email" id="email" tabindex="1"
                    maxlength="45" v-validate="'required|email'" class="text" placeholder="邮箱"/>
@@ -56,6 +56,6 @@
     <br/>
 </div>
 
-<script src="${assets}/js/login.js?v=${v}"></script>
+<script src="/js/login.js?v=${v}"></script>
 </body>
 </html>

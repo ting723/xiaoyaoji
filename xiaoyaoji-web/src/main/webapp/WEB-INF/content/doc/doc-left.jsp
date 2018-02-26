@@ -169,4 +169,4 @@
 </div>
 <script>window._projectId_ = '${project.id}';
 window._edit_ = '${edit}'</script>
-<script src="${assets}/js/project/left.js?v=${v}"></script>
+<script src="/js/project/left.js?v=${v}"></script>

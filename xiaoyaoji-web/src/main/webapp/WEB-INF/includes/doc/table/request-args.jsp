@@ -65,7 +65,7 @@
     </div>
 </script>
 <script>
-    requirejs(['vue','${assets}/js/project/doc/component/table.js'],function(Vue,table){
+    requirejs(['vue','/js/project/doc/component/table.js'],function(Vue,table){
         table = $.extend(true,{},table);
         table.template=document.getElementById('request-args-template').innerHTML;
         table.props=['requestArgs','editing','name'];

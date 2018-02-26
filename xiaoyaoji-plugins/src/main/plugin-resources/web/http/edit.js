@@ -4,7 +4,7 @@
     var thirds = [
         'vue',
         'utils',
-        ctx+'/proxy/'+pluginId+'/assets/js/doc.commons.js?'+Date.now()
+        ctx+'/proxy/'+pluginId+'/js/doc.commons.js?'+Date.now()
     ];
     requirejs(thirds,function(Vue,utils,commons){
 

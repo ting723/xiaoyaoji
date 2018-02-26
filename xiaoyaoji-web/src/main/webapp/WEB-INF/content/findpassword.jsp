@@ -10,13 +10,13 @@
 <head>
     <title>找回密码 - 小幺鸡</title>
     <jsp:include page="/WEB-INF/includes/meta.jsp"/>
-    <link rel="stylesheet" href="${assets}/css/index.css?v=${v}">
+    <link rel="stylesheet" href="/css/index.css?v=${v}">
 </head>
 <body>
 <div id="app">
     <div class="login-form mc" v-cloak v-if="!!id">
         <form class="form" v-on:submit.prevent>
-            <div class="ta-c logo"><a href="${ctx}/"><img src="${assets}/img/logo/full.png"></a></div>
+            <div class="ta-c logo"><a href="${ctx}/"><img src="/img/logo/full.png"></a></div>
             <div class="item">{{email}}</div>
             <div class="item">
                 <input type="password" name="password" class="text" tabindex="2" v-model="password"
@@ -40,7 +40,7 @@
     </div>
 </div>
 <jsp:include page="/WEB-INF/includes/js.jsp"/>
-<script src="${assets}/js/findpassword.js"></script>
+<script src="/js/findpassword.js"></script>
 
 </body>
 </html>

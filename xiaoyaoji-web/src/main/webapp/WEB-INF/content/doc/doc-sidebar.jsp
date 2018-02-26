@@ -8,7 +8,7 @@
 <div class="left db-left" id="sidebar">
     <div class="db-left-content dlc1 bg hide">
         <div class="ta-c logo"><a href="${ctx}/dashboard/" class="v-link-active"><img
-                src="${assets}/img/logo/full.png"></a></div>
+                src="/img/logo/full.png"></a></div>
         <div class="dbl-projects">
             <%--<div class="db-left-search">
                 <div class="cb">
@@ -50,7 +50,7 @@
     <div class="sidebar bg">
         <div class="db-left-bar">
             <div class="logo ta-c"><a href="${ctx}/dashboard" class="v-link-active"><img
-                    src="${assets}/img/logo/full-white.png"></a></div>
+                    src="/img/logo/full-white.png"></a></div>
             <br> <br> <br>
             <c:if test="${share == null}">
             <ul class="ta-c">
@@ -274,4 +274,4 @@
 
 
 
-<script src="${assets}/js/project/sidebar.js?v=${v}"></script>
+<script src="/js/project/sidebar.js?v=${v}"></script>

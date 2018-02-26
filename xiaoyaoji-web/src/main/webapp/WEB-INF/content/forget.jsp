@@ -10,13 +10,13 @@
 <head>
     <title>忘记密码 - 小幺鸡</title>
     <jsp:include page="/WEB-INF/includes/meta.jsp"/>
-    <link rel="stylesheet" href="${assets}/css/index.css?v=${v}">
+    <link rel="stylesheet" href="/css/index.css?v=${v}">
 </head>
 <body>
 <div id="app">
     <div class="login-form mc" v-bind:class="{'succeed':succeed}">
         <form class="form" v-on:submit.prevent id="login-box">
-            <div class="ta-c logo"><a href="${ctx}/"><img src="${assets}/img/logo/full.png"></a></div>
+            <div class="ta-c logo"><a href="${ctx}/"><img src="/img/logo/full.png"></a></div>
             <div v-if="!succeed">
                 <div class="item">
                     <input type="text" autofocus="autofocus" name="email" v-model="email" v-validate="'required|email'"
@@ -45,7 +45,7 @@
     </div>
 </div>
 <jsp:include page="/WEB-INF/includes/js.jsp"/>
-<script src="${assets}/js/forget.js"></script>
+<script src="/js/forget.js"></script>
 
 </body>
 </html>

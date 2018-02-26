@@ -282,4 +282,4 @@
 <script>
     var global = ${projectGlobal},_projectId_='${project.id}';
 </script>
-<script src="${assets}/js/project/global.js"></script>
+<script src="/js/project/global.js"></script>

@@ -10,7 +10,7 @@
 <head>
     <title>转移项目-${site.name}</title>
     <jsp:include page="/WEB-INF/includes/meta.jsp"/>
-    <link rel="stylesheet" href="${assets}/css/home.css?v=${v}">
+    <link rel="stylesheet" href="/css/home.css?v=${v}">
 </head>
 <body>
 <jsp:include page="../dashboard/header.jsp"/>

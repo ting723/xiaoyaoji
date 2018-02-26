@@ -2,7 +2,7 @@
     var thirds = [
         'vue',
         'utils',
-        ctx+'/proxy/'+pluginId+'/assets/js/doc.commons.js'
+        ctx+'/proxy/'+pluginId+'/js/doc.commons.js'
     ];
     requirejs(thirds,function(Vue,utils,commons){
         var docApp = new Vue({

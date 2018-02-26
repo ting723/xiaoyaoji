@@ -12,5 +12,5 @@
     </div>
     小幺鸡&copy;2016<a href="http://www.miitbeian.gov.cn/" target="_blank">蜀ICP备16012366号</a>
     <jsp:include page="js.jsp"/>
-    <script src="${assets}/js/index.js?v=${v}"></script>
+    <script src="/js/index.js?v=${v}"></script>
 </footer>

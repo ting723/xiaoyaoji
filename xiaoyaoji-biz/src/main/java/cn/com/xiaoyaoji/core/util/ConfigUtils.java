@@ -21,11 +21,11 @@ public class ConfigUtils {
         } catch (IOException e) {
             logger.error(e.getMessage(),e);
         }
-        try {
-            properties.load(classLoader.getResourceAsStream("config.dev.properties"));
-        } catch (Exception e) {
-            logger.info("not found config.dev.properties");
-        }
+//        try {
+//            properties.load(classLoader.getResourceAsStream("config.dev.properties"));
+//        } catch (Exception e) {
+//            logger.info("not found config.dev.properties");
+//        }
     }
     public static String getProperty(String key){
         return properties.getProperty(key);

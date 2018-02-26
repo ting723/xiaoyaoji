@@ -18,7 +18,7 @@
 <head>
     <title>${site.name}</title>
     <jsp:include page="/WEB-INF/includes/meta.jsp"/>
-    <link rel="stylesheet" href="${assets}/css/home.css?v=${v}">
+    <link rel="stylesheet" href="/css/home.css?v=${v}">
 </head>
 <body class="home">
 
@@ -181,5 +181,5 @@
 
 <jsp:include page="footer.jsp"/>
 <script>_userId_='${user.id}';</script>
-<script src="${assets}/js/dashboard/home.js?v=${v}"></script>
+<script src="/js/dashboard/home.js?v=${v}"></script>
 

@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <script src="${assets}/js/browser.js"></script>
+    <script src="/js/browser.js"></script>
     <title>不支持该浏览器</title>
    <jsp:include page="/WEB-INF/includes/meta.jsp"/>
     <style>
@@ -24,7 +24,7 @@
 <body class="login-register-body">
 <div class="login-form mc">
     <div class="form">
-        <div class="ta-c logo"><a href="/"><img src="${assets}/img/logo/full.png"></a> </div><br/><br/>
+        <div class="ta-c logo"><a href="/"><img src="/img/logo/full.png"></a> </div><br/><br/>
         <div><i></i>
             你正在使用的浏览器内核版本过低，<a href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support" target="_blank">微软已经不再提供技术支持</a>
             ，为避免可能存在的安全隐患，请尽快升级你的浏览器或者安装更安全的浏览器访问微信公众平台。

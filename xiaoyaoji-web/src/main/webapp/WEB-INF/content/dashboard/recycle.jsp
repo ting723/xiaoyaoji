@@ -12,7 +12,7 @@
 <head>
     <title>回收站 - ${site.name}</title>
     <jsp:include page="/WEB-INF/includes/meta.jsp"/>
-    <link rel="stylesheet" href="${assets}/css/home.css?v=${v}">
+    <link rel="stylesheet" href="/css/home.css?v=${v}">
 </head>
 <body class="home">
 <jsp:include page="header.jsp"/>
@@ -42,6 +42,6 @@
 </div>
 <jsp:include page="/WEB-INF/includes/js.jsp"/>
 <script>_userId_='${user.id}',status='DELETED';</script>
-<script src="${assets}/js/dashboard/home.js?v=${v}"></script>
+<script src="/js/dashboard/home.js?v=${v}"></script>
 </body>
 </html>

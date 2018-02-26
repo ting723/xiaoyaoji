@@ -10,7 +10,7 @@
 <head>
     <title>在线帮助 - 小幺鸡</title>
     <jsp:include page="/WEB-INF/includes/meta.jsp"/>
-    <link rel="stylesheet" href="${assets}/css/index.css?v=${v}">
+    <link rel="stylesheet" href="/css/index.css?v=${v}">
 </head>
 <body>
 <div id="app">
@@ -24,7 +24,7 @@
         捐赠的资金基本上用于带宽升级与服务器的维持。<br/>
         谢谢!<br/>
     </div>
-    <img src="${cdn}/donate.webp" alt="捐赠" class="donate-img">
+    <img src="/donate.webp" alt="捐赠" class="donate-img">
 </div>
 
 

@@ -10,7 +10,7 @@
 </div>
 <script>
 
-    var editJs = '${cdn}/assets/wangeditor3/wangEditor.js';
+    var editJs = '/wangeditor3/wangEditor.js';
 
     (function () {
         function resizeHeight(f) {

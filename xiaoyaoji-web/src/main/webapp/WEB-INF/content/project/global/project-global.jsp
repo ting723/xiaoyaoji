@@ -169,7 +169,7 @@
 <script>
     var global = ${projectGlobal},_projectId_='${project.id}';
 </script>
-<script src="${assets}/js/project/global.js?v=${v}"></script>
+<script src="/js/project/global.js?v=${v}"></script>
 
 </div>
 

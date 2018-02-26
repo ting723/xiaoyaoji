@@ -1,0 +1,6 @@
+debug: true
+spring:
+  mvc:
+    view:
+      suffix: .jsp
+      prefix: /WEB-INF/content/

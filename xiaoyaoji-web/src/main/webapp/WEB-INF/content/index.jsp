@@ -10,7 +10,7 @@
 <head>
     <title>小幺鸡，简单好用的接口文档管理工具</title>
     <jsp:include page="/WEB-INF/includes/meta.jsp"/>
-    <link rel="stylesheet" href="${assets}/css/index.css?v=${v}">
+    <link rel="stylesheet" href="/css/index.css?v=${v}">
 </head>
 <body>
 <div id="app">
