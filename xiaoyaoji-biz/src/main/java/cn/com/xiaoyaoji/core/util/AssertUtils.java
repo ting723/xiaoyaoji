@@ -7,8 +7,9 @@ package cn.com.xiaoyaoji.core.util;
 public class AssertUtils {
 
     public static void notNull(Object data, String errorMsg) {
-        if (data == null)
+        if (data == null) {
             throw new IllegalArgumentException(errorMsg);
+        }
         if (data instanceof String) {
             if (org.apache.commons.lang3.StringUtils.isBlank((String) data)) {
                 throw new IllegalArgumentException(errorMsg);
@@ -24,8 +25,9 @@ public class AssertUtils {
     }
 
     public static void isTrue(boolean expression, String errorMsg) {
-        if (!expression)
+        if (!expression) {
             throw new IllegalArgumentException(errorMsg);
+        }
     }
 
     public static void error(String errorMsg) {
@@ -33,8 +35,9 @@ public class AssertUtils {
     }
 
     public static void result(boolean rs, String errorMsg) {
-        if (!rs)
+        if (!rs) {
             throw new IllegalArgumentException(errorMsg);
+        }
     }
 
 }

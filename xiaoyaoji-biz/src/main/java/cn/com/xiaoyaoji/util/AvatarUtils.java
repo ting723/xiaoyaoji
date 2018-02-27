@@ -9,8 +9,9 @@ import cn.com.xiaoyaoji.core.util.ConfigUtils;
 public class AvatarUtils {
 
     public static String getAvatar(String avatar){
-        if(avatar == null || avatar.length() == 0)
+        if(avatar == null || avatar.length() == 0) {
             return avatar;
+        }
         if(avatar.startsWith("http")){
             return avatar;
         }

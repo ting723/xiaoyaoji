@@ -1,17 +1,11 @@
-<%--
-  User: zhoujingjie
-  Date: 17/4/4
-  Time: 13:12
---%>
-
 <!--[if lt IE 9]> <script>location.href='unsupport.html?refer='+encodeURIComponent(location.href)</script> <![endif]-->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <title>注册 - 小幺鸡</title>
-    .ftl:include page="/WEB-INF/includes/meta.ftl">
-        .ftl:param name="ignore" value="true"/>
-    <.ftl:include>
+    <#include "../includes/meta.ftl">
+        <#--.ftl:param name="ignore" value="true"/>-->
+    <#--<.ftl:include>-->
 </head>
 <body>
 <div id="register">
@@ -41,7 +35,7 @@
     </div>
 </div>
 </div>
-.ftl:include page="/WEB-INF/includes/js.ftl"/>
+<#include "../includes/js.ftl"/>
 <script src="/js/register.js"></script>
 
 </body>

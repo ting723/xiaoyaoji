@@ -53,8 +53,9 @@ public class ServiceFactory {
      */
     public int deleteWithImage(String tableName, String id, String... imgFields) {
         Map<String, Object> map = DataFactory.instance().getById(tableName, id);
-        if (map == null)
+        if (map == null) {
             return 0;
+        }
         if (imgFields != null && imgFields.length > 0) {
             for (String field : imgFields) {
                 try {

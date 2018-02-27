@@ -52,7 +52,7 @@
             <div class="logo ta-c"><a href="${ctx}/dashboard" class="v-link-active"><img
                     src="/img/logo/full-white.png"></a></div>
             <br> <br> <br>
-            <c:if test="${share == null}">
+            <#if test="${share == null}">
             <ul class="ta-c">
                 <%--<li class="db-item"><a href="#!/add"><i class="iconfont icon-add-circle" style="font-weight: bold;"></i></a>
                 </li>--%>
@@ -73,19 +73,19 @@
                     <a  title="项目设置"><i class="iconfont icon-dashboard"></i></a>
                     <ul class="sub-ul">
                         <li class="db-item" v-on:click="loadShares"><a>项目分享</a></li>
-                        <c:if test="${editPermission}">
+                        <#if test="${editPermission}">
                             <li class="db-item"><a href="${ctx}/project/${project.id}/info">项目信息</a></li>
                             <li class="db-item"><a href="${ctx}/project/${project.id}/transfer">项目转让</a></li>
-                        </c:if>
+                        </#if>
                         <li class="db-item"><a href="${ctx}/project/${project.id}/member">项目成员</a></li>
                         <li class="db-item"><a href="${ctx}/project/${project.id}/export">导出项目</a></li>
                         <li class="db-item"><a href="${ctx}/project/${project.id}/quit">退出项目</a></li>
                     </ul>
                 </li>
-                <c:if test="${docId != null && edit}">
+                <#if test="${docId != null && edit}">
                     <li class="db-item" uk-toggle="target: #save-modal"><a title="保存"><i class="iconfont icon-save"></i></a></li>
-                </c:if>
-            </ul></c:if>
+                </#if>
+            </ul></#if>
             <ul class="sidebar-o-op ta-c">
                 <li class="db-item "><a href="${ctx}/profile" title="个人中心"><i class="iconfont icon-user"></i></a></li>
                 <li class="db-item" v-on:click="showProject"><a title="项目列表"><i
@@ -96,12 +96,12 @@
     </div>
 
    <%-- <div class="api-modules-tab ta-c">
-        <c:if test="${docId != null && editPermission}">
+        <#if test="${docId != null && editPermission}">
             <a class="api-module api-module-item ${edit?'active':''}" v-on:click="editpage">编辑模式</a>
-        </c:if>
-        <c:if test="${editPermission}">
+        </#if>
+        <#if test="${editPermission}">
             <a class="api-module api-module-item ${!edit?'active':''}" v-on:click="viewpage">浏览模式</a>
-        </c:if>
+        </#if>
     </div>
 --%>
     <div id="history-modal" uk-modal class="uk-modal-container">
@@ -174,12 +174,12 @@
                         <li v-for="item in shares" v-bind:class="{editing:item.editing}">
                             <div class="cb">
                                 <a class="share-name fl" target="_blank" v-bind:href="'${ctx}/share/'+item.id">[{{item.username}}] {{item.name}} </a>
-                                <c:if test="${editPermission}">
+                                <#if test="${editPermission}">
                                 <div class="fr">
                                     <i class="iconfont icon-lock" v-on:click="item.editing=true;"></i>
                                     <i class="iconfont icon-close" v-on:click="deleteShare(item)"></i>
                                 </div>
-                                </c:if>
+                                </#if>
                                 <input type="text" class="uk-input fr" v-bind:autofocus="item.editing" v-on:blur="shareLockBlur(item)" v-model="item.password" v-bind:value="item.password" placeholder="为空则表示不要密码">
                             </div>
                             <div class="cb">
@@ -229,9 +229,9 @@
             <div class="uk-modal-footer uk-text-right">
                 <div v-show="shareBox=='list'">
                     <button class="uk-button uk-button-default uk-modal-close" type="button">取消</button>
-                    <c:if test="${editPermission}">
+                    <#if test="${editPermission}">
                     <button class="uk-button uk-button-primary" type="button" v-on:click="shareBox='creation'">创建新分享</button>
-                    </c:if>
+                    </#if>
                 </div>
                 <div v-show="shareBox=='creation'">
                     <button class="uk-button uk-button-default" v-on:click="shareBox='list'" type="button">返回</button>

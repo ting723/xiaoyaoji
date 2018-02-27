@@ -42,14 +42,14 @@
                 </div>
             </c:forEach>
             <div>
-                <c:if test="${config.size()>0}">
+                <#if test="${config.size()>0}">
                 <input type="submit" class="uk-button uk-button-primary" value="保存(重启后失效)">
-                </c:if>
-                <c:if test="${pluginId != null}">
+                </#if>
+                <#if test="${pluginId != null}">
                     <a href="?id=${pluginId}&action=reload" class="uk-button uk-button-secondary ">重新加载插件</a>
                     <a href="?id=${pluginId}&action=unload" class="uk-button uk-button-secondary ">卸载插件</a>
                     <a href="?id=${pluginId}&action=delete" class="uk-button uk-button-danger ">删除插件</a>
-                </c:if>
+                </#if>
             </div>
         </form>
         <h3 class="uk-article-title"><a href="?">上传插件</a></h3><br/>

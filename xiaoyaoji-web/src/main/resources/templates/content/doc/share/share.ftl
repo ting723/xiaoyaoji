@@ -1,17 +1,7 @@
-<%--
-  User: zhoujingjie
-  Date: 17/4/12
-  Time: 22:44
---%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com.ftl/jstl/core" %>
-
-<c:if test="${!isXHR}">
-    .ftl:include page="../doc-header.ftl"/>
-    .ftl:include page="../doc-sidebar.ftl"/>
-    .ftl:include page="share-doc-left.ftl">
-        .ftl:param name="view" value="true"/>
-    <.ftl:include>
+<#if test="${!isXHR}">
+    <#include "../doc-header.ftl">
+    <#include "../doc-sidebar.ftl">
+    <#include "share-doc-left.ftl">
 <style>
     .xd-header-placeholder,.xd-header{
         display: none;
@@ -26,17 +16,17 @@
     </div>
 
     <div class="doc-full-width" id="doc-content">
-</c:if>
+</#if>
 
 
-<c:if test="${doc!=null }">
-    <c:if test="${pluginInfo == null}">
-        .ftl:include page="/WEB-INF/includes/doc-type-not-support.ftl"/>
-    </c:if>
-    <c:if test="${pluginInfo != null}">
-        .ftl:include page="/WEB-INF/plugins/${pluginInfo.runtimeFolder}/web/${pluginInfo.plugin.viewPage}"/>
-    </c:if>
-</c:if>
+<#if test="${doc!=null }">
+    <#if test="${pluginInfo == null}">
+        <#include "../../../includes/doc-type-not-support.ftl"/>
+    </#if>
+    <#if test="${pluginInfo != null}">
+        <#include "../../../plugins/${pluginInfo.runtimeFolder}/web/${pluginInfo.plugin.viewPage}"/>
+    </#if>
+</#if>
 <!-- loading start -->
 
 
@@ -47,11 +37,11 @@
     }
 </script>
 
-<c:if test="${!isXHR}">
+<#if test="${!isXHR}">
     </div>
     </div>
     <%--</div>--%>
     <!-- loading end -->
     </body>
     </html>
-</c:if>
+</#if>

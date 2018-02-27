@@ -77,6 +77,11 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
             if(request.getAttribute("fn") == null) {
                 modelAndView.getModel().put("fn", new JspFn(request));
             }
+
+            User user = (User) request.getSession().getAttribute("user");
+            if(user!=null){
+                modelAndView.addObject("user",user);
+            }
         }
     }
 

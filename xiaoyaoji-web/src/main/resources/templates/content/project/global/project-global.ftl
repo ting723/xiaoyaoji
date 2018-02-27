@@ -4,7 +4,7 @@
   Time: 21:20
 --%>
 
-.ftl:include page="../../doc/doc-header.ftl"/>
+<#include "../../doc/doc-header.ftl"/>
 <style>
     body{
         min-width:inherit;
@@ -162,10 +162,10 @@
 
 
 
-.ftl:include page="/WEB-INF/includes/doc/table/request-headers.ftl"/>
-.ftl:include page="/WEB-INF/includes/doc/table/request-args.ftl"/>
-.ftl:include page="/WEB-INF/includes/doc/table/response-headers.ftl"/>
-.ftl:include page="/WEB-INF/includes/doc/table/response-args.ftl"/>
+<#include "/WEB-INF/includes/doc/table/request-headers.ftl"/>
+<#include "/WEB-INF/includes/doc/table/request-args.ftl"/>
+<#include "/WEB-INF/includes/doc/table/response-headers.ftl"/>
+<#include "/WEB-INF/includes/doc/table/response-args.ftl"/>
 <script>
     var global = ${projectGlobal},_projectId_='${project.id}';
 </script>

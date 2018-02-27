@@ -1,9 +1,9 @@
-require(['utils','vue', 'vueEx'], function (utils, Vue) {
-    
+require(['utils', 'vue', 'vueEx'], function (utils, Vue) {
+
 
     var app = new Vue({
         el: '#login',
-        data: {password: '', email: '', params: {}, remember: false,from:null},
+        data: {password: '', email: '', params: {}, remember: false, from: null},
         created: function () {
             if (location.search) {
                 this.params = utils.getQueryParams(location.search);
@@ -21,17 +21,22 @@ require(['utils','vue', 'vueEx'], function (utils, Vue) {
         methods: {
             submit: function () {
                 var self = this;
-                this.$validator.validateAll({email:this.email,password:this.password}).then(function(){
+                this.$validator.validateAll({email: this.email, password: this.password}).then(function () {
+
                     utils.post('/login', {
                         email: self.email, password: self.password
                     }, function (rs) {
                         console.log(rs);
                         utils.login.success(self.from);
+                    }, function (error) {
+                        console.log(error);
                     });
-                }).catch(function(){
+
+                }).catch(function () {
+                    console.log("Error");
                 })
             },
-            thirdparty:function(pluginId,openURL){
+            thirdparty: function (pluginId, openURL) {
                 window.open(openURL, pluginId, 'height=550, width=900, top=0, left=0, toolbar=no, menubar=no, scrollbars=no,resizable=no,location=no, status=no');
 
                 if (window.initialized) {
@@ -42,7 +47,7 @@ require(['utils','vue', 'vueEx'], function (utils, Vue) {
                     var data = e.data;
                     data = JSON.parse(data);
                     utils.post('/login/plugin?pluginId=' + pluginId, data, function (rs) {
-                        utils.login.success( null);
+                        utils.login.success(null);
                     });
                 });
             }

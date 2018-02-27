@@ -1,15 +1,9 @@
-<%--
-  User: zhoujingjie
-  Date: 17/4/4
-  Time: 13:14
---%>
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <script src="/js/browser.js"></script>
     <title>不支持该浏览器</title>
-   .ftl:include page="/WEB-INF/includes/meta.ftl"/>
+   <#include "../includes/meta.ftl"/>
     <style>
         img{ max-width: 100%; }
         .login-form{width: 800px;background: #fff;padding: 50px;}

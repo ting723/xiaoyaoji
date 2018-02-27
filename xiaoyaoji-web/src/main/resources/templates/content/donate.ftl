@@ -9,12 +9,12 @@
 <html lang="zh-CN">
 <head>
     <title>在线帮助 - 小幺鸡</title>
-    .ftl:include page="/WEB-INF/includes/meta.ftl"/>
+    <#include "/WEB-INF/includes/meta.ftl"/>
     <link rel="stylesheet" href="/css/index.css?v=${v}">
 </head>
 <body>
 <div id="app">
-.ftl:include page="/WEB-INF/includes/header.ftl"/>
+<#include "/WEB-INF/includes/header.ftl"/>
 </div>
 
 <div class="donate">
@@ -28,7 +28,7 @@
 </div>
 
 
-.ftl:include page="/WEB-INF/includes/footer.ftl"/>
+<#include "/WEB-INF/includes/footer.ftl"/>
 
 </body>
 </html>

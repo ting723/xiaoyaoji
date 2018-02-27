@@ -79,8 +79,9 @@ public class UserController {
 
     @GetMapping("search")
     public Object search(User user, @RequestParam("key") String key) {
-        if (key == null || key.trim().length() == 0)
+        if (key == null || key.trim().length() == 0) {
             return null;
+        }
         List<User> users = ServiceFactory.instance().searchUsers(key, user.getId());
         return new _HashMap<>().add("users", users);
     }

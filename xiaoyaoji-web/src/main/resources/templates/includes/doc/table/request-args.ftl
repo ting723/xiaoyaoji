@@ -1,4 +1,3 @@
-
 <script type="text/template" id="request-args-template" class="hide">
     <div v-bind:class="{'div-editing-table':editing}" :data-module-name="name">
         <div class="div-table-line"

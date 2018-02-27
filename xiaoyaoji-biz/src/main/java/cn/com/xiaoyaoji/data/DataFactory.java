@@ -189,8 +189,9 @@ public class DataFactory implements Data {
     @Override
     public int updateAndImage(final Object instance, final String... imgKeys) {
         final Map<String, Object> temp = getById(SqlUtils.getTableName(instance.getClass()), getId(instance));
-        if (temp == null)
+        if (temp == null) {
             return 0;
+        }
         return process(new Handler<Integer>() {
             @Override
             public Integer handle(Connection connection, QueryRunner qr) throws SQLException {
@@ -230,8 +231,9 @@ public class DataFactory implements Data {
                 AssertUtils.notNull(user, "无效用户");
                 //检查是否绑定
                 int rs = qr.query(connection, "select count(id) from " + TableNames.USER_THIRD + " where userId=? and type=? and id =?", new IntegerResultHandler(), thirdparty.getUserId(), thirdparty.getType(), thirdparty.getId());
-                if (rs == 1)
+                if (rs == 1) {
                     return rs;
+                }
                 //删除第三方
                 rs = qr.update(connection, "delete from " + TableNames.USER_THIRD + " where  id=?", thirdparty.getId());
                 // 创建第三方
@@ -550,8 +552,9 @@ public class DataFactory implements Data {
      */
     private int copyDoc0(String docId,String newDocId,String parentId,String projectId){
         Doc doc = getById(Doc.class,docId);
-        if(doc == null)
+        if(doc == null) {
             return 0;
+        }
         doc.setCreateTime(new Date());
         doc.setLastUpdateTime(new Date());
         doc.setId(newDocId);
@@ -587,8 +590,9 @@ public class DataFactory implements Data {
             public String handle(Connection connection, QueryRunner qr) throws SQLException {
                 StringBuilder sql = new StringBuilder();
                 sql.append("select group_concat(name) from doc where id in (");
-                if(docIdsArray.length==0)
+                if(docIdsArray.length==0) {
                     return "";
+                }
                 for(String id:docIdsArray){
                     sql.append("?,");
                 }

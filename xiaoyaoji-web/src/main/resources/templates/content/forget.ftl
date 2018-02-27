@@ -1,15 +1,9 @@
-<%--
-  User: zhoujingjie
-  Date: 17/4/4
-  Time: 13:06
---%>
-
 <!--[if lt IE 9]> <script>location.href='unsupport.html?refer='+encodeURIComponent(location.href)</script> <![endif]-->
 <!DOCTYPE html>
 <html lang="zh">
 <head>
     <title>忘记密码 - 小幺鸡</title>
-    .ftl:include page="/WEB-INF/includes/meta.ftl"/>
+    <#include "../includes/meta.ftl"/>
     <link rel="stylesheet" href="/css/index.css?v=${v}">
 </head>
 <body>
@@ -44,7 +38,7 @@
                                                                                                   v-text="resendtext"></a>
     </div>
 </div>
-.ftl:include page="/WEB-INF/includes/js.ftl"/>
+<#include "../includes/js.ftl"/>
 <script src="/js/forget.js"></script>
 
 </body>

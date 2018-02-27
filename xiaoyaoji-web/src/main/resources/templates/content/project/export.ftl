@@ -13,13 +13,13 @@
 <html lang="zh-CN">
 <head>
     <title>导出-${site.name}</title>
-    .ftl:include page="/WEB-INF/includes/meta.ftl"/>
+    <#include "/WEB-INF/includes/meta.ftl"/>
     <link rel="stylesheet" href="/css/home.css?v=${v}">
 </head>
 <body>
-.ftl:include page="../dashboard/header.ftl"/>
+<#include "../dashboard/header.ftl"/>
 <div class="project-info mc">
-    .ftl:include page="left.ftl"/>
+    <#include "left.ftl"/>
     <div class="project-info-content">
         <div class="db-export">
             <ul class="cb">

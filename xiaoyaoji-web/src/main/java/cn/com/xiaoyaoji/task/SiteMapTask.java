@@ -67,8 +67,9 @@ public class SiteMapTask extends TimerTask {
         //
         //查询所有有效的projectId
         List<String> ids = ServiceFactory.instance().getAllProjectValidIds();
-        if(ids.size() == 0 )
+        if(ids.size() == 0 ) {
             return;
+        }
         logger.info("the daily sitemap generation task begin");
         File siteMapFile = new File(servletContext.getRealPath("/sitemap.txt"));
         Writer writer = null;

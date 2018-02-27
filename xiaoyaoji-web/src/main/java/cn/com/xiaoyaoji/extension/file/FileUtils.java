@@ -43,8 +43,9 @@ public class FileUtils {
         return ext;
     }
     public static String path(String ext) {
-        if(ext == null)
+        if(ext == null) {
             ext="";
+        }
         return new SimpleDateFormat("yyyyMM/dd/").format(new Date()).concat(StringUtils.uuid() + ext);
     }
 
@@ -57,8 +58,9 @@ public class FileUtils {
      * @throws IOException
      */
     public static void delete(String path) throws IOException {
-        if (path == null)
+        if (path == null) {
             return;
+        }
         FileManager.getFileProvider().delete(path);
     }
 }

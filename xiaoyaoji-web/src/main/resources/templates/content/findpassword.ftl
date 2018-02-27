@@ -1,15 +1,9 @@
-<%--
-  User: zhoujingjie
-  Date: 17/4/4
-  Time: 13:03
---%>
-
 <!--[if lt IE 9]> <script>location.href='unsupport.html?refer='+encodeURIComponent(location.href)</script> <![endif]-->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <title>找回密码 - 小幺鸡</title>
-    .ftl:include page="/WEB-INF/includes/meta.ftl"/>
+    <#include "../includes/meta.ftl"/>
     <link rel="stylesheet" href="/css/index.css?v=${v}">
 </head>
 <body>
@@ -39,7 +33,7 @@
         </div>
     </div>
 </div>
-.ftl:include page="/WEB-INF/includes/js.ftl"/>
+<#include "../includes/js.ftl"/>
 <script src="/js/findpassword.js"></script>
 
 </body>

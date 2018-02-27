@@ -22,7 +22,7 @@
             <p class="doc-item-section-title">接口描述</p>
             <div v-html="content.description"></div>
         </div>
-        <%--<c:if test="${doc.attachs.size() > 0}">--%>
+        <%--<#if test="${doc.attachs.size() > 0}">--%>
         <div class="doc-item-section" v-if="attachs && attachs.length>0">
             <p class="doc-item-section-title">附件</p>
             <div class="cb">
@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <%--</c:if>--%>
+        <%--</#if>--%>
         <div v-if="(global.http.requestHeaders&&global.http.requestHeaders.length>0 && !content.ignoreGHttpReqHeaders)">
             <p class="doc-item-section-title">全局请求头</p>
             <div class="div-table">

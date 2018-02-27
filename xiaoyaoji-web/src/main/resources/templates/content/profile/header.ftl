@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/style.css?v=${v}">
     <link rel="stylesheet" href="/css/home.css?v=${v}">
-    .ftl:include page="/WEB-INF/includes/meta.ftl"/>
+    <#include "/WEB-INF/includes/meta.ftl"/>
 </head>
 <body class="home">
 
@@ -20,7 +20,7 @@
     <div class="mc cb ta-c">
         <a href="${ctx}/dashboard" class="fl"><img src="/img/logo/full.png" alt="logo"></a>
         <div class="user-account fr">
-            <a href=""><img src="${sessionScope.user.avatar}" class="user-account-logo" alt=""><span>${sessionScope.user.nickname}</span></a>
+            <a href=""><img src="${Session.user.avatar}" class="user-account-logo" alt=""><span>${Session.user.nickname}</span></a>
         </div>
         <div v-cloak uk-dropdown="pos: top-right" style="text-align: left">
             <ul class="uk-nav uk-dropdown-nav">

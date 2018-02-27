@@ -26,7 +26,7 @@
     //request.setAttribute("importDocuments", GlobalProperties.getImportDocuments());
 %>
 <div class="doc-left" id="docLeft">
-    <c:if test="${edit}">
+    <#if test="${edit}">
         <div class="dl-doc-actions cb">
             <div class="fl dl-doc-action">
                 <a><i class="el-icon-plus"></i>新建</a>
@@ -49,12 +49,12 @@
                 </ul>
             </div>--%>
         </div>
-    </c:if>
+    </#if>
 
     <input type="text" class="doc-search" v-model="searchText" v-on:keyup.enter="search" placeholder="搜索...">
     <div class="dl-content" id="doc-names">
         <ul class="dl-docs" v-on:contextmenu.prevent="contextMenu($event)" v-show="!showSearch">
-            <c:if test="${!edit}">
+            <#if test="${!edit}">
                 <li class="cb">
                     <div class="dl-doc dl-project-name">
                         <div class="doc-name cb ">
@@ -64,10 +64,10 @@
                     </div>
                 </li>
                 <li class="divider"></li>
-            </c:if>
+            </#if>
             <c:forEach items="${docs}" var="doc">
                 <c:set var="item" value="${doc}" scope="request"/>
-                .ftl:include page="doc-left-item.ftl"/>
+                <#include "doc-left-item.ftl"/>
             </c:forEach>
         </ul>
         <ul class="dl-docs doc-search-result" v-cloak v-show="showSearch">
@@ -97,7 +97,7 @@
                 </c:forEach>
             </ul>
         </li>
-        <%--<c:if test="${importDocuments != null && importDocuments.size()>0}">
+        <%--<#if test="${importDocuments != null && importDocuments.size()>0}">
             <li v-if="menu.isFolder">
                 <div class="dl-menu-name folder">导入</div>
                 <ul class="dl-menus sub dl-docs">
@@ -108,7 +108,7 @@
                     </c:forEach>
                 </ul>
             </li>
-        </c:if>--%>
+        </#if>--%>
         <li class="line" v-if="menu.isFolder"></li>
 
         <li uk-toggle="target:#docCopyModal">

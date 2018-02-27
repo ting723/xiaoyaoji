@@ -109,8 +109,9 @@ public class HttpController {
                 Map<String, List<String>> headerMap = connection.getHeaderFields();
                 if (headerMap != null) {
                     for (Map.Entry<String, List<String>> entry : connection.getHeaderFields().entrySet()) {
-                        if(entry.getKey() == null)
+                        if(entry.getKey() == null) {
                             continue;
+                        }
                         StringBuilder headerValue = new StringBuilder();
                         for (Iterator<String> it = entry.getValue().iterator(); it.hasNext(); ) {
                             String next = it.next();

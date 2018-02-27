@@ -118,8 +118,9 @@ public class DocController {
         }
         if(DocType.SYS_HTTP.getTypeName().equals(old.getType())){
             if(old.getContent() == null){
-                if(now.getContent()!=null)
+                if(now.getContent()!=null) {
                     sb.append("文档内容,");
+                }
             }else if(now.getContent()!=null){
 
                 JSONObject oldObj  =JSON.parseObject(old.getContent());

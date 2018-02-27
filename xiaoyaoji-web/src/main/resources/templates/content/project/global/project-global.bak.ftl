@@ -275,10 +275,10 @@
         </div>
     </div>
 </div>
-.ftl:include page="/WEB-INF/includes/doc/table/request-headers.ftl"/>
-.ftl:include page="/WEB-INF/includes/doc/table/request-args.ftl"/>
-.ftl:include page="/WEB-INF/includes/doc/table/response-headers.ftl"/>
-.ftl:include page="/WEB-INF/includes/doc/table/response-args.ftl"/>
+<#include "/WEB-INF/includes/doc/table/request-headers.ftl"/>
+<#include "/WEB-INF/includes/doc/table/request-args.ftl"/>
+<#include "/WEB-INF/includes/doc/table/response-headers.ftl"/>
+<#include "/WEB-INF/includes/doc/table/response-args.ftl"/>
 <script>
     var global = ${projectGlobal},_projectId_='${project.id}';
 </script>

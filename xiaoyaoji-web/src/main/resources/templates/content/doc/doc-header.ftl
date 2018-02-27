@@ -1,23 +1,16 @@
-<%@ taglib prefix="c" uri="http://java.sun.com.ftl/jstl/core" %>
-<%--
-  User: zhoujingjie
-  Date: 17/4/27
-  Time: 22:06
---%>
-
 <!DOCTYPE html>
 <html lang="zh-Hans">
 <head>
     <title>${doc.name}-${project.name}</title>
     <link rel="stylesheet" href="/css/doc.css?v=${v}"/>
     <link rel="stylesheet" href="/css/icons.css?v=${v}"/>
-    .ftl:include page="/WEB-INF/includes/meta.ftl"/>
-    .ftl:include page="/WEB-INF/includes/js.ftl"/>
+    <#include "../../includes/meta.ftl"/>
+    <#include "../../includes/js.ftl"/>
 </head>
 <body>
 
 <div class="xd-header cb" id="xd-header">
-    <c:if test="${sessionScope.user != null && editPermission}">
+    <#if test="${Session.user != null && editPermission}">
     <div class="fl">
         <ul class="x-ul horiz">
             <li>
@@ -50,30 +43,30 @@
                 <div class="x-li">|</div>
             </li>
 
-            <c:if test="${!edit && editPermission}">
+            <#if test="${!edit && editPermission}">
                 <li v-on:click="sidebar('editpage')">
                     <div class="x-li"><a><i class="iconfont icon-edit1"></i>编辑项目</a></div>
                 </li>
-            </c:if>
-            <c:if test="${docId != null && edit}">
+            </#if>
+            <#if test="${docId != null && edit}">
                 <li v-on:click="sidebar('viewpage')">
                     <div class="x-li"><a><i class="iconfont icon-eye"></i>预览项目</a></div>
                 </li>
                 <li uk-toggle="target: #save-modal">
                     <div class="x-li"><a style="color: #1e87f0"><i class="iconfont icon-save"></i>保存</a></div>
                 </li>
-            </c:if>
+            </#if>
         </ul>
     </div>
-    </c:if>
+    </#if>
     <div class="fr">
         <ul class="x-ul horiz">
             <li><div class="x-li"><a href="${ctx}/">主页</a></div></li>
             <li><div class="x-li"><a href="${ctx}/dashboard">控制台</a></div></li>
             <li><div class="x-li"><a href="http://www.xiaoyaoji.cn/donate" target="_blank">赞助作者</a></div></li>
-            <c:if test="${sessionScope.user != null}">
+            <#if test="${Session.user != null}">
             <li>
-                <div class="x-li"><a><img src="${sessionScope.user.avatar}" class="user-account-logo">&nbsp;${sessionScope.user.nickname}</a></div>
+                <div class="x-li"><a><img src="${Session.user.avatar}" class="user-account-logo">&nbsp;${Session.user.nickname}</a></div>
                 <div class="x-sub-ul" style="right:0px;">
                     <ul>
                         <li><div class="x-li"><a href="${ctx}/profile">个人中心</a></div></li>
@@ -85,17 +78,16 @@
                     </ul>
                 </div>
             </li>
-            </c:if>
-            <c:if test="${sessionScope.user == null}">
+            </#if>
+            <#if test="${Session.user == null}">
                 <li><div class="x-li"><a href="${ctx}/login">登录</a></div></li>
                 <li><div class="x-li"><a href="${ctx}/register">注册</a></div></li>
-            </c:if>
+            </#if>
         </ul>
     </div>
 </div>
 <div class="xd-header-placeholder"></div>
 <script src="/js/project/doc/header.js?v=${v}"></script>
 
-<%--<div class="doc">--%>
 <script>window._isGlobal_ = '${editProjectGlobal}'</script>
 

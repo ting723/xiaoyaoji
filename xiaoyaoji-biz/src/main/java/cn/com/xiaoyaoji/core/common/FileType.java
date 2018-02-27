@@ -14,8 +14,9 @@ public enum FileType {
     DOC,
     XLS;
     public static FileType parse(String type){
-        if(type == null)
+        if(type == null) {
             return null;
+        }
         type = type.toUpperCase();
         for(FileType fileType:FileType.values()){
             if(fileType.name().equals(type)){

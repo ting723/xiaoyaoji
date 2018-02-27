@@ -120,8 +120,9 @@ public class PluginManager {
     public PluginInfo getPluginInfo(String pluginId) {
         for(List<PluginInfo> list: pluginInfos.values()){
             for(PluginInfo item:list){
-                if(item.getId().equals(pluginId))
+                if(item.getId().equals(pluginId)) {
                     return item;
+                }
             }
         }
         return null;

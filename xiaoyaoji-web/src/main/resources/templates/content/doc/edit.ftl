@@ -11,10 +11,10 @@
   Time: 22:15
 --%>
 
-<c:if test="${!isXHR}">
-    .ftl:include page="doc-header.ftl"/>
-    .ftl:include page="doc-sidebar.ftl"/>
-    .ftl:include page="doc-left.ftl"/>
+<#if test="${!isXHR}">
+    <#include "doc-header.ftl"/>
+    <#include "doc-sidebar.ftl"/>
+    <#include "doc-left.ftl"/>
     <div class="doc-content doc" >
     <div class="hide" id="loading">
         <div class="spinner">
@@ -24,29 +24,29 @@
     </div>
     <div id="doc-content">
 
-</c:if>
-<c:if test="${editProjectGlobal}">
-    .ftl:include page="../project/global/project-global.ftl"/>
-</c:if>
-<c:if test="${!editProjectGlobal && doc!=null}">
-    <c:if test="${pluginInfo == null}">
-        .ftl:include page="/WEB-INF/includes/doc-type-not-support.ftl"/>
-    </c:if>
-    <c:if test="${pluginInfo != null}">
-        .ftl:include page="/WEB-INF/plugins/${pluginInfo.runtimeFolder}/web/${pluginInfo.plugin.editPage}"/>
-    </c:if>
-</c:if>
+</#if>
+<#if test="${editProjectGlobal}">
+    <#include "../project/global/project-global.ftl"/>
+</#if>
+<#if test="${!editProjectGlobal && doc!=null}">
+    <#if test="${pluginInfo == null}">
+        <#include "/WEB-INF/includes/doc-type-not-support.ftl"/>
+    </#if>
+    <#if test="${pluginInfo != null}">
+        <#include "/WEB-INF/plugins/${pluginInfo.runtimeFolder}/web/${pluginInfo.plugin.editPage}"/>
+    </#if>
+</#if>
 <script>
     window._edit_ = '${edit}', _projectName_ = '${project.name}', _projectId_ = '${project.id}', _docId_ = '${docId}';
     if(!window.requirejs){
         location.reload();
     }
 </script>
-<c:if test="${!isXHR}">
+<#if test="${!isXHR}">
     </div>
     </div>
     <%--</div>--%>
 
     </body>
     </html>
-</c:if>
+</#if>

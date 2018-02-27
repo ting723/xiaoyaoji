@@ -22,8 +22,9 @@ public class ResultUtils {
     }
 
     public static <T> T get(List<T> rs) {
-        if (rs != null && rs.size() > 0)
+        if (rs != null && rs.size() > 0) {
             return rs.get(0);
+        }
         return null;
     }
 

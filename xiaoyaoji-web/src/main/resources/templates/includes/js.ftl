@@ -14,7 +14,7 @@
             urlArgs:'v=1',
             paths:{
                 'vue':'/vue/vue.2.3.3',
-                'doc-common':'/js/doc/doc-common',
+                'doc-common':'/js/doc/docommon',
                 'jquery':'/jquery/jquery.min.1.11',
                 'veeValidate':'/vue/vee-validate.min',
                 'vueResource':'/vue/vue.resources',

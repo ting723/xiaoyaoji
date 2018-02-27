@@ -1,15 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com.ftl/jstl/core" %>
-
-<%--
-  User: zhoujingjie
-  Date: 17/4/16
-  Time: 16:25
---%>
-
 <div class="doc-left" id="docLeft">
     <div class="dl-content" id="doc-names">
         <ul class="dl-docs" v-show="!showSearch">
-            <c:if test="${!edit}">
+            <#if test="${!edit}">
                 <li class="cb">
                     <div class="dl-doc dl-project-name">
                         <div class="doc-name cb ">
@@ -19,10 +11,10 @@
                     </div>
                 </li>
                 <li class="divider"></li>
-            </c:if>
+            </#if>
             <c:forEach items="${docs}" var="doc">
                 <c:set var="item" value="${doc}" scope="request"/>
-                .ftl:include page="share-doc-left-item.ftl"/>
+                <#include "share-doc-left-item.ftl"/>
             </c:forEach>
         </ul>
     </div>

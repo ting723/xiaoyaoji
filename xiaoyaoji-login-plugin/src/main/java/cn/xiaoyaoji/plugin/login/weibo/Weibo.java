@@ -1,9 +1,6 @@
 package cn.xiaoyaoji.plugin.login.weibo;
 
 import cn.com.xiaoyaoji.core.util.HttpUtils;
-import cn.xiaoyaoji.plugin.login.weibo.AccessToken;
-import cn.xiaoyaoji.plugin.login.weibo.User;
-import cn.xiaoyaoji.plugin.login.weibo.WeiboException;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.log4j.Logger;
@@ -47,8 +44,9 @@ public class Weibo {
         };
         String rs = HttpUtils.post("https://api.weibo.com/oauth2/access_token",pairs);
         AccessToken accessToken = JSON.parseObject(rs, AccessToken.class);
-        if(accessToken == null || accessToken.getAccess_token() == null)
+        if(accessToken == null || accessToken.getAccess_token() == null) {
             throw new WeiboException(rs);
+        }
         return accessToken;
     }
 
@@ -56,8 +54,9 @@ public class Weibo {
     public String getEmail(String accessToken){
         String url ="https://api.weibo.com/2/account/profile/email.json?access_token="+accessToken;
         String rs = HttpUtils.get(url);
-        if(rs.contains("error"))
+        if(rs.contains("error")) {
             throw new WeiboException(rs);
+        }
         System.out.println(rs);
         return null;
     }

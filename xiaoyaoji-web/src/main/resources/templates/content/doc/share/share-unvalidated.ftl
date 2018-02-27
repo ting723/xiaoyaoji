@@ -1,12 +1,4 @@
-<%--
-  User: zhoujingjie
-  Date: 17/4/12
-  Time: 22:44
---%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com.ftl/jstl/core" %>
-
-.ftl:include page="../doc-header.ftl"/>
+<#include "../doc-header.ftl"/>
 
 
 <div class="uk-modal uk-open" style="display: block;" id="share-password-box">
@@ -51,7 +43,3 @@
     });
 </script>
 
-<%--</div>--%>
-<!-- loading end -->
-</body>
-</html>

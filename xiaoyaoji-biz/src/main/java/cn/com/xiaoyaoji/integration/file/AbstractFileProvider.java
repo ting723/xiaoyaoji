@@ -14,8 +14,9 @@ import java.util.Date;
  */
 public abstract class AbstractFileProvider implements FileProvider{
     public static String path(String ext) {
-        if(ext == null)
+        if(ext == null) {
             ext="";
+        }
         return new SimpleDateFormat("yyyyMM/dd/").format(new Date()).concat(StringUtils.uuid() + ext);
     }
 

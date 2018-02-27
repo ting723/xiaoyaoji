@@ -83,8 +83,9 @@ public class UpdateManager {
             File[] updateFolders = file.listFiles(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String name) {
-                    if (tempVersion == null)
+                    if (tempVersion == null) {
                         return true;
+                    }
                     return name.replace(".sql","").compareTo(tempVersion) > 0;
                 }
             });
@@ -235,8 +236,9 @@ public class UpdateManager {
                 for (String projectId : projectIds) {
                     String tempSQL = "select environments from " + TableNames.PROJECT + " where id = ?";
                     Project temp = qr.query(connection, tempSQL, new BeanHandler<>(Project.class), projectId);
-                    if (temp == null)
+                    if (temp == null) {
                         continue;
+                    }
                     Map<String, Object> httpMap = new HashMap<>();
                     httpMap.put("requestHeaders", globalRequestHeadersMap.get(projectId));
                     httpMap.put("requestArgs", globalRequestArgsMap.get(projectId));

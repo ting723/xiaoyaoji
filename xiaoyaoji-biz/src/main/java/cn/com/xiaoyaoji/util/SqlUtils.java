@@ -79,15 +79,17 @@ public class SqlUtils {
 
     public static String getTableName(Object instance){
         Alias alias = instance.getClass().getAnnotation(Alias.class);
-        if(alias!=null)
+        if(alias!=null) {
             return alias.value();
+        }
         return instance.getClass().getSimpleName();
     }
 
     public static String getTableName(Class clazz){
         Alias alias = (Alias) clazz.getAnnotation(Alias.class);
-        if(alias!=null)
+        if(alias!=null) {
             return alias.value();
+        }
         return clazz.getSimpleName();
     }
 

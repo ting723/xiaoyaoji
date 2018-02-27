@@ -18,8 +18,9 @@ public class MemoryCacheProvider implements CacheProvider {
     }
 
     public void put(String token, String key, Object data, int expires) {
-        if(token == null)
+        if(token == null) {
             return;
+        }
         Value value = dataMap.get(token);
         if (value == null) {
             value = new Value();
@@ -33,11 +34,13 @@ public class MemoryCacheProvider implements CacheProvider {
     }
 
     public Object get(String token, String key, int expires) {
-        if(token == null)
+        if(token == null) {
             return null;
+        }
         Value value = dataMap.get(token);
-        if (value == null)
+        if (value == null) {
             return null;
+        }
         if (value.getExpires().getTime() < System.currentTimeMillis()) {
             dataMap.remove(token);
             return null;
@@ -54,8 +57,9 @@ public class MemoryCacheProvider implements CacheProvider {
     @Override
     public void remove(String table, String key) {
         Value value = dataMap.get(table);
-        if(value == null)
+        if(value == null) {
             return;
+        }
         value.remove(key);
     }
 

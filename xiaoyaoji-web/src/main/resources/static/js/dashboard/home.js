@@ -79,6 +79,7 @@ $(function(){
                         self.loading.project=false;
                         self.projects = rs.data.projects;
                     });
+                    self.loading.project=false;
                 }
             }
         });

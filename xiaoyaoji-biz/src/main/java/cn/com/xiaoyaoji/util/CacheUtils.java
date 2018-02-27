@@ -23,11 +23,13 @@ public class CacheUtils {
     }
 
     public static User getUser(String token) {
-        if (org.apache.commons.lang3.StringUtils.isBlank(token))
+        if (org.apache.commons.lang3.StringUtils.isBlank(token)) {
             throw new IllegalArgumentException("token is null");
+        }
         String userjson = (String) CacheManager.getCacheProvider().get(token, "user", expires);
-        if (userjson == null)
+        if (userjson == null) {
             return null;
+        }
         return JSON.parseObject(userjson, User.class);
     }
 

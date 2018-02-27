@@ -72,8 +72,9 @@ public class ServiceTool {
     }
 
     public static boolean modified(String before, String now) {
-        if (now != null && !now.equals(before))
+        if (now != null && !now.equals(before)) {
             return true;
+        }
         return false;
     }
 }

@@ -11,6 +11,9 @@ spring:
   output:
     ansi:
       enabled: detect
+  mvc:
+    favicon:
+      enabled: false
 
 server:
   compression:

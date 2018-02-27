@@ -19,9 +19,7 @@ import cn.com.xiaoyaoji.service.DocService;
 import cn.com.xiaoyaoji.service.ProjectService;
 import cn.com.xiaoyaoji.service.ServiceFactory;
 import cn.com.xiaoyaoji.service.ServiceTool;
-import cn.com.xiaoyaoji.view.MultiView;
 import org.apache.log4j.Logger;
-import org.junit.Test;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -49,7 +47,7 @@ public class ProjectController {
         Project project = ServiceFactory.instance().getProject(id);
         AssertUtils.notNull(project, Message.PROJECT_NOT_FOUND);
         ServiceTool.checkUserIsOwner(project, user);
-        return new ModelAndView("/project/info")
+        return new ModelAndView("content/project/info")
                 .addObject("project", project)
                 .addObject("pageName", "info")
                 ;
@@ -62,7 +60,7 @@ public class ProjectController {
         ServiceTool.checkUserIsMember(project, user);
 
         List<User> users = ServiceFactory.instance().getUsersByProjectId(id);
-        return new ModelAndView("/project/member")
+        return new ModelAndView("content/project/member")
                 .addObject("users", users)
                 .addObject("project", project)
                 .addObject("pageName", "member")
@@ -77,7 +75,7 @@ public class ProjectController {
         ServiceTool.checkUserIsOwner(project, user);
 
         List<User> users = ServiceFactory.instance().getUsersByProjectId(id);
-        return new ModelAndView("/project/function")
+        return new ModelAndView("content/project/function")
                 .addObject("pageName", "function")
                 .addObject("users", users)
                 .addObject("project", project)
@@ -91,7 +89,7 @@ public class ProjectController {
         AssertUtils.notNull(project, Message.PROJECT_NOT_FOUND);
         ServiceTool.checkUserIsOwner(project, user);
         List<User> users = ServiceFactory.instance().getUsersByProjectId(id);
-        return new ModelAndView("/project/transfer")
+        return new ModelAndView("content/project/transfer")
                 .addObject("pageName", "transfer")
                 .addObject("project", project)
                 .addObject("users", users)
@@ -104,7 +102,7 @@ public class ProjectController {
         Project project = ServiceFactory.instance().getProject(id);
         AssertUtils.notNull(project, Message.PROJECT_NOT_FOUND);
         ServiceTool.checkUserIsMember(project, user);
-        return new ModelAndView("/project/quit")
+        return new ModelAndView("content/project/quit")
                 .addObject("pageName", "quit")
                 .addObject("project", project);
     }
@@ -115,7 +113,7 @@ public class ProjectController {
         Project project = ServiceFactory.instance().getProject(id);
         AssertUtils.notNull(project, Message.PROJECT_NOT_FOUND);
         ServiceTool.checkUserHasAccessPermission(project, user);
-        return new ModelAndView("/project/export")
+        return new ModelAndView("content/project/export")
                 .addObject("project", project)
                 .addObject("pageName", "export");
     }
@@ -165,7 +163,7 @@ public class ProjectController {
         Project project = ServiceFactory.instance().getProject(id);
         AssertUtils.notNull(project, Message.PROJECT_NOT_FOUND);
         ServiceTool.checkUserIsOwner(project, user);
-        return new ModelAndView("/project/import")
+        return new ModelAndView("content/project/import")
                 .addObject("pageName", "import")
                 .addObject("project", project);
     }
@@ -173,7 +171,7 @@ public class ProjectController {
 
     @Ignore
     @GetMapping("/list")
-    public MultiView list(User user, @RequestParam(value = "status", required = false) String status) {
+    public ModelAndView list(User user, @RequestParam(value = "status", required = false) String status) {
         List<Project> projects = new ArrayList<>();
         if(org.apache.commons.lang3.StringUtils.isBlank(status)){
             status = Project.Status.VALID;
@@ -183,7 +181,7 @@ public class ProjectController {
                     .add("userId", user.getId()));
             projects = ServiceFactory.instance().getProjects(p);
         }
-        return new MultiView("/dashboard/index")
+        return new ModelAndView("content/dashboard/index")
                 .addObject("projects", projects)
                 ;
     }
@@ -205,7 +203,7 @@ public class ProjectController {
             docId = DocService.instance().createDefaultDoc(id).getId();
         }
         //重定向到第一个
-        return new ModelAndView("redirect:/doc/" + docId + "/edit");
+        return new ModelAndView("redirect:content/doc/" + docId + "/edit");
 
     }
 

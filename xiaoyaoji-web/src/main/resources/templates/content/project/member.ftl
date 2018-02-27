@@ -9,13 +9,13 @@
 <html lang="zh-CN">
 <head>
     <title>成员管理-${site.name}</title>
-    .ftl:include page="/WEB-INF/includes/meta.ftl"/>
+    <#include "/WEB-INF/includes/meta.ftl"/>
     <link rel="stylesheet" href="/css/home.css?v=${v}">
 </head>
 <body>
-.ftl:include page="../dashboard/header.ftl"/>
+<#include "../dashboard/header.ftl"/>
 <div class="project-info mc">
-    .ftl:include page="left.ftl"/>
+    <#include "left.ftl"/>
     <div class="project-info-content" id="projectMember">
         <div class="db-main db-members-box" style="padding: 20px 0 0 20px">
             <div class="db-members cb">
@@ -86,7 +86,7 @@
         </div>
     </div>
 </div>
-.ftl:include page="/WEB-INF/includes/js.ftl"/>
+<#include "/WEB-INF/includes/js.ftl"/>
 <script>
     var exists={};
     <c:forEach items="${users}" var="item">exists['${item.id}']=1;</c:forEach>

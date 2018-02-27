@@ -1,18 +1,17 @@
 <header>
     <div class="top">
         <div class="cb mc">
-            <c:if test="${sessionScope.user!=null}">
+            <#if Session??&&Session.user??>
                 <div class="user-action logged fr">
                     <a class="item" href="${ctx}/dashboard?v=${v}">进入工作台</a>
                     <a class="item" href="${ctx}/logout?t=<%=System.currentTimeMillis()%>">退出</a>
                 </div>
-            </c:if>
-            <c:if test="${sessionScope.user == null}">
+            <#else >
                 <div class="user-action fr">
                     <a class="item" href="${ctx}/login">登陆</a>
                     <a class="item" href="${ctx}/register">注册</a>
                 </div>
-            </c:if>
+            </#if>
         </div>
     </div>
 

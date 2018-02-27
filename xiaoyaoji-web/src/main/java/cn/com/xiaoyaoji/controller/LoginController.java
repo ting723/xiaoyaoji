@@ -13,8 +13,6 @@ import cn.com.xiaoyaoji.data.bean.User;
 import cn.com.xiaoyaoji.service.ServiceFactory;
 import cn.com.xiaoyaoji.util.CacheUtils;
 import cn.com.xiaoyaoji.utils.PasswordUtils;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
@@ -53,7 +51,7 @@ public class LoginController {
         }
         String token = CacheUtils.token();
         response.addCookie(setCookie(token,user));
-        return true;
+        return new Result<>(true,"登录成功");
     }
 
     /**

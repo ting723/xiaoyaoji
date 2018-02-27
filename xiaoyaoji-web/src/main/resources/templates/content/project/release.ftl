@@ -8,13 +8,13 @@
 <html lang="zh-CN">
 <head>
     <title>解散项目-${site.name}</title>
-    .ftl:include page="/WEB-INF/includes/meta.ftl"/>
+    <#include "/WEB-INF/includes/meta.ftl"/>
     <link rel="stylesheet" href="/css/home.css?v=${v}">
 </head>
 <body>
-.ftl:include page="../dashboard/header.ftl"/>
+<#include "../dashboard/header.ftl"/>
 <div class="project-info mc">
-    .ftl:include page="left.ftl"/>
+    <#include "left.ftl"/>
     <div class="project-info-content" id="release">
         <div class="db-view-release">
             <button class="btn btn-danger" v-on:click="status.deleteModal=true" style="padding: 10px 100px;">删除项目
@@ -46,7 +46,7 @@
         </div>
     </div>
 </div>
-.ftl:include page="/WEB-INF/includes/js.ftl"/>
+<#include "/WEB-INF/includes/js.ftl"/>
 <script>
     require(['vue', 'utils'], function (Vue, utils) {
         new Vue({

@@ -8,9 +8,9 @@
 <%
     request.setAttribute("loginPlugins", PluginManager.getInstance().getLoginPlugins());
 %>
-.ftl:include page="header.ftl"/>
+<#include "header.ftl"/>
 <div class="project-info mc">
-    .ftl:include page="left.ftl"/>
+    <#include "left.ftl"/>
     <div class="project-info-content" id="content">
         <div>
             <div class="db-relation cb">
@@ -31,7 +31,7 @@
         </div>
     </div>
 </div>
-.ftl:include page="/WEB-INF/includes/js.ftl"/>
+<#include "/WEB-INF/includes/js.ftl"/>
 <script>
     require(['vue', 'utils'], function (Vue, utils) {
         new Vue({

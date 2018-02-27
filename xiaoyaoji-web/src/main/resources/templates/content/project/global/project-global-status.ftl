@@ -4,7 +4,7 @@
   Time: 21:20
 --%>
 
-.ftl:include page="../../doc/doc-header.ftl"/>
+<#include "../../doc/doc-header.ftl"/>
 <style>
     body{
         min-width:inherit;

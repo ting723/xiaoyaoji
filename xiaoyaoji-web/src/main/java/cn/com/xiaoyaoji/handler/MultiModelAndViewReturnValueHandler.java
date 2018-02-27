@@ -3,8 +3,10 @@ package cn.com.xiaoyaoji.handler;
 import cn.com.xiaoyaoji.converter.JsonMessageConverter;
 import cn.com.xiaoyaoji.core.common.Result;
 import cn.com.xiaoyaoji.view.MultiView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +21,7 @@ import java.util.List;
  * @author zhoujingjie
  *         created on 2017/8/9
  */
+@Component
 public class MultiModelAndViewReturnValueHandler extends ModelAndViewMethodReturnValueHandler {
     private RequestResponseBodyMethodProcessor processor;
 
@@ -32,6 +35,7 @@ public class MultiModelAndViewReturnValueHandler extends ModelAndViewMethodRetur
         processor = new RequestResponseBodyMethodProcessor(converters);
     }
 
+    @Autowired
     public void setJsonMessageConverter(JsonMessageConverter jsonMessageConverter) {
         this.jsonMessageConverter = jsonMessageConverter;
     }

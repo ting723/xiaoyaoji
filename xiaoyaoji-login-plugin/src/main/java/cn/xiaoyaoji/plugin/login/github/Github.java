@@ -2,9 +2,6 @@ package cn.xiaoyaoji.plugin.login.github;
 
 import cn.com.xiaoyaoji.core.util.HttpUtils;
 import cn.xiaoyaoji.plugin.login.AccessToken;
-import cn.xiaoyaoji.plugin.login.github.Email;
-import cn.xiaoyaoji.plugin.login.github.GithubException;
-import cn.xiaoyaoji.plugin.login.github.User;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import org.apache.commons.httpclient.Header;
@@ -29,24 +26,27 @@ public class Github {
         };
         String rs = HttpUtils.post(url,pairs,new Header("Accept","application/json"));
         AccessToken accessToken = JSON.parseObject(rs,AccessToken.class);
-        if(accessToken == null || accessToken.getAccess_token() == null)
+        if(accessToken == null || accessToken.getAccess_token() == null) {
             throw new GithubException(rs);
+        }
         return accessToken;
     }
 
     public List<Email> getEmail(String accessToken){
         String url = "https://api.github.com/user/emails?access_token="+accessToken;
         String rs = HttpUtils.get(url);
-        if(rs.contains("message"))
+        if(rs.contains("message")) {
             throw new GithubException(rs);
+        }
         return JSON.parseObject(rs,new TypeReference<List<Email>>(){});
     }
 
     public User getUser(String accessToken){
         String url = "https://api.github.com/user?access_token="+accessToken;
         String rs = HttpUtils.get(url);
-        if(rs.contains("message"))
+        if(rs.contains("message")) {
             throw new GithubException(rs);
+        }
         return JSON.parseObject(rs,User.class);
     }
 

@@ -9,17 +9,17 @@
 <html lang="zh-CN">
 <head>
     <title>转移项目-${site.name}</title>
-    .ftl:include page="/WEB-INF/includes/meta.ftl"/>
+    <#include "/WEB-INF/includes/meta.ftl"/>
     <link rel="stylesheet" href="/css/home.css?v=${v}">
 </head>
 <body>
-.ftl:include page="../dashboard/header.ftl"/>
+<#include "../dashboard/header.ftl"/>
 <div class="project-info mc">
-    .ftl:include page="left.ftl"/>
+    <#include "left.ftl"/>
     <div class="project-info-content" id="transfer">
     <div class="db-members cb">
         <div class="form dvn-import-members">
-            <c:if test="${users.size()>0}">
+            <#if test="${users.size()>0}">
                 <div class="uk-grid">
                     <div class="uk-width-1-6 label">选择成员</div>
                     <div class="uk-width-5-6">
@@ -27,12 +27,12 @@
                             <c:forEach items="${users}" var="item">
                                 <li v-bind:class="{'active':userId=='${item.id}'}" v-on:click="chose('${item.id}')">
                                     <div class="dbv-user-icon">
-                                        <c:if test="${item.avatar.length()>0}">
+                                        <#if test="${item.avatar.length()>0}">
                                             <img class="img" src="${item.avatar}">
-                                        </c:if>
-                                        <c:if test="${item.avatar.length()==0}">x
+                                        </#if>
+                                        <#if test="${item.avatar.length()==0}">x
                                             <div class="img ta-c word">${item.nickname}</div>
-                                        </c:if>
+                                        </#if>
                                         <p class="flag"></p>
                                     </div>
                                     <p>${item.nickname}</p>
@@ -47,12 +47,12 @@
                         <button class="uk-button uk-button-primary" type="button" v-bind:disabled="userId == projectUserId" v-on:click="ok">确认</button>
                     </div>
                 </div>
-            </c:if>
+            </#if>
         </div>
     </div>
     </div>
 </div>
-.ftl:include page="/WEB-INF/includes/js.ftl"/>
+<#include "/WEB-INF/includes/js.ftl"/>
 <script>
     require(['vue','utils'],function(Vue,utils){
     new Vue( {

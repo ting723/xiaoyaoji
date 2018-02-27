@@ -1,20 +1,14 @@
-<%--
-  User: zhoujingjie
-  Date: 2017/5/27
-  Time: 16:40
---%>
-
 <div class="home-header">
     <div class="mc cb ta-c">
         <a href="${ctx}/" class="fl"><img src="/img/logo/full.png" alt="logo"></a>
         <span class="header-titles">
-                <a href="${ctx}/dashboard" class="${pageName=='default'?'active':''}">我的</a>
-                <a href="${ctx}/dashboard/recycle" class="${pageName=='recycle'?'active':''}">回收站</a>
-                <a href="${ctx}/dashboard/archive" class="${pageName=='archive'?'active':''}">归档项目</a>
+                <a href="${ctx}/dashboard" class="${(pageName??&&pageName=='default')?string('active','')}">我的</a>
+                <a href="${ctx}/dashboard/recycle" class="${(pageName??&&pageName=='recycle')?string('active','')}">回收站</a>
+                <a href="${ctx}/dashboard/archive" class="${(pageName??&&pageName=='archive')?string('active','')}">归档项目</a>
                 <a href="${ctx}/help">常见问题</a>
             </span>
         <div class="user-account fr">
-            <a href=""><img src="${sessionScope.user.avatar}" class="user-account-logo" alt=""><span>${sessionScope.user.nickname}</span></a>
+            <a href=""><img src="${Session.user.avatar}" class="user-account-logo" alt=""><span>${Session.user.nickname}</span></a>
         </div>
         <div v-cloak uk-dropdown="pos: top-right" style="text-align: left">
             <ul class="uk-nav uk-dropdown-nav">

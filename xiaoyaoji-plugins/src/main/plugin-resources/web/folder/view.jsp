@@ -14,12 +14,12 @@
 %>
 <div id="folder">
     <div style="padding: 50px 100px;font-size: 16px">
-    <c:if test="${docs.size()>0}">
+    <#if test="${docs.size()>0}">
     <ul class="uk-list uk-list-bullet"> ${root.getDocPath()}
         <c:forEach items="${docs}" var="item">
             <li><a href="${fn.getDocViewURL(item.id)}">${item.name}</a></li>
         </c:forEach>
     </ul>
-    </c:if>
+    </#if>
     </div>
 </div>

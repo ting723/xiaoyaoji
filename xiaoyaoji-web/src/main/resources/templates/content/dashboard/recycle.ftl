@@ -1,21 +1,14 @@
-<%@ taglib prefix="c" uri="http://java.sun.com.ftl/jstl/core" %>
-<%--
-  User: zhoujingjie
-  Date: 17/4/4
-  Time: 13:15
---%>
-
 <!--[if lt IE 9]>
 <script>location.href = '../unsupport.html'</script> <![endif]-->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <title>回收站 - ${site.name}</title>
-    .ftl:include page="/WEB-INF/includes/meta.ftl"/>
+    <#include "../../includes/meta.ftl">
     <link rel="stylesheet" href="/css/home.css?v=${v}">
 </head>
 <body class="home">
-.ftl:include page="header.ftl"/>
+    <#include "header.ftl">
 <div class="home-body" id="appmain" v-cloak>
     <p class="ta-c" style="margin: 50px 0;color: #ccc;">提示：删除的文件保留30天，超过30天会自动删除</p>
     <div class="spinner" v-show="loading.project">
@@ -40,7 +33,7 @@
         </div>
     </div>
 </div>
-.ftl:include page="/WEB-INF/includes/js.ftl"/>
+<#include "../../includes/js.ftl">
 <script>_userId_='${user.id}',status='DELETED';</script>
 <script src="/js/dashboard/home.js?v=${v}"></script>
 </body>

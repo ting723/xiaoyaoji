@@ -1,11 +1,11 @@
 package cn.com.xiaoyaoji.utils;
 
-import java.io.IOException;
-import java.util.List;
-
 import cn.com.xiaoyaoji.extension.file.FileUtils;
 import cn.com.xiaoyaoji.extension.file.MetaData;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * @author zhoujingjie
@@ -22,8 +22,9 @@ public class ImageUtils {
      * @throws IOException
      */
     public static int upload(List<MultipartFile> items, String relatedid, String userid) throws IOException {
-        if(items.size() == 0)
+        if(items.size() == 0) {
             return 0;
+        }
         int rs = 0;
         for(MultipartFile item:items){
             MetaData md = FileUtils.upload(item);

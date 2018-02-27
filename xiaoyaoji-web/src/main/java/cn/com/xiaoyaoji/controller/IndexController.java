@@ -21,20 +21,20 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/")
 @Ignore
 public class IndexController {
-    @GetMapping(value = {"/login", "/login.html"})
+    @GetMapping(value = {"/login"})
     public Object login() {
         ModelAndView modelAndView = new ModelAndView("content/login");
         modelAndView.getModel().put("loginPlugins", PluginManager.getInstance().getLoginPlugins());
         return modelAndView;
     }
 
-    @GetMapping(value = {"/register", "/register.html"})
+    @GetMapping(value = {"/register"})
     public Object register() {
-        return new ModelAndView("/register");
+        return new ModelAndView("content/register");
     }
 
 
-    @GetMapping({"/logout", "/logout.html"})
+    @GetMapping({"/logout"})
     public Object logout(HttpSession session, @CookieValue(name = Constants.TOKEN_COOKIE_NAME, required = false) String token) {
         session.invalidate();
         if (StringUtils.isNoneBlank(token)) {
@@ -43,41 +43,41 @@ public class IndexController {
         return new ModelAndView("redirect:/");
     }
 
-    @GetMapping(value = {"/about", "/about.html"})
+    @GetMapping(value = {"/about"})
     public Object about() {
-        return new ModelAndView("/about");
+        return new ModelAndView("content/about");
     }
 
 
     @GetMapping(value = {"/", "/index"})
     public Object index() {
-        return new ModelAndView("/index");
+        return new ModelAndView("content/index");
     }
 
-    @GetMapping(value = {"/help", "/help.html"})
+    @GetMapping(value = {"/help" })
     public Object help() {
-        return new ModelAndView("/help");
+        return new ModelAndView("content/help");
     }
 
     @GetMapping(value = "/forget")
     public Object forget() {
-        return new ModelAndView("/forget");
+        return new ModelAndView("content/forget");
     }
 
     @GetMapping(value = "/findpassword")
     public Object findpassword() {
-        return new ModelAndView("/findpassword");
+        return new ModelAndView("content/findpassword");
     }
 
     @GetMapping(value = "/unsupport")
     public Object unsupport() {
-        return new ModelAndView("/unsupport");
+        return new ModelAndView("content/unsupport");
     }
 
 
     @GetMapping(value = "/donate")
     public Object donate() {
-        return new ModelAndView("/donate");
+        return new ModelAndView("content/donate");
     }
 
 

@@ -41,8 +41,9 @@ public class JdbcUtils {
     }
 
     public static void close(Connection connection){
-        if(connection == null)
+        if(connection == null) {
             return;
+        }
         DbUtils.closeQuietly(connection);
     }
     public static void commit(Connection connection){

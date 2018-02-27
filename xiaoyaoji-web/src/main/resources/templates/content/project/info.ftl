@@ -8,13 +8,13 @@
 <html lang="zh-CN">
 <head>
     <title>基本信息-${site.name}</title>
-    .ftl:include page="/WEB-INF/includes/meta.ftl"/>
+    <#include "/WEB-INF/includes/meta.ftl"/>
     <link rel="stylesheet" href="/css/home.css?v=${v}">
 </head>
 <body>
-.ftl:include page="../dashboard/header.ftl"/>
+<#include "../dashboard/header.ftl"/>
 <div class="project-info mc">
-    .ftl:include page="left.ftl"/>
+    <#include "left.ftl"/>
     <div class="project-info-content" id="projectInfo">
         <form class="uk-form-stacked form" onsubmit="return false;">
             <div class="uk-margin">
@@ -47,7 +47,7 @@
         </form>
     </div>
 </div>
-.ftl:include page="/WEB-INF/includes/js.ftl"/>
+<#include "/WEB-INF/includes/js.ftl"/>
 <script>
     $(function(){
          require(['vue','utils','vueEx'],function(Vue,utils){

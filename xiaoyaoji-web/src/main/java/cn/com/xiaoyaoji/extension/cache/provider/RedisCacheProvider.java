@@ -38,8 +38,9 @@ public class RedisCacheProvider implements CacheProvider {
                 jedis.hset(token, key, json);
                 jedis.expire(token, expires);
             } finally {
-                if (jedis != null)
+                if (jedis != null) {
                     jedis.close();
+                }
             }
         }
     }
@@ -52,8 +53,9 @@ public class RedisCacheProvider implements CacheProvider {
                 jedis.set(key, data);
                 jedis.expire(key, expires);
             } finally {
-                if (jedis != null)
+                if (jedis != null) {
                     jedis.close();
+                }
             }
         }
     }
@@ -71,8 +73,9 @@ public class RedisCacheProvider implements CacheProvider {
             jedis = pool.getResource();
             jedis.del(token);
         } finally {
-            if (jedis != null)
+            if (jedis != null) {
                 jedis.close();
+            }
         }
     }
 
@@ -83,8 +86,9 @@ public class RedisCacheProvider implements CacheProvider {
             jedis = pool.getResource();
             jedis.hdel(table,key);
         } finally {
-            if (jedis != null)
+            if (jedis != null) {
                 jedis.close();
+            }
         }
     }
 
@@ -116,8 +120,9 @@ public class RedisCacheProvider implements CacheProvider {
     }
 
     private String hget(String token, String key, int expire) {
-        if (key == null)
+        if (key == null) {
             return null;
+        }
         Jedis jedis = null;
         try {
             jedis = pool.getResource();

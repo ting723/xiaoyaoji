@@ -22,11 +22,13 @@ public enum Event {
     }
 
     public static Event parse(String value){
-        if(value==null)
+        if(value==null) {
             return null;
+        }
         for(Event e:Event.values()){
-            if(e.getValue().equals(value))
+            if(e.getValue().equals(value)) {
                 return e;
+            }
         }
         return null;
     }
