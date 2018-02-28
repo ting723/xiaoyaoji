@@ -10,7 +10,7 @@
 <body>
 
 <div class="xd-header cb" id="xd-header">
-    <#if test="${Session.user != null && editPermission}">
+    <#if (Session.user?? && editPermission)>
     <div class="fl">
         <ul class="x-ul horiz">
             <li>
@@ -43,12 +43,12 @@
                 <div class="x-li">|</div>
             </li>
 
-            <#if test="${!edit && editPermission}">
+            <#if !edit && editPermission>
                 <li v-on:click="sidebar('editpage')">
                     <div class="x-li"><a><i class="iconfont icon-edit1"></i>编辑项目</a></div>
                 </li>
             </#if>
-            <#if test="${docId != null && edit}">
+            <#if docId != null && edit>
                 <li v-on:click="sidebar('viewpage')">
                     <div class="x-li"><a><i class="iconfont icon-eye"></i>预览项目</a></div>
                 </li>
@@ -64,7 +64,7 @@
             <li><div class="x-li"><a href="${ctx}/">主页</a></div></li>
             <li><div class="x-li"><a href="${ctx}/dashboard">控制台</a></div></li>
             <li><div class="x-li"><a href="http://www.xiaoyaoji.cn/donate" target="_blank">赞助作者</a></div></li>
-            <#if test="${Session.user != null}">
+            <#if Session.user?? >
             <li>
                 <div class="x-li"><a><img src="${Session.user.avatar}" class="user-account-logo">&nbsp;${Session.user.nickname}</a></div>
                 <div class="x-sub-ul" style="right:0px;">
@@ -78,8 +78,7 @@
                     </ul>
                 </div>
             </li>
-            </#if>
-            <#if test="${Session.user == null}">
+            <#else>
                 <li><div class="x-li"><a href="${ctx}/login">登录</a></div></li>
                 <li><div class="x-li"><a href="${ctx}/register">注册</a></div></li>
             </#if>
@@ -88,6 +87,7 @@
 </div>
 <div class="xd-header-placeholder"></div>
 <script src="/js/project/doc/header.js?v=${v}"></script>
-
-<script>window._isGlobal_ = '${editProjectGlobal}'</script>
+<#if editProjectGlobal??>
+<script>window._isGlobal_ = ${editProjectGlobal}</script>
+</#if>
 

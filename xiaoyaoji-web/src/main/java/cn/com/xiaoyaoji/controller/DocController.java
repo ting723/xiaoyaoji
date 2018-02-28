@@ -4,7 +4,9 @@ import cn.com.xiaoyaoji.core.annotations.Ignore;
 import cn.com.xiaoyaoji.core.common.DocType;
 import cn.com.xiaoyaoji.core.common.Message;
 import cn.com.xiaoyaoji.core.common._HashMap;
-import cn.com.xiaoyaoji.core.plugin.*;
+import cn.com.xiaoyaoji.core.plugin.Event;
+import cn.com.xiaoyaoji.core.plugin.PluginInfo;
+import cn.com.xiaoyaoji.core.plugin.PluginManager;
 import cn.com.xiaoyaoji.core.util.AssertUtils;
 import cn.com.xiaoyaoji.core.util.StringUtils;
 import cn.com.xiaoyaoji.data.bean.Doc;
@@ -25,9 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author: zhoujingjie
@@ -308,7 +308,7 @@ public class DocController {
                                 @RequestParam(value = "docHistoryId", required = false) String docHistoryId, User user,HttpServletRequest request) {
         ModelAndView view = docView(docId, docHistoryId, user,request,true)
                 .addObject("edit", true);
-        view.setViewName("/doc/edit");
+        view.setViewName("content/doc/edit");
         return view;
     }
 

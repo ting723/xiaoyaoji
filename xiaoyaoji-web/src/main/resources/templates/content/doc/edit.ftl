@@ -1,17 +1,4 @@
-<%--
-  User: zhoujingjie
-  Date: 17/4/12
-  Time: 22:44
---%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com.ftl/jstl/core" %>
-<%--
-  User: zhoujingjie
-  Date: 17/4/12
-  Time: 22:15
---%>
-
-<#if test="${!isXHR}">
+<#if !isXHR>
     <#include "doc-header.ftl"/>
     <#include "doc-sidebar.ftl"/>
     <#include "doc-left.ftl"/>
@@ -25,15 +12,15 @@
     <div id="doc-content">
 
 </#if>
-<#if test="${editProjectGlobal}">
+<#if editProjectGlobal>
     <#include "../project/global/project-global.ftl"/>
 </#if>
-<#if test="${!editProjectGlobal && doc!=null}">
+<#if !editProjectGlobal && doc!=null>
     <#if test="${pluginInfo == null}">
-        <#include "/WEB-INF/includes/doc-type-not-support.ftl"/>
+        <#include "../../includes/doc-type-not-support.ftl"/>
     </#if>
     <#if test="${pluginInfo != null}">
-        <#include "/WEB-INF/plugins/${pluginInfo.runtimeFolder}/web/${pluginInfo.plugin.editPage}"/>
+        <#include "../${pluginInfo.runtimeFolder}/web/${pluginInfo.plugin.editPage}"/>
     </#if>
 </#if>
 <script>
@@ -42,11 +29,9 @@
         location.reload();
     }
 </script>
-<#if test="${!isXHR}">
+<#if !isXHR>
     </div>
     </div>
-    <%--</div>--%>
-
     </body>
     </html>
 </#if>
