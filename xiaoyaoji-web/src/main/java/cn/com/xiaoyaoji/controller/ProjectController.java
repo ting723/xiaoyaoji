@@ -176,6 +176,7 @@ public class ProjectController {
         if(org.apache.commons.lang3.StringUtils.isBlank(status)){
             status = Project.Status.VALID;
         }
+        // user 没有传递过来
         if(user != null){
             Pagination p = Pagination.build(new _HashMap<String, String>().add("status", status)
                     .add("userId", user.getId()));

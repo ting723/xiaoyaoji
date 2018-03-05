@@ -46,7 +46,7 @@ public class DocController {
     @PostMapping
     public String createDoc(User user, Doc doc) {
         AssertUtils.isTrue(ServiceFactory.instance().checkUserHasProjectEditPermission(user.getId(), doc.getProjectId()), "无操作权限");
-        if(org.apache.commons.lang3.StringUtils.isBlank(doc.getParentId())){
+        if (org.apache.commons.lang3.StringUtils.isBlank(doc.getParentId())) {
             doc.setParentId("0");
         }
         doc.setId(StringUtils.id());
@@ -90,8 +90,8 @@ public class DocController {
         int rs = ServiceFactory.instance().update(doc);
         AssertUtils.isTrue(rs > 0, "修改失败");
         if (org.apache.commons.lang3.StringUtils.isBlank(comment)) {
-            comment = compareDocUpdateRecord(temp,doc);
-            if(comment.length() == 0){
+            comment = compareDocUpdateRecord(temp, doc);
+            if (comment.length() == 0) {
                 comment = "修改文档";
             }
         }
@@ -111,72 +111,72 @@ public class DocController {
         return rs;
     }
 
-    private String compareDocUpdateRecord(Doc old,Doc now){
+    private String compareDocUpdateRecord(Doc old, Doc now) {
         StringBuilder sb = new StringBuilder();
-        if(compareModify(old.getName(),now.getName())){
+        if (compareModify(old.getName(), now.getName())) {
             sb.append("文档名称,");
         }
-        if(DocType.SYS_HTTP.getTypeName().equals(old.getType())){
-            if(old.getContent() == null){
-                if(now.getContent()!=null) {
+        if (DocType.SYS_HTTP.getTypeName().equals(old.getType())) {
+            if (old.getContent() == null) {
+                if (now.getContent() != null) {
                     sb.append("文档内容,");
                 }
-            }else if(now.getContent()!=null){
+            } else if (now.getContent() != null) {
 
-                JSONObject oldObj  =JSON.parseObject(old.getContent());
+                JSONObject oldObj = JSON.parseObject(old.getContent());
                 JSONObject newObj = JSON.parseObject(now.getContent());
-                if(compareModify(oldObj.getString("requestMethod"),newObj.getString("requestMethod"))){
+                if (compareModify(oldObj.getString("requestMethod"), newObj.getString("requestMethod"))) {
                     sb.append("请求方法,");
                 }
-                if(compareModify(oldObj.getString("dataType"),newObj.getString("dataType"))){
+                if (compareModify(oldObj.getString("dataType"), newObj.getString("dataType"))) {
                     sb.append("数据类型,");
                 }
-                if(compareModify(oldObj.getString("contentType"),newObj.getString("contentType"))){
+                if (compareModify(oldObj.getString("contentType"), newObj.getString("contentType"))) {
                     sb.append("响应类型,");
                 }
-                if(compareModify(oldObj.getString("status"),newObj.getString("status"))){
+                if (compareModify(oldObj.getString("status"), newObj.getString("status"))) {
                     sb.append("状态,");
                 }
-                if(compareModify(oldObj.getString("ignoreGHttpReqArgs"),newObj.getString("ignoreGHttpReqArgs"))){
+                if (compareModify(oldObj.getString("ignoreGHttpReqArgs"), newObj.getString("ignoreGHttpReqArgs"))) {
                     sb.append("忽略全局请求参数,");
                 }
-                if(compareModify(oldObj.getString("ignoreGHttpReqHeaders"),newObj.getString("ignoreGHttpReqHeaders"))){
+                if (compareModify(oldObj.getString("ignoreGHttpReqHeaders"), newObj.getString("ignoreGHttpReqHeaders"))) {
                     sb.append("忽略全局请求头,");
                 }
-                if(compareModify(oldObj.getString("ignoreGHttpRespHeaders"),newObj.getString("ignoreGHttpRespHeaders"))){
+                if (compareModify(oldObj.getString("ignoreGHttpRespHeaders"), newObj.getString("ignoreGHttpRespHeaders"))) {
                     sb.append("忽略全局响应头,");
                 }
-                if(compareModify(oldObj.getString("ignoreGHttpRespArgs"),newObj.getString("ignoreGHttpRespArgs"))){
+                if (compareModify(oldObj.getString("ignoreGHttpRespArgs"), newObj.getString("ignoreGHttpRespArgs"))) {
                     sb.append("忽略全局响应参数,");
                 }
-                if(compareModify(oldObj.getString("description"),newObj.getString("description"))){
+                if (compareModify(oldObj.getString("description"), newObj.getString("description"))) {
                     sb.append("接口描述,");
                 }
-                if(compareModify(oldObj.getString("requestArgs"),newObj.getString("requestArgs"))){
+                if (compareModify(oldObj.getString("requestArgs"), newObj.getString("requestArgs"))) {
                     sb.append("请求参数,");
                 }
-                if(compareModify(oldObj.getString("requestHeaders"),newObj.getString("requestHeaders"))){
+                if (compareModify(oldObj.getString("requestHeaders"), newObj.getString("requestHeaders"))) {
                     sb.append("请求头,");
                 }
-                if(compareModify(oldObj.getString("responseHeaders"),newObj.getString("responseHeaders"))){
+                if (compareModify(oldObj.getString("responseHeaders"), newObj.getString("responseHeaders"))) {
                     sb.append("响应头,");
                 }
-                if(compareModify(oldObj.getString("responseArgs"),newObj.getString("responseArgs"))){
+                if (compareModify(oldObj.getString("responseArgs"), newObj.getString("responseArgs"))) {
                     sb.append("响应数据,");
                 }
-                if(compareModify(oldObj.getString("example"),newObj.getString("example"))){
+                if (compareModify(oldObj.getString("example"), newObj.getString("example"))) {
                     sb.append("示例数据,");
                 }
             }
         }
-        if(sb.length()>0){
-            sb = sb.delete(sb.length()-1,sb.length());
+        if (sb.length() > 0) {
+            sb = sb.delete(sb.length() - 1, sb.length());
         }
         return sb.toString();
     }
 
-    private boolean compareModify(String old,String now){
-        if(org.apache.commons.lang3.StringUtils.isNotBlank(now) && !now.equals(old)){
+    private boolean compareModify(String old, String now) {
+        if (org.apache.commons.lang3.StringUtils.isNotBlank(now) && !now.equals(old)) {
             return true;
         }
         return false;
@@ -248,7 +248,7 @@ public class DocController {
                                 @RequestParam(value = "docHistoryId", required = false) String docHistoryId, User user,
                                 HttpServletRequest request,
                                 boolean editing
-                                ) {
+    ) {
         AssertUtils.notNull(docId, "参数丢失");
         Doc doc = null;
         if (org.apache.commons.lang3.StringUtils.isNotBlank(docHistoryId)) {
@@ -261,7 +261,7 @@ public class DocController {
         //获取project
         Project project = ProjectService.instance().getProject(doc.getProjectId());
         AssertUtils.notNull(project, "项目不存在或者无访问权限");
-        AssertUtils.isTrue(Project.Status.VALID.equals(project.getStatus()),"项目状态无效");
+        AssertUtils.isTrue(Project.Status.VALID.equals(project.getStatus()), "项目状态无效");
         if (org.apache.commons.lang3.StringUtils.isBlank(doc.getType())) {
             doc.setType(DocType.SYS_DOC_RICH_TEXT.getTypeName());
         }
@@ -277,8 +277,8 @@ public class DocController {
 
         List<PluginInfo> pluginInfos = PluginManager.getInstance().getPlugins(Event.DOC_EV);
         PluginInfo pluginInfo = null;
-        for(PluginInfo info:pluginInfos){
-            if(doc.getType().equals(info.getId())){
+        for (PluginInfo info : pluginInfos) {
+            if (doc.getType().equals(info.getId())) {
                 pluginInfo = info;
                 break;
             }
@@ -290,8 +290,8 @@ public class DocController {
                 .addObject("user", user)
                 .addObject("editPermission", editPermission)
                 .addObject("projectGlobal", ProjectService.instance().getProjectGlobal(doc.getProjectId()))
-                .addObject("pluginInfo",pluginInfo)
-                .addObject("isXHR",isXHR)
+                .addObject("pluginInfo", pluginInfo)
+                .addObject("isXHR", isXHR)
                 ;
     }
 
@@ -305,9 +305,22 @@ public class DocController {
      */
     @GetMapping("{docId}/edit")
     public ModelAndView docEdit(@PathVariable String docId,
-                                @RequestParam(value = "docHistoryId", required = false) String docHistoryId, User user,HttpServletRequest request) {
-        ModelAndView view = docView(docId, docHistoryId, user,request,true)
-                .addObject("edit", true);
+                                @RequestParam(value = "docHistoryId", required = false) String docHistoryId, User user, HttpServletRequest request) {
+
+        Project project = (Project) request.getAttribute("project");
+        if (project != null) {
+            List<Doc> docs = DocService.instance().getProjectDocs(project.getId());
+            request.setAttribute("docs", docs);
+
+            if (!org.springframework.util.StringUtils.isEmpty(docId) && docs.size() > 0) {
+                String firstDocId = docs.get(0).getId();
+                request.setAttribute("docId", firstDocId);
+            }
+        }
+        ModelAndView view = docView(docId, docHistoryId, user, request, true)
+                .addObject("edit", true)
+                .addObject("docEvPluginInfos", PluginManager.getInstance().getPlugins(Event.DOC_EV));
+
         view.setViewName("content/doc/edit");
         return view;
     }
@@ -322,50 +335,51 @@ public class DocController {
     }
 
     /**
-     *
      * @param projectId
      * @param user
      * @return
      */
     @GetMapping("/list/{projectId}")
-    public Object getDocs(@PathVariable("projectId")String projectId,User user){
-        ServiceTool.checkUserHasAccessPermission(projectId,user);
+    public Object getDocs(@PathVariable("projectId") String projectId, User user) {
+        ServiceTool.checkUserHasAccessPermission(projectId, user);
         return DocService.instance().getProjectDocs(projectId);
     }
 
     /**
      * 复制文档
-     * @param projectId    项目id
-     * @param docId         文档id
+     *
+     * @param projectId 项目id
+     * @param docId     文档id
      * @param user
      * @return rs
      */
     @PostMapping("/copy")
-    public Object copy(@RequestParam("projectId")String projectId,
-                       @RequestParam(value = "toProjectId",required = false)String toProjectId,
-                       @RequestParam("docId") String docId,User user){
-        ServiceTool.checkUserHasEditPermission(projectId,user);
-        if(org.apache.commons.lang3.StringUtils.isBlank(toProjectId) || projectId.equals(toProjectId)){
+    public Object copy(@RequestParam("projectId") String projectId,
+                       @RequestParam(value = "toProjectId", required = false) String toProjectId,
+                       @RequestParam("docId") String docId, User user) {
+        ServiceTool.checkUserHasEditPermission(projectId, user);
+        if (org.apache.commons.lang3.StringUtils.isBlank(toProjectId) || projectId.equals(toProjectId)) {
             toProjectId = null;
-        }else{
-            ServiceTool.checkUserHasEditPermission(toProjectId,user);
+        } else {
+            ServiceTool.checkUserHasEditPermission(toProjectId, user);
         }
-        int rs = DocService.instance().copyDoc(docId,toProjectId);
-        AssertUtils.isTrue(rs>0,"操作失败");
+        int rs = DocService.instance().copyDoc(docId, toProjectId);
+        AssertUtils.isTrue(rs > 0, "操作失败");
         return rs;
     }
 
     /**
      * 查询顶级doc
+     *
      * @param projectId
      * @param user
      * @return
      */
     @GetMapping("/root/{projectId}")
-    public Object getRootDocs(@PathVariable("projectId")String projectId,User user){
-        ServiceTool.checkUserHasAccessPermission(projectId,user);
-        List<Doc> docs = DocService.instance().getDocsByParentId(projectId,"0");
+    public Object getRootDocs(@PathVariable("projectId") String projectId, User user) {
+        ServiceTool.checkUserHasAccessPermission(projectId, user);
+        List<Doc> docs = DocService.instance().getDocsByParentId(projectId, "0");
         return new _HashMap<>()
-                .add("docs",docs);
+                .add("docs", docs);
     }
 }

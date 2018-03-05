@@ -1,60 +1,23 @@
-<%@ taglib prefix="c" uri="http://java.sun.com.ftl/jstl/core" %>
-
-<%@ page import="cn.com.xiaoyaoji.core.plugin.Event" %>
-<%@ page import="cn.com.xiaoyaoji.core.plugin.PluginManager" %>
-<%@ page import="cn.com.xiaoyaoji.data.bean.Doc" %>
-<%@ page import="cn.com.xiaoyaoji.data.bean.Project" %>
-<%@ page import="org.apache.commons.lang3.StringUtils" %>
-<%@ page import="java.util.List" %>
-<%@ page import="cn.com.xiaoyaoji.service.DocService" %>
-<%--
-  User: zhoujingjie
-  Date: 17/4/16
-  Time: 16:25
---%>
-
-<%
-    Project project = (Project) request.getAttribute("project");
-    List<Doc> docs = DocService.instance().getProjectDocs(project.getId());
-    request.setAttribute("docs", docs);
-    String docId = (String) request.getAttribute("docId");
-    if (StringUtils.isBlank(docId) && docs.size() > 0) {
-        String firstDocId = docs.get(0).getId();
-        request.setAttribute("docId", firstDocId);
-    }
-    request.setAttribute("docEvPluginInfos", PluginManager.getInstance().getPlugins(Event.DOC_EV));
-    //request.setAttribute("importDocuments", GlobalProperties.getImportDocuments());
-%>
 <div class="doc-left" id="docLeft">
-    <#if test="${edit}">
+    <#if edit>
         <div class="dl-doc-actions cb">
             <div class="fl dl-doc-action">
                 <a><i class="el-icon-plus"></i>新建</a>
                 <ul class="dl-menus hide">
-                    <c:forEach items="${docEvPluginInfos}" var="item">
+                    <#list docEvPluginInfos as item>
                         <li uk-toggle="target: #docCreateModal" v-on:click="createFn('${item.id}',0)">
                             <div data-type="${item.id}" class="dl-menu-name">${item.name}</div>
                         </li>
-                    </c:forEach>
+                    </#list>
                 </ul>
             </div>
-            <%--<div class="fl dl-doc-action">
-                <a><i class="el-icon-upload"></i>导入</a>
-                <ul class="dl-menus hide">
-                    <c:forEach var="document" items="${importDocuments}">
-                        <li>
-                            <div data-type="${document.type}" class="dl-menu-name">${document.name}</div>
-                        </li>
-                    </c:forEach>
-                </ul>
-            </div>--%>
         </div>
     </#if>
 
     <input type="text" class="doc-search" v-model="searchText" v-on:keyup.enter="search" placeholder="搜索...">
     <div class="dl-content" id="doc-names">
         <ul class="dl-docs" v-on:contextmenu.prevent="contextMenu($event)" v-show="!showSearch">
-            <#if test="${!edit}">
+            <#if !edit>
                 <li class="cb">
                     <div class="dl-doc dl-project-name">
                         <div class="doc-name cb ">
@@ -65,17 +28,20 @@
                 </li>
                 <li class="divider"></li>
             </#if>
-            <c:forEach items="${docs}" var="doc">
-                <c:set var="item" value="${doc}" scope="request"/>
-                <#include "doc-left-item.ftl"/>
-            </c:forEach>
+            <#if docs??>
+                <#list docs as doc>
+                <#--<c:set var="item" value="${doc}" scope="request"/>-->
+                    <#include "doc-left-item.ftl"/>
+                </#list>
+            </#if>
         </ul>
         <ul class="dl-docs doc-search-result" v-cloak v-show="showSearch">
             <li class="cb" v-for="item in searchResults">
                 <div class="dl-doc">
                     <div class="doc-name cb ">
                         <span class="dl-background"></span>
-                        <a class="item-name" v-on:click="itemClick('/doc/'+(item.id)+(edit?'/edit':''),$event)" :href="ctx+'/doc/'+(item.id)+(edit?'/edit':'')">{{item.name}}</a>
+                        <a class="item-name" v-on:click="itemClick('/doc/'+(item.id)+(edit?'/edit':''),$event)"
+                           :href="ctx+'/doc/'+(item.id)+(edit?'/edit':'')">{{item.name}}</a>
                     </div>
                 </div>
             </li>
@@ -90,25 +56,13 @@
         <li>
             <div class="dl-menu-name folder">新建</div>
             <ul class="dl-menus sub">
-                <c:forEach items="${docEvPluginInfos}" var="item">
+                <#list docEvPluginInfos as item>
                     <li uk-toggle="target: #docCreateModal" v-on:click="createFn('${item.id}')">
                         <div data-type="${item.id}" class="dl-menu-name">${item.name}</div>
                     </li>
-                </c:forEach>
+                </#list>
             </ul>
         </li>
-        <%--<#if test="${importDocuments != null && importDocuments.size()>0}">
-            <li v-if="menu.isFolder">
-                <div class="dl-menu-name folder">导入</div>
-                <ul class="dl-menus sub dl-docs">
-                    <c:forEach var="document" items="${importDocuments}">
-                        <li>
-                            <div data-type="${document.type}" class="dl-menu-name">${document.name}</div>
-                        </li>
-                    </c:forEach>
-                </ul>
-            </li>
-        </#if>--%>
         <li class="line" v-if="menu.isFolder"></li>
 
         <li uk-toggle="target:#docCopyModal">
@@ -127,7 +81,8 @@
             <div class="uk-modal-body">
                 <div>
                     <label>请输入名称:</label>
-                    <input class="uk-input" v-model="createModal.value" v-on:keyup.enter="createSubmit" :value="createModal.value" type="text"
+                    <input class="uk-input" v-model="createModal.value" v-on:keyup.enter="createSubmit"
+                           :value="createModal.value" type="text"
                            autofocus="">
                 </div>
             </div>
@@ -139,7 +94,7 @@
         </div>
     </div>
 
-     <div uk-modal id="docCopyModal" v-cloak>
+    <div uk-modal id="docCopyModal" v-cloak>
         <div class="uk-modal-dialog">
             <div class="uk-modal-body">
                 <form class="uk-form-stacked">
@@ -168,5 +123,7 @@
     </div>
 </div>
 <script>window._projectId_ = '${project.id}';
-window._edit_ = '${edit}'</script>
+<#if edit??>
+window._edit_ = ${edit?c} </script>
+</#if>
 <script src="/js/project/left.js?v=${v}"></script>

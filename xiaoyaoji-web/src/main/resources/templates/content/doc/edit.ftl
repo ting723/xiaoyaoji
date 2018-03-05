@@ -12,10 +12,10 @@
     <div id="doc-content">
 
 </#if>
-<#if editProjectGlobal>
+<#if editProjectGlobal??>
     <#include "../project/global/project-global.ftl"/>
 </#if>
-<#if !editProjectGlobal && doc!=null>
+<#if editProjectGlobal??&&!editProjectGlobal && doc!=null>
     <#if test="${pluginInfo == null}">
         <#include "../../includes/doc-type-not-support.ftl"/>
     </#if>
@@ -24,7 +24,7 @@
     </#if>
 </#if>
 <script>
-    window._edit_ = '${edit}', _projectName_ = '${project.name}', _projectId_ = '${project.id}', _docId_ = '${docId}';
+    window._edit_ = ${edit?c}, _projectName_ = '${project.name}', _projectId_ = '${project.id}', _docId_ = '${docId}';
     if(!window.requirejs){
         location.reload();
     }
