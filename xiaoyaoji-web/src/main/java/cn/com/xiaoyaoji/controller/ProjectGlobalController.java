@@ -1,6 +1,5 @@
 package cn.com.xiaoyaoji.controller;
 
-import cn.com.xiaoyaoji.core.common._HashMap;
 import cn.com.xiaoyaoji.core.util.AssertUtils;
 import cn.com.xiaoyaoji.data.DataFactory;
 import cn.com.xiaoyaoji.data.bean.Project;
@@ -26,7 +25,7 @@ public class ProjectGlobalController {
         AssertUtils.notNull(project,"项目不存在或已删除");
         ProjectGlobal pg = ProjectService.instance().getProjectGlobal(projectId);
         //return new ModelAndView("/doc/edit")
-        return new ModelAndView("/project/global/project-global")
+        return new ModelAndView("content/project/global/project-global")
                 .addObject("projectGlobal",pg)
                 .addObject("project",project)
                 .addObject("editProjectGlobal",true)
@@ -43,7 +42,7 @@ public class ProjectGlobalController {
     @GetMapping("{projectId}/environments")
     public ModelAndView getEnvironments(@PathVariable String projectId,User user){
         ModelAndView mav= index(projectId,user);
-        mav.setViewName("/project/global/project-global-environment");
+        mav.setViewName("content/project/global/project-global-environment");
         return mav;
     }
 
@@ -56,7 +55,7 @@ public class ProjectGlobalController {
     @GetMapping("{projectId}/status")
     public ModelAndView getStatus(@PathVariable String projectId,User user){
         ModelAndView mav= index(projectId,user);
-        mav.setViewName("/project/global/project-global-status");
+        mav.setViewName("content/project/global/project-global-status");
         return mav;
     }
 

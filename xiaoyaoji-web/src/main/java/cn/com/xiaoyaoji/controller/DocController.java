@@ -284,7 +284,7 @@ public class DocController {
             }
         }
         boolean isXHR = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
-        return new ModelAndView("/doc/view")
+        return new ModelAndView("content/doc/view")
                 .addObject("project", project)
                 .addObject("doc", doc)
                 .addObject("user", user)

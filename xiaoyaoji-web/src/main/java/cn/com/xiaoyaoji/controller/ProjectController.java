@@ -222,7 +222,7 @@ public class ProjectController {
             docId = DocService.instance().createDefaultDoc(id).getId();
         }
         //重定向到第一个
-        return new ModelAndView("redirect:/doc/" + docId)
+        return new ModelAndView("redirect:content/doc/" + docId)
                 ;
     }
 

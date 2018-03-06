@@ -22,6 +22,7 @@ import java.util.Map;
 @Ignore
 @RestController
 @RequestMapping("/test")
+@Deprecated
 public class TestController {
 
     @PostMapping("/raw")

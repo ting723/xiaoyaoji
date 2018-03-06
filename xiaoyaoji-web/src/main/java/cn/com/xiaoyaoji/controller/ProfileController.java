@@ -19,7 +19,7 @@ public class ProfileController {
 
     @RequestMapping
     public ModelAndView index(User user) {
-        return new ModelAndView("/profile/index")
+        return new ModelAndView("content/profile/index")
                 .addObject("pageName", "index")
                 .addObject("user", user)
                 .addObject("fileAccess", ConfigUtils.getFileAccessURL())
@@ -28,7 +28,7 @@ public class ProfileController {
 
     @RequestMapping("relation")
     public ModelAndView relation(User user) {
-        return new ModelAndView("/profile/relation").addObject("user", user)
+        return new ModelAndView("content/profile/relation").addObject("user", user)
                 .addObject("pageName", "relation")
                 .addObject("fileAccess", ConfigUtils.getFileAccessURL())
                 .addObject("loginPlugins", PluginManager.getInstance().getLoginPlugins())
@@ -37,7 +37,7 @@ public class ProfileController {
 
     @RequestMapping("security")
     public ModelAndView security(User user) {
-        return new ModelAndView("/profile/security").addObject("user", user)
+        return new ModelAndView("content/profile/security").addObject("user", user)
                 .addObject("pageName", "security")
                 .addObject("fileAccess", ConfigUtils.getFileAccessURL())
                 ;

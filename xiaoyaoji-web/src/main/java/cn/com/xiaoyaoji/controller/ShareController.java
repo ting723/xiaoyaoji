@@ -6,9 +6,7 @@ import cn.com.xiaoyaoji.core.plugin.Event;
 import cn.com.xiaoyaoji.core.plugin.PluginInfo;
 import cn.com.xiaoyaoji.core.plugin.PluginManager;
 import cn.com.xiaoyaoji.core.util.AssertUtils;
-import cn.com.xiaoyaoji.data.DataFactory;
 import cn.com.xiaoyaoji.data.bean.Doc;
-import cn.com.xiaoyaoji.data.bean.Project;
 import cn.com.xiaoyaoji.data.bean.Share;
 import cn.com.xiaoyaoji.data.bean.User;
 import cn.com.xiaoyaoji.service.DocService;
@@ -101,11 +99,11 @@ public class ShareController {
 
         resultModel.put("share",share);
         resultModel.put("isXHR",isXHR);
-        ModelAndView mav = new ModelAndView("/doc/share/share")
+        ModelAndView mav = new ModelAndView("content/doc/share/share")
                 .addAllObjects(resultModel)
                 ;
         if(!validated){
-            mav.setViewName("/doc/share/share-unvalidated");
+            mav.setViewName("content/doc/share/share-unvalidated");
         }
         return mav;
     }

@@ -21,7 +21,7 @@
                     </div>
                     <div class="db-m-list" v-cloak v-show="tab=='list'">
                         <ul>
-                            <c:forEach items="${users}" var="item">
+                            <#list users as item>
                                 <li class="cb">
                                     <div class="col-sm-2"><img class="user-logo"
                                                                src="${item.avatar}">
@@ -30,11 +30,12 @@
                                     <div class="col-sm-3"> ${item.email}</div>
                                     <div class="col-sm-2"><label>
                                         <input v-on:change="changeEditStatus('${item.id}',$event)"
-                                               type="checkbox" ${item.editable=='YES'?'checked':''}> 可编辑</label></div>
+                                               type="checkbox" ${(item.editable=='YES')?string('checked','')}>
+                                        可编辑</label></div>
                                     <div class="col-sm-1"><input type="button" v-on:click="remove('${item.id}')"
                                                                  class="btn btn-danger" value="移除"></div>
                                 </li>
-                            </c:forEach>
+                            </#list>
                         </ul>
                     </div>
                     <div class="form dvn-import-members" v-cloak v-show="tab=='add'">

@@ -70,7 +70,7 @@ public class UserController {
         user.setType(User.Type.USER);
         user.setCreatetime(new Date());
         user.setId(StringUtils.id());
-        user.setAvatar("/assets/img/defaultlogo.jpg");
+        user.setAvatar("/img/defaultlogo.jpg");
         user.setStatus(User.Status.PENDING);
         int rs = ServiceFactory.instance().create(user.toUser());
         AssertUtils.isTrue(rs > 0, Message.OPER_ERR);

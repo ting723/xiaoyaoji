@@ -12,7 +12,7 @@
     <div class="project-info-content" id="transfer">
         <div class="db-members cb">
             <div class="form dvn-import-members">
-            <#if test="${users.size()>0}">
+            <#if users??&&(users?size>0) >
                 <div class="uk-grid">
                     <div class="uk-width-1-6 label">选择成员</div>
                     <div class="uk-width-5-6">
@@ -20,10 +20,10 @@
                             <#list users as item>
                                 <li v-bind:class="{'active':userId=='${item.id}'}" v-on:click="chose('${item.id}')">
                                     <div class="dbv-user-icon">
-                                        <#if test="${item.avatar.length()>0}">
+                                        <#if (item.avatar??&&item.avatar?length >0) >
                                             <img class="img" src="${item.avatar}">
                                         </#if>
-                                        <#if test="${item.avatar.length()==0}">x
+                                        <#if (item.avatar?length == 0) >x
                                             <div class="img ta-c word">${item.nickname}</div>
                                         </#if>
                                         <p class="flag"></p>
@@ -47,7 +47,7 @@
         </div>
     </div>
 </div>
-<#include "/WEB-INF/includes/js.ftl"/>
+<#include "../../includes/js.ftl"/>
 <script>
     require(['vue', 'utils'], function (Vue, utils) {
         new Vue({
