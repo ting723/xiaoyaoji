@@ -1,8 +1,3 @@
-<%--
-  User: zhoujingjie
-  Date: 17/4/25
-  Time: 21:20
---%>
 
 <#include "../../doc/doc-header.ftl"/>
 <style>
@@ -162,10 +157,10 @@
 
 
 
-<#include "/WEB-INF/includes/doc/table/request-headers.ftl"/>
-<#include "/WEB-INF/includes/doc/table/request-args.ftl"/>
-<#include "/WEB-INF/includes/doc/table/response-headers.ftl"/>
-<#include "/WEB-INF/includes/doc/table/response-args.ftl"/>
+<#include "../../../includes/doc/table/request-headers.ftl"/>
+<#include "../../../includes/doc/table/request-args.ftl"/>
+<#include "../../../includes/doc/table/response-headers.ftl"/>
+<#include "../../../includes/doc/table/response-args.ftl"/>
 <script>
     var global = ${projectGlobal},_projectId_='${project.id}';
 </script>

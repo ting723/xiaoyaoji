@@ -1,9 +1,3 @@
-<%--
-  User: zhoujingjie
-  Date: 17/4/8
-  Time: 13:33
---%>
-
 <#include "header.ftl"/>
 <div class="project-info mc">
     <#include "left.ftl"/>
@@ -99,7 +93,7 @@
 
     </div>
 </div>
-<#include "/WEB-INF/includes/js.ftl"/>
+<#include "../../includes/js.ftl"/>
 <script>
     require(['vue', 'utils','vueEx'], function (Vue, utils) {
         new Vue({

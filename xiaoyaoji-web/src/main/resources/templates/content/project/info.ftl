@@ -1,14 +1,8 @@
-<%--
-  User: zhoujingjie
-  Date: 17/4/8
-  Time: 13:33
---%>
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <title>基本信息-${site.name}</title>
-    <#include "/WEB-INF/includes/meta.ftl"/>
+    <#include "../../includes/meta.ftl"/>
     <link rel="stylesheet" href="/css/home.css?v=${v}">
 </head>
 <body>
@@ -47,7 +41,7 @@
         </form>
     </div>
 </div>
-<#include "/WEB-INF/includes/js.ftl"/>
+<#include "../../includes/js.ftl"/>
 <script>
     $(function(){
          require(['vue','utils','vueEx'],function(Vue,utils){

@@ -1,15 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com.ftl/jstl/core" %>
-<%--
-  User: zhoujingjie
-  Date: 17/4/8
-  Time: 13:33
---%>
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <title>成员管理-${site.name}</title>
-    <#include "/WEB-INF/includes/meta.ftl"/>
+    <#include "../../includes/meta.ftl"/>
     <link rel="stylesheet" href="/css/home.css?v=${v}">
 </head>
 <body>
@@ -20,7 +13,6 @@
         <div class="db-main db-members-box" style="padding: 20px 0 0 20px">
             <div class="db-members cb">
                 <div class="fl">
-
                     <div>
                         <ul uk-tab>
                             <li class="uk-active" v-on:click="tab='list'"><a>成员列表</a></li>
@@ -38,7 +30,7 @@
                                     <div class="col-sm-3"> ${item.email}</div>
                                     <div class="col-sm-2"><label>
                                         <input v-on:change="changeEditStatus('${item.id}',$event)"
-                                            type="checkbox" ${item.editable=='YES'?'checked':''}> 可编辑</label></div>
+                                               type="checkbox" ${item.editable=='YES'?'checked':''}> 可编辑</label></div>
                                     <div class="col-sm-1"><input type="button" v-on:click="remove('${item.id}')"
                                                                  class="btn btn-danger" value="移除"></div>
                                 </li>
@@ -86,36 +78,39 @@
         </div>
     </div>
 </div>
-<#include "/WEB-INF/includes/js.ftl"/>
+<#include "../../includes/js.ftl"/>
 <script>
-    var exists={};
-    <c:forEach items="${users}" var="item">exists['${item.id}']=1;</c:forEach>
+    var exists = {};
+    <#list users as item>
+        exists['${item.id}'] = 1;
+    </#list>
     $(function () {
         require(['vue', 'utils', 'veeValidate'], function (Vue, utils, VeeValidate) {
-            function loadUser(self){
+            function loadUser(self) {
                 utils.get('/user/project_users', {}, function (rs) {
                     self.users = rs.data.users;
                     self.fileAccess = rs.data.fileAccess;
                 })
             }
+
             Vue.use(VeeValidate);
             new Vue({
                 el: '#projectMember',
                 data: {
-                    exists:exists,
-                    loading:false,
+                    exists: exists,
+                    loading: false,
                     id: '${project.id}',
                     tab: 'list',
                     fileAccess: '',
                     users: [],
-                    email:''
+                    email: ''
                 },
                 created: function () {
                     var self = this;
                     loadUser(self);
                 },
                 methods: {
-                    changeEditStatus: function (userId,e) {
+                    changeEditStatus: function (userId, e) {
                         var editable = $(e.target).prop('checked') ? 'YES' : 'NO';
                         utils.post('/project/' + this.id + '/pu/' + userId + '/' + editable, {editable: editable}, function () {
                             toastr.success('操作成功');
@@ -137,10 +132,10 @@
                     },
                     inviteByEmail: function () {
                         if (this.email) {
-                            this.loading=true;
+                            this.loading = true;
                             var self = this;
                             utils.post('/project/' + this.id + "/invite/email", {email: this.email}, function () {
-                                self.loading=false;
+                                self.loading = false;
                                 self.email = '';
                                 toastr.success('邀请成功');
                                 self.showList = true;

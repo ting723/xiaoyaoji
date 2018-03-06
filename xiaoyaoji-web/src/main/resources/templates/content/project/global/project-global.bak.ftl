@@ -1,15 +1,11 @@
-<%--
-  User: zhoujingjie
-  Date: 17/4/25
-  Time: 21:20
---%>
-
 <div id="global">
     <ul uk-tab>
         <li class="uk-active" v-on:click="uitab='http'"><a href="#">全局参数</a></li>
         <li v-on:click="uitab='environment'"><a href="#">环境变量</a></li>
         <li v-on:click="uitab='http-status'"><a href="#">接口状态</a></li>
-        <%--<li class="uk-disabled"><a href="#">Disabled</a></li>--%>
+        <%--
+        <li class="uk-disabled"><a href="#">Disabled</a></li>
+        --%>
     </ul>
     <div v-cloak v-show="uitab=='environment'">
         <div class="http-environment">
@@ -23,18 +19,20 @@
                 <div class="cb">
                     <div class="col-sm-2">{{item.name}}</div>
                     <div class="col-sm-3">&nbsp;</div>
-                    <div class="col-sm-4">&nbsp; </div>
+                    <div class="col-sm-4">&nbsp;</div>
                     <div class="col-sm-3">
                         <i v-on:click.stop="envEdit(item)" style="padding-right: 5px" class="iconfont icon-edit"></i>
-                        <i v-on:click.stop="copyEnvironment(item)" style="padding-right: 5px" class="iconfont icon-copy"></i>
-                        <i v-on:click.stop="removeEnvironment(index)" style="padding-right: 5px" class="iconfont icon-close"></i>
+                        <i v-on:click.stop="copyEnvironment(item)" style="padding-right: 5px"
+                           class="iconfont icon-copy"></i>
+                        <i v-on:click.stop="removeEnvironment(index)" style="padding-right: 5px"
+                           class="iconfont icon-close"></i>
                     </div>
                 </div>
                 <div>
                     <div class="cb" v-for="v in item.vars">
                         <div class="col-sm-2">&nbsp;</div>
-                        <div class="col-sm-3">{{v.name}} </div>
-                        <div class="col-sm-4">{{v.value}} </div>
+                        <div class="col-sm-3">{{v.name}}</div>
+                        <div class="col-sm-4">{{v.value}}</div>
                         <div class="col-sm-3"></div>
                     </div>
                 </div>
@@ -67,12 +65,15 @@
                         </div>
                     </div>
                     <div class="item" v-for="(item,index) in flag.tempEnv.vars">
-                        <div class="col-sm-5"><input type="text" v-model=item.name class="text" v-on:focus="envNewLine(index)" placeholder="变量名称" :value="item.name"></div>
+                        <div class="col-sm-5"><input type="text" v-model=item.name class="text"
+                                                     v-on:focus="envNewLine(index)" placeholder="变量名称"
+                                                     :value="item.name"></div>
                         <div class="col-sm-6">
                             <input type="text" class="text" v-model="item.value" placeholder="变量值" :value="item.value">
                         </div>
                         <div class="col-sm-1 full-text">
-                            <i class="iconfont icon-close" v-if="flag.tempEnv.vars.length>1" v-on:click="flag.tempEnv.vars.splice(index)"></i>
+                            <i class="iconfont icon-close" v-if="flag.tempEnv.vars.length>1"
+                               v-on:click="flag.tempEnv.vars.splice(index)"></i>
                         </div>
                     </div>
 
@@ -173,8 +174,8 @@
                     </div>
                     <div class="div-table editing div-editing-table">
                         <response-headers-vue :name="'responseHeaders'"
-                                v-bind:response-headers.sync="global.http.responseHeaders"
-                                v-bind:editing="editing"></response-headers-vue>
+                                              v-bind:response-headers.sync="global.http.responseHeaders"
+                                              v-bind:editing="editing"></response-headers-vue>
                     </div>
                     <div class="item">
                         <button class="btn btn-default btn-sm" v-on:click="newRow('responseHeaders')">
@@ -218,7 +219,9 @@
     </div>
     <div v-cloak v-show="uitab=='http-status'">
         <div>
-            <button v-on:click="tempStatus={name:'',value:''}" uk-toggle="target:#modal-status" class="uk-button uk-button-default">新建</button>
+            <button v-on:click="tempStatus={name:'',value:''}" uk-toggle="target:#modal-status"
+                    class="uk-button uk-button-default">新建
+            </button>
         </div>
         <table class="uk-table">
             <thead>
@@ -230,7 +233,8 @@
             <tbody>
             <tr v-for="(item,index) in global.status">
                 <td>{{item.name}}</td>
-                <td><i v-on:click.stop="tempStatus=item" uk-toggle="target:#modal-status"  class="iconfont icon-edit"></i>
+                <td><i v-on:click.stop="tempStatus=item" uk-toggle="target:#modal-status"
+                       class="iconfont icon-edit"></i>
                     <i v-on:click.stop="statusRemove(index)" class="iconfont icon-close"></i></td>
             </tr>
             </tbody>
@@ -244,9 +248,9 @@
             <div class="modal-layout1 form" style="width: 500px">
                 <validator name="if">
                     <p class="title">导入JSON</p>
-                        <textarea rows="15" class="k1 text" v-model="importValue" initial="off"
-                                  v-bind:autofocus="importModal"
-                                  tabindex="1" placeholder="请粘贴导入的数据"></textarea>
+                    <textarea rows="15" class="k1 text" v-model="importValue" initial="off"
+                              v-bind:autofocus="importModal"
+                              tabindex="1" placeholder="请粘贴导入的数据"></textarea>
                     <div class="ta-c actions">
                         <button class="btn btn-default-box middle" tabindex="3"
                                 v-on:click="importModal=false">
@@ -266,20 +270,23 @@
             <h2 class="uk-modal-title">新建状态</h2>
             <div class="uk-modal-body">
                 <label>变量名称:</label>
-                <input class="uk-input" type="text" :value="tempStatus.name" v-on:keyup.enter="statusOk" autofocus="" v-model="tempStatus.name">
+                <input class="uk-input" type="text" :value="tempStatus.name" v-on:keyup.enter="statusOk" autofocus=""
+                       v-model="tempStatus.name">
             </div>
             <p class="uk-text-right">
                 <button class="uk-button uk-button-default uk-modal-close" type="button">取消</button>
-                <button class="uk-button uk-button-primary uk-modal-close" v-on:click.enter="statusOk" type="button">确定</button>
+                <button class="uk-button uk-button-primary uk-modal-close" v-on:click.enter="statusOk" type="button">
+                    确定
+                </button>
             </p>
         </div>
     </div>
 </div>
-<#include "/WEB-INF/includes/doc/table/request-headers.ftl"/>
-<#include "/WEB-INF/includes/doc/table/request-args.ftl"/>
-<#include "/WEB-INF/includes/doc/table/response-headers.ftl"/>
-<#include "/WEB-INF/includes/doc/table/response-args.ftl"/>
+<#include "../../../includes/doc/table/request-headers.ftl"/>
+<#include "../../../includes/doc/table/request-args.ftl"/>
+<#include "../../../includes/doc/table/response-headers.ftl"/>
+<#include "../../../includes/doc/table/response-args.ftl"/>
 <script>
-    var global = ${projectGlobal},_projectId_='${project.id}';
+    var global = ${projectGlobal}, _projectId_ = '${project.id}';
 </script>
 <script src="/js/project/global.js"></script>

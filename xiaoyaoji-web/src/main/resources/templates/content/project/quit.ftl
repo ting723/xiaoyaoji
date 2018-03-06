@@ -1,14 +1,8 @@
-<%--
-  User: zhoujingjie
-  Date: 17/4/8
-  Time: 13:33
---%>
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <title>退出项目-${site.name}</title>
-    <#include "/WEB-INF/includes/meta.ftl"/>
+    <#include "../../includes/meta.ftl"/>
     <link rel="stylesheet" href="/css/home.css?v=${v}">
 </head>
 <body>
@@ -21,7 +15,7 @@
         </div>
     </div>
 </div>
-<#include "/WEB-INF/includes/js.ftl"/>
+<#include "../../includes/js.ftl"/>
 <script>
     require(['vue', 'utils'], function (Vue, utils) {
         new Vue({

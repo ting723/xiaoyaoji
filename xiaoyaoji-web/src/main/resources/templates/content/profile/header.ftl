@@ -1,10 +1,3 @@
-<%--
-  User: zhoujingjie
-  Date: 2017/5/25
-  Time: 17:25
---%>
-
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -12,7 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/style.css?v=${v}">
     <link rel="stylesheet" href="/css/home.css?v=${v}">
-    <#include "/WEB-INF/includes/meta.ftl"/>
+    <#include "../../includes/meta.ftl"/>
 </head>
 <body class="home">
 

@@ -1,10 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com.ftl/jstl/core" %>
-<%--
-  User: zhoujingjie
-  Date: 2017/7/31
-  Time: 9:49
---%>
-
 <html>
 <head>
     <title>插件配置页</title>

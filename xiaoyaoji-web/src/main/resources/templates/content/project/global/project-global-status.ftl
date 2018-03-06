@@ -1,9 +1,3 @@
-<%--
-  User: zhoujingjie
-  Date: 17/4/25
-  Time: 21:20
---%>
-
 <#include "../../doc/doc-header.ftl"/>
 <style>
     body{

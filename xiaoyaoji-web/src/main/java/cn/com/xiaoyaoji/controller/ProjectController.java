@@ -4,6 +4,7 @@ import cn.com.xiaoyaoji.core.annotations.Ignore;
 import cn.com.xiaoyaoji.core.common.Message;
 import cn.com.xiaoyaoji.core.common.Pagination;
 import cn.com.xiaoyaoji.core.common._HashMap;
+import cn.com.xiaoyaoji.core.plugin.Event;
 import cn.com.xiaoyaoji.core.plugin.PluginInfo;
 import cn.com.xiaoyaoji.core.plugin.PluginManager;
 import cn.com.xiaoyaoji.core.plugin.doc.DocExportPlugin;
@@ -116,7 +117,8 @@ public class ProjectController {
         ServiceTool.checkUserHasAccessPermission(project, user);
         return new ModelAndView("content/project/export")
                 .addObject("project", project)
-                .addObject("pageName", "export");
+                .addObject("pageName", "export")
+                .addObject("exportPlugins", PluginManager.getInstance().getPlugins(Event.DOC_EXPORT));
     }
 
     /**
@@ -136,12 +138,13 @@ public class ProjectController {
         ServiceTool.checkUserHasAccessPermission(project, user);
 
         PluginInfo<DocExportPlugin> docExportPluginPluginInfo = PluginManager.getInstance().getExportPlugin(pluginId);
-        AssertUtils.notNull(docExportPluginPluginInfo,"不支持该操作");
-        docExportPluginPluginInfo.getPlugin().doExport(id,response);
+        AssertUtils.notNull(docExportPluginPluginInfo, "不支持该操作");
+        docExportPluginPluginInfo.getPlugin().doExport(id, response);
     }
 
     /**
      * 导入json
+     *
      * @param user
      * @return
      */
@@ -149,12 +152,12 @@ public class ProjectController {
     @ResponseBody
     public Object projectImport(String pluginId, User user,
                                 @RequestParam("file") MultipartFile file,
-                                @RequestParam(value = "projectId",required = false) String projectId,
-                                @RequestParam(value = "parentId",required = false) String parentId
-                                ) throws IOException {
+                                @RequestParam(value = "projectId", required = false) String projectId,
+                                @RequestParam(value = "parentId", required = false) String parentId
+    ) throws IOException {
         PluginInfo<DocImportPlugin> docImportPluginPluginInfo = PluginManager.getInstance().getImportPlugin(pluginId);
-        AssertUtils.notNull(docImportPluginPluginInfo,"不支持该操作");
-        docImportPluginPluginInfo.getPlugin().doImport(file.getName(),file.getInputStream(),user.getId(),projectId,parentId);
+        AssertUtils.notNull(docImportPluginPluginInfo, "不支持该操作");
+        docImportPluginPluginInfo.getPlugin().doImport(file.getName(), file.getInputStream(), user.getId(), projectId, parentId);
         return true;
     }
 
@@ -174,10 +177,10 @@ public class ProjectController {
     @GetMapping("/list")
     public MultiView list(User user, @RequestParam(value = "status", required = false) String status) {
         List<Project> projects = new ArrayList<>();
-        if(org.apache.commons.lang3.StringUtils.isBlank(status)){
+        if (org.apache.commons.lang3.StringUtils.isBlank(status)) {
             status = Project.Status.VALID;
         }
-        if(user != null){
+        if (user != null) {
             Pagination p = Pagination.build(new _HashMap<String, String>().add("status", status)
                     .add("userId", user.getId()));
             projects = ServiceFactory.instance().getProjects(p);
@@ -325,7 +328,7 @@ public class ProjectController {
     @ResponseBody
     public Object delete(@PathVariable("id") String id, User user) {
         Project before = ProjectService.instance().getProject(id);
-        AssertUtils.notNull(before,"无效请求");
+        AssertUtils.notNull(before, "无效请求");
         ServiceTool.checkUserIsOwner(before, user);
         Project temp = new Project();
         temp.setStatus(Project.Status.DELETED);
@@ -495,20 +498,21 @@ public class ProjectController {
 
     /**
      * 项目归档
+     *
      * @param id
      * @param user
      * @return
      */
     @PostMapping("/{id}/archive")
-    public int archive(@PathVariable("id") String id, User user ){
+    public int archive(@PathVariable("id") String id, User user) {
         Project project = ProjectService.instance().getProject(id);
         AssertUtils.notNull(project, "项目不存在");
-        AssertUtils.isTrue(project.getUserId().equals(user.getId()),"非项目所有者不能操作");
+        AssertUtils.isTrue(project.getUserId().equals(user.getId()), "非项目所有者不能操作");
         Project temp = new Project();
         temp.setId(id);
         temp.setStatus(Project.Status.ARCHIVE);
-        int rs= ServiceFactory.instance().update(temp);
-        AssertUtils.isTrue(rs>0,"操作失败");
+        int rs = ServiceFactory.instance().update(temp);
+        AssertUtils.isTrue(rs > 0, "操作失败");
         return rs;
     }
 }

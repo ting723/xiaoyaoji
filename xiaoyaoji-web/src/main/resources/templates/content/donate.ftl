@@ -1,20 +1,14 @@
-<%--
-  User: zhoujingjie
-  Date: 17/4/4
-  Time: 13:07
---%>
-
 <!--[if lt IE 9]> <script>location.href='unsupport.html?refer='+encodeURIComponent(location.href)</script> <![endif]-->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <title>在线帮助 - 小幺鸡</title>
-    <#include "/WEB-INF/includes/meta.ftl"/>
+    <#include "../includes/meta.ftl"/>
     <link rel="stylesheet" href="/css/index.css?v=${v}">
 </head>
 <body>
 <div id="app">
-<#include "/WEB-INF/includes/header.ftl"/>
+<#include "../includes/header.ftl"/>
 </div>
 
 <div class="donate">
@@ -28,7 +22,7 @@
 </div>
 
 
-<#include "/WEB-INF/includes/footer.ftl"/>
+<#include "../includes/footer.ftl"/>
 
 </body>
 </html>

@@ -1,9 +1,3 @@
-<%--
-  User: zhoujingjie
-  Date: 17/5/23
-  Time: 21:30
---%>
-
 <div class="project-left">
     <ul class="project-menus">
         <li><a href="${ctx}/profile" class="${pageName=='index'?'active':''}">基本信息</a></li>
