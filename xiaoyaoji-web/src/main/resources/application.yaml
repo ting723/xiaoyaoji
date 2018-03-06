@@ -18,7 +18,7 @@ spring:
 server:
   compression:
     enabled: true
-  port: 8080
+  port: 8070
   tomcat:
     accesslog:
       enabled: true

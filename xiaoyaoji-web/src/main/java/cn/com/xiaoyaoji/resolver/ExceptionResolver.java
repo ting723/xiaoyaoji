@@ -7,7 +7,6 @@ import cn.com.xiaoyaoji.core.exception.ServiceException;
 import com.alibaba.fastjson.support.spring.FastJsonJsonView;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
@@ -20,7 +19,6 @@ import java.net.URLEncoder;
  * @author: zhoujingjie
  * @Date: 17/3/30
  */
-@Component
 public class ExceptionResolver extends SimpleMappingExceptionResolver {
 
     @Override

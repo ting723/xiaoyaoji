@@ -3,7 +3,6 @@ package cn.com.xiaoyaoji.handler;
 import cn.com.xiaoyaoji.converter.JsonMessageConverter;
 import cn.com.xiaoyaoji.core.common.Result;
 import cn.com.xiaoyaoji.view.MultiView;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.stereotype.Component;
@@ -13,29 +12,26 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.ModelAndViewMethodReturnValueHandler;
 import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author zhoujingjie
- *         created on 2017/8/9
+ * created on 2017/8/9
  */
 @Component
 public class MultiModelAndViewReturnValueHandler extends ModelAndViewMethodReturnValueHandler {
     private RequestResponseBodyMethodProcessor processor;
 
 
-    public JsonMessageConverter jsonMessageConverter;
+    private JsonMessageConverter jsonMessageConverter;
 
-    @PostConstruct
-    public void init(){
+    public void init() {
         List<HttpMessageConverter<?>> converters = new ArrayList<>();
         converters.add(jsonMessageConverter);
         processor = new RequestResponseBodyMethodProcessor(converters);
     }
 
-    @Autowired
     public void setJsonMessageConverter(JsonMessageConverter jsonMessageConverter) {
         this.jsonMessageConverter = jsonMessageConverter;
     }
@@ -48,19 +44,19 @@ public class MultiModelAndViewReturnValueHandler extends ModelAndViewMethodRetur
 
     @Override
     public void handleReturnValue(Object returnValue, MethodParameter returnType, ModelAndViewContainer mavContainer, NativeWebRequest webRequest) throws Exception {
-        if(!(returnValue instanceof MultiView)){
-            processor.handleReturnValue(new Result<>(true,returnValue),returnType,mavContainer,webRequest);
+        if (!(returnValue instanceof MultiView)) {
+            processor.handleReturnValue(new Result<>(true, returnValue), returnType, mavContainer, webRequest);
             return;
         }
         MultiView view = (MultiView) returnValue;
         //如果是ajax请求，则返回json
-        if("XMLHttpRequest".equals(webRequest.getHeader("X-Requested-With"))){
-            processor.handleReturnValue(new Result<>(true,view.getModelMap()),returnType,mavContainer,webRequest);
+        if ("XMLHttpRequest".equals(webRequest.getHeader("X-Requested-With"))) {
+            processor.handleReturnValue(new Result<>(true, view.getModelMap()), returnType, mavContainer, webRequest);
             return;
         }
 
         ModelAndView temp = new ModelAndView(view.getViewName());
-        if(view.getView() != null) {
+        if (view.getView() != null) {
             temp.setView(view.getView());
         }
         temp.setStatus(view.getStatus());

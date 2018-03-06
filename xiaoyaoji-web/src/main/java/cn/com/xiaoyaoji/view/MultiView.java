@@ -1,7 +1,6 @@
 package cn.com.xiaoyaoji.view;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -13,7 +12,6 @@ import java.util.Map;
  * @author zhoujingjie
  *         created on 2017/8/9
  */
-@Component
 public class MultiView {
     /** View instance or view name String */
     private Object view;

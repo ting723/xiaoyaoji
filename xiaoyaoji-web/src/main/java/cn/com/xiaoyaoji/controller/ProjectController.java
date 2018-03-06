@@ -19,6 +19,7 @@ import cn.com.xiaoyaoji.service.DocService;
 import cn.com.xiaoyaoji.service.ProjectService;
 import cn.com.xiaoyaoji.service.ServiceFactory;
 import cn.com.xiaoyaoji.service.ServiceTool;
+import cn.com.xiaoyaoji.view.MultiView;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -171,18 +172,17 @@ public class ProjectController {
 
     @Ignore
     @GetMapping("/list")
-    public ModelAndView list(User user, @RequestParam(value = "status", required = false) String status) {
+    public MultiView list(User user, @RequestParam(value = "status", required = false) String status) {
         List<Project> projects = new ArrayList<>();
         if(org.apache.commons.lang3.StringUtils.isBlank(status)){
             status = Project.Status.VALID;
         }
-        // user 没有传递过来
         if(user != null){
             Pagination p = Pagination.build(new _HashMap<String, String>().add("status", status)
                     .add("userId", user.getId()));
             projects = ServiceFactory.instance().getProjects(p);
         }
-        return new ModelAndView("content/dashboard/index")
+        return new MultiView("content/dashboard/index")
                 .addObject("projects", projects)
                 ;
     }
