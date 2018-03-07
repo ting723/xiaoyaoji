@@ -19,13 +19,12 @@ import cn.com.xiaoyaoji.service.ServiceFactory;
 import cn.com.xiaoyaoji.service.ServiceTool;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.List;
 
@@ -103,7 +102,7 @@ public class DocController {
             history.setCreateTime(new Date());
             history.setDocId(id);
             ServiceFactory.instance().create(history);
-        } catch (IllegalAccessException | InvocationTargetException e) {
+        } catch (Exception e) {
             logger.error(e);
         }
         ProjectService.instance().updateLastUpdateTime(temp.getProjectId());

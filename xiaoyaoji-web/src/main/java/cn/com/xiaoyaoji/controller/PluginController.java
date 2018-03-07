@@ -90,7 +90,7 @@ public class PluginController {
         AssertUtils.notNull(info,"插件不存在");
         info.setConfig(mapParameter.getMap());
         info.getPlugin().init();
-        return new ModelAndView("redirect:content/plugin/config?id="+pluginId);
+        return new ModelAndView("redirect:/plugin/config?id="+pluginId);
     }
 
     @Ignore
@@ -110,7 +110,7 @@ public class PluginController {
         file.transferTo(newfile);
         PluginUtils.extractPlugin(newfile,output.getAbsolutePath());
         PluginUtils.loadPlugin(output);
-        return new ModelAndView("redirect:content/plugin/config");
+        return new ModelAndView("redirect:/plugin/config");
     }
 
 
