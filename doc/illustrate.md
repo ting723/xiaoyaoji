@@ -4,7 +4,7 @@
 * 核心代码
 * 数据库连接等
 
-### 2. xiaoyaoji-login-plugin
+### 2. xiaoyaoji-cn.com.xiaoyaoji.plugin.login-plugin
 
 * 提供第三方登录模块
 * 包含GitHub,QQ,微博, 邮箱登录方式

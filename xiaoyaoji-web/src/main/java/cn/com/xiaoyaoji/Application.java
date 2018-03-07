@@ -43,14 +43,28 @@ public class Application {
      * @param servletContext
      */
     private static void initializePlugins(ServletContext servletContext){
+//        try {
+//            String outputURI =servletContext.getRealPath(PluginUtils.getPluginSourceDir());
+//
+//            String pluginsDir = PluginUtils.getPluginDir();
+//            //如果为空则与sourcedir 同目录
+//            if( pluginsDir == null || pluginsDir.length() == 0 ){
+//                pluginsDir = outputURI;
+//            }
+//            PluginUtils.extractPlugins(pluginsDir,outputURI);
+//        } catch (Exception e) {
+//            logger.error(e.getMessage(),e);
+//        }
+
         try {
-            String outputURI =servletContext.getRealPath(PluginUtils.getPluginSourceDir());
+//            String outputURI =servletContext.getRealPath(PluginUtils.getPluginSourceDir());
+            String outputURI ="";
 
             String pluginsDir = PluginUtils.getPluginDir();
             //如果为空则与sourcedir 同目录
-            if( pluginsDir == null || pluginsDir.length() == 0 ){
-                pluginsDir = outputURI;
-            }
+//            if( pluginsDir == null || pluginsDir.length() == 0 ){
+//                pluginsDir = outputURI;
+//            }
             PluginUtils.extractPlugins(pluginsDir,outputURI);
         } catch (Exception e) {
             logger.error(e.getMessage(),e);

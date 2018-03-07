@@ -31,6 +31,9 @@ public class ConfigUtils {
         return properties.getProperty(key);
     }
 
+    public static void setProperty(String key,String value){
+         properties.setProperty(key,value);
+    }
     public static String getProperty(String key,String defaultValue){
         String value = getProperty(key);
         if(value == null || value.length()==0) {

@@ -8,6 +8,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -24,11 +25,13 @@ import java.util.Properties;
  * Create : 2018/2/8 16:59
  * Update : 2018/2/8 16:59
  * Descriptions :
+ * @author zhanglw
  */
 @Configuration
 @EnableTransactionManagement
 @EnableAutoConfiguration
 @SpringBootApplication
+@ServletComponentScan
 public class XiaoyaojiWebApplication extends WebMvcConfigurerAdapter {
 
     public static void main(String[] args) {

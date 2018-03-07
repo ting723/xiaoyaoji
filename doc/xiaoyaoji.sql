@@ -271,10 +271,10 @@ CREATE TABLE `team_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Table structure for user
+-- Table structure for gitHubUser
 -- ----------------------------
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
+DROP TABLE IF EXISTS `gitHubUser`;
+CREATE TABLE `gitHubUser` (
   `id` char(12) NOT NULL,
   `email` varchar(45) DEFAULT NULL,
   `createtime` datetime DEFAULT NULL,

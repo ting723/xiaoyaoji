@@ -58,6 +58,6 @@ public class UserArgumentsResolver implements HandlerMethodArgumentResolver {
         if(parameter.getMethod().getClass().getAnnotation(Ignore.class) != null){
             return null;
         }
-        throw new MissingServletRequestParameterException("user","User");
+        throw new MissingServletRequestParameterException("user","WeiBoUser");
     }
 }

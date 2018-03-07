@@ -15,7 +15,7 @@ require(['utils', 'vue', 'vueEx'], function (utils, Vue) {
                         email: self.email, password: self.password, nickname: self.nickname
                     }, function (rs) {
                         toastr.success('注册成功!');
-                        location.href = x.ctx + '/login';
+                        location.href = x.ctx + '/cn.com.xiaoyaoji.plugin.login';
                     });
                 }).catch(function(){
                 })

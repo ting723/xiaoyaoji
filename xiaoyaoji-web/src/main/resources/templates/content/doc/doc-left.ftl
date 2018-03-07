@@ -1,5 +1,5 @@
 <div class="doc-left" id="docLeft">
-    <#if edit>
+    <#if edit!false >
         <div class="dl-doc-actions cb">
             <div class="fl dl-doc-action">
                 <a><i class="el-icon-plus"></i>新建</a>
@@ -17,7 +17,7 @@
     <input type="text" class="doc-search" v-model="searchText" v-on:keyup.enter="search" placeholder="搜索...">
     <div class="dl-content" id="doc-names">
         <ul class="dl-docs" v-on:contextmenu.prevent="contextMenu($event)" v-show="!showSearch">
-            <#if !edit>
+            <#if edit!true >
                 <li class="cb">
                     <div class="dl-doc dl-project-name">
                         <div class="doc-name cb ">
@@ -56,11 +56,13 @@
         <li>
             <div class="dl-menu-name folder">新建</div>
             <ul class="dl-menus sub">
-                <#list docEvPluginInfos as item>
-                    <li uk-toggle="target: #docCreateModal" v-on:click="createFn('${item.id}')">
-                        <div data-type="${item.id}" class="dl-menu-name">${item.name}</div>
-                    </li>
-                </#list>
+                <#if docEvPluginInfos??>
+                    <#list docEvPluginInfos as item>
+                        <li uk-toggle="target: #docCreateModal" v-on:click="createFn('${item.id}')">
+                            <div data-type="${item.id}" class="dl-menu-name">${item.name}</div>
+                        </li>
+                    </#list>
+                </#if>
             </ul>
         </li>
         <li class="line" v-if="menu.isFolder"></li>

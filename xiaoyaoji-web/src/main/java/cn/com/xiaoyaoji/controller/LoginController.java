@@ -26,7 +26,7 @@ import java.io.IOException;
  * @date 2016-06-03
  */
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/cn/com/xiaoyaoji/plugin/login")
 public class LoginController {
 
     private Cookie setCookie(String token,User user){

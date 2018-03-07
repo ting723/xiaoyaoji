@@ -12,8 +12,8 @@
 <div class="home-header">
     <div class="mc cb ta-c">
         <a href="${ctx}/dashboard" class="fl"><img src="/img/logo/full.png" alt="logo"></a>
-        <div class="user-account fr">
-            <a href=""><img src="${Session.user.avatar}" class="user-account-logo" alt=""><span>${Session.user.nickname}</span></a>
+        <div class="gitHubUser-account fr">
+            <a href=""><img src="${Session.gitHubUser.avatar}" class="gitHubUser-account-logo" alt=""><span>${Session.gitHubUser.nickname}</span></a>
         </div>
         <div v-cloak uk-dropdown="pos: top-right" style="text-align: left">
             <ul class="uk-nav uk-dropdown-nav">

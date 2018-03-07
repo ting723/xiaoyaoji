@@ -171,7 +171,7 @@ body.profile .dbl-projects{
 .db-right .db-nav a:hover{
     color: #000;
 }
-.db-nav .db-user-logo{
+.db-nav .db-gitHubUser-logo{
     width: 30px;
     height: 30px;
     border-radius: 100%;
@@ -232,7 +232,7 @@ body.profile .dbl-projects{
 .db-nav-profile-name{
     font-size: 16px;
 }
-.db-item-sub .db-user-logo{
+.db-item-sub .db-gitHubUser-logo{
     height: 50px;
     width: 50px;
     margin: 10px 20px 10px 20px;

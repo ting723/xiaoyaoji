@@ -6,7 +6,7 @@
             <h3 class="title">安全设置</h3><br/><br/>
             <div class="item">
                 <div class="col-sm-2">更换邮箱</div>
-                <div class="col-sm-6">{{user.email}}</div>
+                <div class="col-sm-6">{{gitHubUser.email}}</div>
                 <div class="col-sm-2">
                     <button type="button" class="uk-button uk-button-primary" uk-toggle="target:#emailModal" >修改</button>
                 </div>
@@ -99,7 +99,7 @@
         new Vue({
             el: '#content',
             data:  {
-                user: utils.toJSON('${user}'),
+                gitHubUser: utils.toJSON('${gitHubUser}'),
                 emailModal: false,
                 passwordModal: false,
                 password: '',
@@ -112,7 +112,7 @@
                 newEmail: {
                     message: '新邮箱与当前邮箱一样',
                     check: function (value) {
-                        return value != this.vm.user.email;
+                        return value != this.vm.gitHubUser.email;
                     }
                 }
             },
@@ -120,7 +120,7 @@
                 sendCaptcha: function () {
                     var self = this;
                     this.$validator.validateAll({email:this.email}).then(function(){
-                        utils.post('/user/email/captcha', {email: self.email}, function (rs) {
+                        utils.post('/gitHubUser/email/captcha', {email: self.email}, function (rs) {
                             self.time = 30;
                             var interval = window.setInterval(function () {
                                 if (self.time > 0) {
@@ -140,10 +140,10 @@
                 ok: function () {
                     var self = this;
                     this.$validator.validateAll({email:this.email,captcha:this.captcha}).then(function(){
-                        utils.post('/user/email/new', {email: self.email, code: self.captcha}, function (rs) {
+                        utils.post('/gitHubUser/email/new', {email: self.email, code: self.captcha}, function (rs) {
                             toastr.success('修改成功');
                             self.emailModal = false;
-                            self.user.email = self.email;
+                            self.gitHubUser.email = self.email;
                             UIkit.modal('#emailModal').hide()
                         });
                     }).catch(function(){
@@ -158,7 +158,7 @@
                     }
                     var self = this;
                     this.$validator.validateAll({password:this.password,repassword:this.repassword}).then(function(){
-                        utils.post('/user/password', {password: self.password}, function (rs) {
+                        utils.post('/gitHubUser/password', {password: self.password}, function (rs) {
                             toastr.success('修改成功');
                             self.passwordModal = false;
                             UIkit.modal('#passwordModal').hide()

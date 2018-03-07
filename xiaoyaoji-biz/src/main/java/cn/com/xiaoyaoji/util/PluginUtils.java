@@ -27,17 +27,23 @@ import java.util.Map;
 
 /**
  * @author zhoujingjie
- *         created on 2017/7/24
+ * created on 2017/7/24
  */
 public class PluginUtils {
     private static org.slf4j.Logger logger = LoggerFactory.getLogger(PluginUtils.class);
-    private static Map<String,PluginClassLoader> classLoaderMap = new HashMap<>();
+    private static Map<String, PluginClassLoader> classLoaderMap = new HashMap<>();
+
     public static String getPluginDir() {
+        String pluginPath = PluginUtils.class.getClassLoader().getResource("plugins").getPath();
+        ConfigUtils.setProperty("xyj.plugin.dir", pluginPath);
         return ConfigUtils.getProperty("xyj.plugin.dir");
     }
 
     public static String getPluginSourceDir() {
-        return ConfigUtils.getProperty("xyj.plugin.source.dir", "/WEB-INF/plugins/");
+        // 直接从类路径获取plugin zip
+        String pluginPath = PluginUtils.class.getClassLoader().getResource("plugins").getPath();
+        ConfigUtils.setProperty("xyj.plugin.dir", pluginPath);
+        return ConfigUtils.getProperty("xyj.plugin.source.dir", pluginPath);
     }
 
     /**
@@ -76,7 +82,7 @@ public class PluginUtils {
                         loadPlugin(temp);
                         continue;
                     }
-                    extractPlugin(pluginZip,pluginSourceFolder);
+                    extractPlugin(pluginZip, pluginSourceFolder);
                     loadPlugin(temp);
                 } else {
                     logger.info("ignore " + pluginZip.getName());
@@ -88,7 +94,7 @@ public class PluginUtils {
     }
 
 
-    public static void extractPlugin(File pluginZip,String output) throws Exception {
+    public static void extractPlugin(File pluginZip, String output) throws Exception {
         ZipUtils.uncompression(pluginZip, output);
         logger.info("extract unzip " + pluginZip.getName() + " success");
     }
@@ -113,21 +119,23 @@ public class PluginUtils {
         }
     }
 
-    public static void reloadPlugin(String pluginId){
+    public static void reloadPlugin(String pluginId) {
         PluginInfo pluginInfo = PluginManager.getInstance().getPluginInfo(pluginId);
-        AssertUtils.notNull(pluginInfo,"无效插件");
+        AssertUtils.notNull(pluginInfo, "无效插件");
         try {
             destroyPlugin(pluginId);
-            loadPlugin(pluginInfo.getRuntimeDirectory(),pluginId);
+            loadPlugin(pluginInfo.getRuntimeDirectory(), pluginId);
         } catch (Exception e) {
-            logger.error("reloadPlugin error. pluginId ="+pluginId,e);
+            logger.error("reloadPlugin error. pluginId =" + pluginId, e);
         }
     }
+
     public static void loadPlugin(File pluginDir) throws MalformedURLException, ClassNotFoundException, IllegalAccessException, InstantiationException {
-        loadPlugin(pluginDir,null);
+        loadPlugin(pluginDir, null);
     }
+
     @SuppressWarnings("unchecked")
-    private static void loadPlugin(File pluginDir,String reloadId) throws MalformedURLException, ClassNotFoundException, IllegalAccessException, InstantiationException {
+    private static void loadPlugin(File pluginDir, String reloadId) throws MalformedURLException, ClassNotFoundException, IllegalAccessException, InstantiationException {
         if (!pluginDir.isDirectory()) {
             return;
         }
@@ -148,7 +156,7 @@ public class PluginUtils {
         if (jarFiles != null) {
 
             for (File file : jarFiles) {
-                String path = file.toURI().toString()+"!/";
+                String path = file.toURI().toString() + "!/";
                 URL jarURL = new URL("jar", "", -1, path);
                 classLoader.addURL(jarURL);
             }
@@ -166,23 +174,24 @@ public class PluginUtils {
 
         try (InputStream in = new FileInputStream(file)) {
             String content = IOUtils.toString(in, Constants.UTF8.displayName());
-            List<PluginInfo> pluginInfos = JSON.parseObject(content, new TypeReference<List<PluginInfo>>() {});
+            List<PluginInfo> pluginInfos = JSON.parseObject(content, new TypeReference<List<PluginInfo>>() {
+            });
             String currentVersion = ConfigUtils.getProperty("xyj.version");
             for (PluginInfo pluginInfo : pluginInfos) {
-                if(reloadId!=null){
-                    if(!reloadId.equals(pluginInfo.getId())){
+                if (reloadId != null) {
+                    if (!reloadId.equals(pluginInfo.getId())) {
                         continue;
                     }
                 }
-                if(pluginInfo.getDependency()!=null){
+                if (pluginInfo.getDependency() != null) {
                     Dependency dependency = pluginInfo.getDependency();
-                    if(StringUtils.isNotBlank(dependency.getMin()) && dependency.getMin().compareTo(currentVersion)>0){
-                        logger.error("the plugin {} Minimum dependent version {}, current version {}",pluginInfo.getId(),dependency.getMin(),currentVersion);
+                    if (StringUtils.isNotBlank(dependency.getMin()) && dependency.getMin().compareTo(currentVersion) > 0) {
+                        logger.error("the plugin {} Minimum dependent version {}, current version {}", pluginInfo.getId(), dependency.getMin(), currentVersion);
                         continue;
                     }
 
-                    if(StringUtils.isNotBlank(dependency.getMax()) && dependency.getMax().compareTo(currentVersion)<0){
-                        logger.error("the plugin {} Maxmum dependent version {}, current version {}",pluginInfo.getId(),dependency.getMin(),currentVersion);
+                    if (StringUtils.isNotBlank(dependency.getMax()) && dependency.getMax().compareTo(currentVersion) < 0) {
+                        logger.error("the plugin {} Maxmum dependent version {}, current version {}", pluginInfo.getId(), dependency.getMin(), currentVersion);
                         continue;
                     }
                 }
@@ -194,47 +203,47 @@ public class PluginUtils {
 
                 plugin.init();
                 PluginManager.getInstance().register(pluginInfo);
-                classLoaderMap.put(pluginInfo.getId(),classLoader);
+                classLoaderMap.put(pluginInfo.getId(), classLoader);
             }
         } catch (Exception e) {
             logger.error(file.getAbsolutePath(), e);
         }
     }
 
-    public static void destroyPlugin(String pluginId){
+    public static void destroyPlugin(String pluginId) {
         PluginInfo pluginInfo = PluginManager.getInstance().getPluginInfo(pluginId);
-        AssertUtils.notNull(pluginInfo,"无效插件");
+        AssertUtils.notNull(pluginInfo, "无效插件");
         PluginManager.getInstance().unload(pluginInfo);
         classLoaderMap.get(pluginId).unloadJar();
     }
 
-    public static void deletePlugin(String pluginId){
+    public static void deletePlugin(String pluginId) {
         PluginManager pluginManager = PluginManager.getInstance();
         PluginInfo pluginInfo = pluginManager.getPluginInfo(pluginId);
-        AssertUtils.notNull(pluginInfo,"无效插件");
+        AssertUtils.notNull(pluginInfo, "无效插件");
         try {
-            String packageJSONFileName = pluginInfo.getRuntimeDirectory().getCanonicalPath()+File.separator+"plugin.json";
+            String packageJSONFileName = pluginInfo.getRuntimeDirectory().getCanonicalPath() + File.separator + "plugin.json";
             FileInputStream fis = new FileInputStream(packageJSONFileName);
-            String content = IOUtils.toString(fis,"UTF-8");
+            String content = IOUtils.toString(fis, "UTF-8");
             IOUtils.closeQuietly(fis);
-            List<PluginInfo> pluginInfos = JSON.parseArray(content,PluginInfo.class);
-            for(PluginInfo temp:pluginInfos){
+            List<PluginInfo> pluginInfos = JSON.parseArray(content, PluginInfo.class);
+            for (PluginInfo temp : pluginInfos) {
                 //卸载插件
                 try {
                     destroyPlugin(temp.getId());
-                    if(pluginInfo.getRuntimeDirectory().exists()) {
+                    if (pluginInfo.getRuntimeDirectory().exists()) {
                         //删除文件夹
                         FileUtils.deleteDirectory(pluginInfo.getRuntimeDirectory());
                     }
                     //删除zip文件
-                    String zipFileName = pluginInfo.getRuntimeDirectory().getParent()+File.separator+pluginInfo.getRuntimeFolder()+".zip";
+                    String zipFileName = pluginInfo.getRuntimeDirectory().getParent() + File.separator + pluginInfo.getRuntimeFolder() + ".zip";
                     FileUtils.deleteQuietly(new File(zipFileName));
                 } catch (Exception e) {
-                    logger.error("delete plugin error pluginId="+pluginId,e);
+                    logger.error("delete plugin error pluginId=" + pluginId, e);
                 }
             }
         } catch (Exception e) {
-            logger.error(e.getMessage(),e);
+            logger.error(e.getMessage(), e);
         }
 
     }
@@ -252,6 +261,7 @@ public class PluginUtils {
 
     static class PluginClassLoader extends URLClassLoader {
         private List<JarURLConnection> cachedJarFiles = new ArrayList<JarURLConnection>();
+
         public PluginClassLoader(URL[] urls, ClassLoader parent) {
             super(urls, parent);
         }
@@ -261,6 +271,7 @@ public class PluginUtils {
 
         }
 
+        @Override
         public void addURL(URL file) {
             super.addURL(file);
             try {
@@ -268,19 +279,19 @@ public class PluginUtils {
                 if (uc instanceof JarURLConnection) {
                     uc.setUseCaches(true);
                     ((JarURLConnection) uc).getManifest();
-                    cachedJarFiles.add((JarURLConnection)uc);
+                    cachedJarFiles.add((JarURLConnection) uc);
                 }
             } catch (IOException e) {
-                logger.error("failed to cache plugin jar file="+file.toExternalForm(),e);
+                logger.error("failed to cache plugin jar file=" + file.toExternalForm(), e);
             }
         }
 
-        public void unloadJar(){
-            for(JarURLConnection connection:cachedJarFiles){
+        public void unloadJar() {
+            for (JarURLConnection connection : cachedJarFiles) {
                 try {
                     connection.getJarFile().close();
                 } catch (IOException e) {
-                    logger.error("close jar file connection failure",e);
+                    logger.error("close jar file connection failure", e);
                 }
             }
         }

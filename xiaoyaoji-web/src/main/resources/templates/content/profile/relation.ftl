@@ -12,7 +12,7 @@
                         <img src="${ctx}/proxy/${item.id}/${item.icon.icon128x128}?v=${item.version}" title="${item.description}"/>
                         <p>${item.name}</p>
                         <input type="button" class="btn btn-default" v-cloak v-on:click="relate('${item.id}','${item.plugin.openURL}')" value="关联${item.name}"
-                               v-if="!user.bindingMap['${item.id}']">
+                               v-if="!gitHubUser.bindingMap['${item.id}']">
                         <input type="button" class="btn btn-info" v-cloak v-on:click="unbind('${item.id}')" value="取消关联" v-else>
                     </li>
                     </c:forEach>
@@ -27,7 +27,7 @@
         new Vue({
             el: '#content',
             data:{
-                user: utils.toJSON('${user}')
+                gitHubUser: utils.toJSON('${gitHubUser}')
             },
             methods: {
                 relate:function(pluginId,openURL){
@@ -40,7 +40,7 @@
                         if (e.origin == 'http://www.xiaoyaoji.cn' || e.origin == 'https://www.xiaoyaoji.cn') {
                             var data = e.data;
                             data = JSON.parse(data);
-                            utils.post('/user/bind.json', data, function (rs) {
+                            utils.post('/gitHubUser/bind.json', data, function (rs) {
                                 toastr.success('绑定成功');
                                 setTimeout(function(){
                                     location.reload();
@@ -51,7 +51,7 @@
                 },
                 unbind: function (type) {
                     var self = this;
-                    utils.post('/user/unbind/' + type + '.json', {}, function (rs) {
+                    utils.post('/gitHubUser/unbind/' + type + '.json', {}, function (rs) {
                         toastr.success('解绑成功');
                         setTimeout(function(){
                             location.reload();
