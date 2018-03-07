@@ -30,7 +30,7 @@
     </div>
 </div>
     <#include "../../includes/js.ftl">
-<script>_userId_ = '${gitHubUser.id}', status = 'ARCHIVE';</script>
+<script>_userId_ = '${user.id}', status = 'ARCHIVE';</script>
 <script src="/js/dashboard/home.js?v=${v}"></script>
 </body>
 </html>

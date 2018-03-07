@@ -7,8 +7,8 @@
                 <a href="${ctx}/dashboard/archive" class="${(pageName??&&pageName=='archive')?string('active','')}">归档项目</a>
                 <a href="${ctx}/help">常见问题</a>
             </span>
-        <div class="gitHubUser-account fr">
-            <a href=""><img src="${Session.gitHubUser.avatar}" class="gitHubUser-account-logo" alt=""><span>${Session.gitHubUser.nickname}</span></a>
+        <div class="user-account fr">
+            <a href=""><img src="${Session.user.avatar}" class="user-account-logo" alt=""><span>${Session.user.nickname}</span></a>
         </div>
         <div v-cloak uk-dropdown="pos: top-right" style="text-align: left">
             <ul class="uk-nav uk-dropdown-nav">

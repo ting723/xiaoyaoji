@@ -196,7 +196,7 @@
 </div>
 
 <#include "footer.ftl">
-<#if gitHubUser?? && gitHubUser.id??>
-    <script>_userId_ = '${gitHubUser.id}';</script>
+<#if user?? && user.id??>
+    <script>_userId_ = '${user.id}';</script>
 </#if>
 <script src="/js/dashboard/home.js?v=${v}"></script>

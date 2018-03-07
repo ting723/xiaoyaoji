@@ -13,6 +13,7 @@ import cn.com.xiaoyaoji.data.bean.User;
 import cn.com.xiaoyaoji.service.ServiceFactory;
 import cn.com.xiaoyaoji.util.CacheUtils;
 import cn.com.xiaoyaoji.utils.PasswordUtils;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
@@ -25,8 +26,8 @@ import java.io.IOException;
  * @author zhoujingjie
  * @date 2016-06-03
  */
-@RestController
-@RequestMapping("/cn/com/xiaoyaoji/plugin/login")
+@Controller
+@RequestMapping("/login")
 public class LoginController {
 
     private Cookie setCookie(String token,User user){

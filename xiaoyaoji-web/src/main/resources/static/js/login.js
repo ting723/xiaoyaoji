@@ -2,7 +2,7 @@ require(['utils', 'vue', 'vueEx'], function (utils, Vue) {
 
 
     var app = new Vue({
-        el: '#cn.com.xiaoyaoji.plugin.login',
+        el: '#login',
         data: {password: '', email: '', params: {}, remember: false, from: null},
         created: function () {
             if (location.search) {
@@ -23,7 +23,7 @@ require(['utils', 'vue', 'vueEx'], function (utils, Vue) {
                 var self = this;
                 this.$validator.validateAll({email: this.email, password: this.password}).then(function () {
 
-                    utils.post('/cn.com.xiaoyaoji.plugin.login', {
+                    utils.post('/login', {
                         email: self.email, password: self.password
                     }, function (rs) {
                         console.log(rs);
@@ -46,7 +46,7 @@ require(['utils', 'vue', 'vueEx'], function (utils, Vue) {
                 window.addEventListener('message', function (e) {
                     var data = e.data;
                     data = JSON.parse(data);
-                    utils.post('/cn.com.xiaoyaoji.plugin.login/plugin?pluginId=' + pluginId, data, function (rs) {
+                    utils.post('/login/plugin?pluginId=' + pluginId, data, function (rs) {
                         utils.login.success(null);
                     });
                 });

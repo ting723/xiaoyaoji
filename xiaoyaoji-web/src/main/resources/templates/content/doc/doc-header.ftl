@@ -10,7 +10,7 @@
 <body>
 
 <div class="xd-header cb" id="xd-header">
-    <#if (Session.gitHubUser?? && editPermission)>
+    <#if (Session.user?? && editPermission)>
     <div class="fl">
         <ul class="x-ul horiz">
             <li>
@@ -64,9 +64,9 @@
             <li><div class="x-li"><a href="${ctx}/">主页</a></div></li>
             <li><div class="x-li"><a href="${ctx}/dashboard">控制台</a></div></li>
             <li><div class="x-li"><a href="http://www.xiaoyaoji.cn/donate" target="_blank">赞助作者</a></div></li>
-            <#if Session.gitHubUser?? >
+            <#if Session.user?? >
             <li>
-                <div class="x-li"><a><img src="${Session.gitHubUser.avatar}" class="gitHubUser-account-logo">&nbsp;${Session.gitHubUser.nickname}</a></div>
+                <div class="x-li"><a><img src="${Session.user.avatar}" class="user-account-logo">&nbsp;${Session.user.nickname}</a></div>
                 <div class="x-sub-ul" style="right:0px;">
                     <ul>
                         <li><div class="x-li"><a href="${ctx}/profile">个人中心</a></div></li>

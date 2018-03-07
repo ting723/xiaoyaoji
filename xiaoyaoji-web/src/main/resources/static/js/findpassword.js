@@ -28,7 +28,7 @@ require(['vue', 'utils','vueEx'], function (Vue, utils) {
                 }, function (rs) {
                     toastr.success('操作成功!');
                     setTimeout(function(){
-                        location.href = x.ctx + '/cn.com.xiaoyaoji.plugin.login';
+                        location.href = x.ctx + '/login';
                     },1000);
                 });
             }

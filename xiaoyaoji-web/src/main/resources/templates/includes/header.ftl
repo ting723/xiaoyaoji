@@ -1,13 +1,13 @@
 <header>
     <div class="top">
         <div class="cb mc">
-            <#if Session??&&Session.gitHubUser??>
-                <div class="gitHubUser-action logged fr">
+            <#if Session??&&Session.user??>
+                <div class="user-action logged fr">
                     <a class="item" href="${ctx}/dashboard?v=${v}">进入工作台</a>
                     <a class="item" href="${ctx}/logout?t=<%=System.currentTimeMillis()%>">退出</a>
                 </div>
             <#else >
-                <div class="gitHubUser-action fr">
+                <div class="user-action fr">
                     <a class="item" href="${ctx}/login">登陆</a>
                     <a class="item" href="${ctx}/register">注册</a>
                 </div>

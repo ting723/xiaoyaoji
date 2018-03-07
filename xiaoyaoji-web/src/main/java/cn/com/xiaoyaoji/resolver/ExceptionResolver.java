@@ -52,7 +52,7 @@ public class ExceptionResolver extends SimpleMappingExceptionResolver {
         }
 
         if(ex instanceof NotLoginException){
-            String redirectURL = "redirect:/cn.com.xiaoyaoji.plugin.login";
+            String redirectURL = "redirect:/login";
             if(from!=null){
                 redirectURL +="?refer="+from;
             }

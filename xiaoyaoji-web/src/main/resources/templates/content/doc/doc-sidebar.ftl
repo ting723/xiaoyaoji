@@ -68,7 +68,7 @@
                 </#if>
             </ul></#if>
             <ul class="sidebar-o-op ta-c">
-                <li class="db-item "><a href="${ctx}/profile" title="个人中心"><i class="iconfont icon-gitHubUser"></i></a></li>
+                <li class="db-item "><a href="${ctx}/profile" title="个人中心"><i class="iconfont icon-user"></i></a></li>
                 <li class="db-item" v-on:click="showProject"><a title="项目列表"><i
                         class="iconfont icon-projects active"></i></a></li>
             </ul>

@@ -19,7 +19,7 @@
                         <ul class="cb dbv-chose-users">
                             <#list users as item>
                                 <li v-bind:class="{'active':userId=='${item.id}'}" v-on:click="chose('${item.id}')">
-                                    <div class="dbv-gitHubUser-icon">
+                                    <div class="dbv-user-icon">
                                         <#if (item.avatar??&&item.avatar?length >0) >
                                             <img class="img" src="${item.avatar}">
                                         </#if>

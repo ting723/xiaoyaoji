@@ -183,7 +183,7 @@
                     }
                     localStorage.setItem("token", "");
                     localStorage.setItem("user", "");
-                    location.href = x.ctx + '/cn.com.xiaoyaoji.plugin.login?status=expired&refer=' + encodeURIComponent(location.href);
+                    location.href = x.ctx + '/login?status=expired&refer=' + encodeURIComponent(location.href);
                 } else {
                     toastr.error(rs.errorMsg);
                 }

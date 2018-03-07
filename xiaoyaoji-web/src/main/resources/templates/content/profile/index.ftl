@@ -6,8 +6,8 @@
             <div class="item">
                 <div class="col-sm-2" style="line-height: 100px">头像</div>
                 <div class="col-sm-10">
-                    <div class="gitHubUser-logo">
-                        <img src='${gitHubUser.avatar}' alt="">
+                    <div class="user-logo">
+                        <img src='${user.avatar}' alt="">
                         <div class="logo-edit" title="修改头像"><i class="iconfont icon-edit3"></i></div>
                         <input id="imagefile" type="file" v-on:change="uploadImage">
                     </div>
@@ -15,17 +15,17 @@
             </div>
             <div class="item">
                 <div class="col-sm-2 full-text">姓名</div>
-                <div class="col-sm-4"><input type="text" maxlength="20" v-on:keyup="modify=true" v-model="gitHubUser.nickname"
-                                             value="${gitHubUser.nickname}" class="text" placeholder="请输入姓名"></div>
+                <div class="col-sm-4"><input type="text" maxlength="20" v-on:keyup="modify=true" v-model="user.nickname"
+                                             value="${user.nickname}" class="text" placeholder="请输入姓名"></div>
             </div>
 
             <div class="item">
                 <div class="col-sm-2">邮箱</div>
-                <div class="col-sm-6">${gitHubUser.email}</div>
+                <div class="col-sm-6">${user.email}</div>
             </div>
             <div class="item">
                 <div class="col-sm-2">注册时间</div>
-                <div class="col-sm-6">{{gitHubUser.createtime}}</div>
+                <div class="col-sm-6">{{user.createtime}}</div>
             </div>
 
             <div class="item">
@@ -44,7 +44,7 @@
         new Vue({
             el: '#content',
             data: {
-                gitHubUser: utils.toJSON('${gitHubUser}'),
+                user: utils.toJSON('${user}'),
                 modify: false
             },
             methods: {
@@ -60,14 +60,14 @@
                     }
                     var fd = new FormData();
                     fd.append('avatar', file);
-                    utils.fileloader('/gitHubUser/avatar', fd,
+                    utils.fileloader('/user/avatar', fd,
                         function (rs) {
                             location.reload();
                         });
                 },
                 ok: function () {
                     var self = this;
-                    utils.post('/gitHubUser/', {nickname: this.gitHubUser.nickname}, function () {
+                    utils.post('/user/', {nickname: this.user.nickname}, function () {
                         toastr.success('修改成功');
                     });
                 }

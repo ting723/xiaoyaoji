@@ -1,6 +1,6 @@
 <div class="project-left">
     <ul class="project-menus">
-        <#if project.userId == Session.gitHubUser.id>
+        <#if project.userId == Session.user.id>
             <li>
                 <a href="${ctx}/project/${project.id}/info" class="${(pageName=='info')?string('active','')}">项目信息</a>
             </li>

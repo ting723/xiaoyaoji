@@ -23,7 +23,7 @@
                         <ul>
                             <#list users as item>
                                 <li class="cb">
-                                    <div class="col-sm-2"><img class="gitHubUser-logo"
+                                    <div class="col-sm-2"><img class="user-logo"
                                                                src="${item.avatar}">
                                     </div>
                                     <div class="col-sm-2"> ${item.nickname}</div>
@@ -44,7 +44,7 @@
                             <div class="col-sm-10">
                                 <ul class="cb dbv-chose-users"> <!--v-for-start-->
                                     <li v-for="item in users" v-bind:class="{'active':exists[item.id]}">
-                                        <div class="dbv-gitHubUser-icon" v-on:click="inviteByUserId(item,$event)">
+                                        <div class="dbv-user-icon" v-on:click="inviteByUserId(item,$event)">
                                             <img class="img" v-bind:src="item.avatar" v-if="item.avatar">
                                             <div class="img ta-c word" v-else>{{item.nickname.substring(0,3)}}</div>
                                             <p class="flag"></p>
@@ -88,7 +88,7 @@
     $(function () {
         require(['vue', 'utils', 'veeValidate'], function (Vue, utils, VeeValidate) {
             function loadUser(self) {
-                utils.get('/gitHubUser/project_users', {}, function (rs) {
+                utils.get('/user/project_users', {}, function (rs) {
                     self.users = rs.data.users;
                     self.fileAccess = rs.data.fileAccess;
                 })
@@ -123,11 +123,11 @@
                             location.reload();
                         });
                     },
-                    inviteByUserId: function (gitHubUser, e) {
+                    inviteByUserId: function (user, e) {
                         var self = this;
-                        utils.post('/project/' + this.id + "/invite", {userId: gitHubUser.id}, function (rs) {
+                        utils.post('/project/' + this.id + "/invite", {userId: user.id}, function (rs) {
                             toastr.success('添加成功');
-                            self.users.push(gitHubUser);
+                            self.users.push(user);
                             $(e.target).parents("li").addClass("active");
                         });
                     },

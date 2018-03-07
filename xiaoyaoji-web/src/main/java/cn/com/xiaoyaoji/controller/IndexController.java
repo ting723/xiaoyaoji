@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
     @GetMapping(value = {"/login"})
     public Object login() {
-        ModelAndView modelAndView = new ModelAndView("content/cn.com.xiaoyaoji.plugin.login");
+        ModelAndView modelAndView = new ModelAndView("content/login");
         modelAndView.getModel().put("loginPlugins", PluginManager.getInstance().getLoginPlugins());
         return modelAndView;
     }
