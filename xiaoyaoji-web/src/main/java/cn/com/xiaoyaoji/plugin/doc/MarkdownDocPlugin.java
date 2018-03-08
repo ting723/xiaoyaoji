@@ -11,12 +11,12 @@ public class MarkdownDocPlugin extends DocEvPlugin{
 
     @Override
     public String getEditPage() {
-        return "markdown/edit.jsp";
+        return "edit.ftl";
     }
 
     @Override
     public String getViewPage() {
-        return "markdown/view.jsp";
+        return "view.ftl";
     }
 
 }

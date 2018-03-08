@@ -9,12 +9,12 @@ import cn.com.xiaoyaoji.core.plugin.doc.DocEvPlugin;
 public class ThirdpartyDocPlugin extends DocEvPlugin {
     @Override
     public String getEditPage() {
-        return "thirdparty/edit.jsp";
+        return "thirdparty/edit.ftl";
     }
 
     @Override
     public String getViewPage() {
-        return "thirdparty/view.jsp";
+        return "thirdparty/view.ftl";
     }
 
 }

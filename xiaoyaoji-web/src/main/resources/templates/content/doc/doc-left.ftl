@@ -29,8 +29,7 @@
                 <li class="divider"></li>
             </#if>
             <#if docs??>
-                <#list docs as doc>
-                <#--<c:set var="item" value="${doc}" scope="request"/>-->
+                <#list docs as item>
                     <#include "doc-left-item.ftl"/>
                 </#list>
             </#if>
@@ -125,7 +124,8 @@
     </div>
 </div>
 <script>window._projectId_ = '${project.id}';
-<#if edit??>
-window._edit_ = ${edit?c} </script>
+<#if edit!false>
+window._edit_ = ${edit?c}
 </#if>
-<script src="/js/project/left.js?v=${v}"></script>
+</script>
+<script src="/js/project/left.js"></script>

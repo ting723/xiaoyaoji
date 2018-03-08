@@ -22,7 +22,7 @@ public class Application {
         //MessageBus.instance().register(new MessageNotify());
         initializeBeanUtilsConfig();
 
-        initializePlugins(servletContext);
+//        initializePlugins(servletContext);
 
         if("true".equals(ConfigUtils.getProperty("xyj.sitemap.enable"))) {
             SiteMapTask.start(servletContext);

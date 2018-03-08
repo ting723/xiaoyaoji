@@ -87,7 +87,5 @@
 </div>
 <div class="xd-header-placeholder"></div>
 <script src="/js/project/doc/header.js?v=${v}"></script>
-<#if editProjectGlobal??>
-<script>window._isGlobal_ = ${editProjectGlobal}</script>
-</#if>
+<script>window._isGlobal_ = ${(editProjectGlobal!false)?string('true','false')}</script>
 

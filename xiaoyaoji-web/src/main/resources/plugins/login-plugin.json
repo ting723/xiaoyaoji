@@ -2,7 +2,7 @@
   {
     "id": "cn.xiaoyaoji.login.qq",
     "name": "QQ",
-    "clazz": "cn.xiaoyaoji.plugin.login.qq.QQLoginPlugin",
+    "clazz": "cn.com.xiaoyaoji.plugin.login.qq.QQLoginPlugin",
     "description": "QQ登录",
     "author": "zhoujingjie",
     "createTime": "2017/07/24",
@@ -24,7 +24,7 @@
   {
     "id": "cn.xiaoyaoji.login.weibo",
     "name": "微博",
-    "clazz": "cn.xiaoyaoji.plugin.login.weibo.WeiboLoginPlugin",
+    "clazz": "cn.com.xiaoyaoji.plugin.login.weibo.WeiboLoginPlugin",
     "description": "微博登录",
     "author": "zhoujingjie",
     "createTime": "2017/07/24",
@@ -46,7 +46,7 @@
   {
     "id": "cn.xiaoyaoji.login.github",
     "name": "Github",
-    "clazz": "cn.xiaoyaoji.plugin.login.github.GithubLoginPlugin",
+    "clazz": "cn.com.xiaoyaoji.plugin.login.github.GithubLoginPlugin",
     "description": "Github登录",
     "author": "zhoujingjie",
     "createTime": "2017/07/24",

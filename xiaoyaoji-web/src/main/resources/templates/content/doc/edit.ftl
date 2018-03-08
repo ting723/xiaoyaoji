@@ -2,7 +2,7 @@
     <#include "doc-header.ftl"/>
     <#include "doc-sidebar.ftl"/>
     <#include "doc-left.ftl"/>
-    <div class="doc-content doc" >
+    <div class="doc-content doc">
     <div class="hide" id="loading">
         <div class="spinner">
             <div class="double-bounce1"></div>
@@ -15,17 +15,16 @@
 <#if editProjectGlobal??>
     <#include "../project/global/project-global.ftl"/>
 </#if>
-<#if editProjectGlobal??&&!editProjectGlobal && doc!=null>
-    <#if test="${pluginInfo == null}">
+<#if editProjectGlobal!true && doc??>
+    <#if pluginInfo??>
+        <#include "../${pluginInfo.runtimeFolder}/${pluginInfo.plugin.editPage}"/>
+    <#else >
         <#include "../../includes/doc-type-not-support.ftl"/>
-    </#if>
-    <#if test="${pluginInfo != null}">
-        <#include "../${pluginInfo.runtimeFolder}/web/${pluginInfo.plugin.editPage}"/>
     </#if>
 </#if>
 <script>
     window._edit_ = ${edit?c}, _projectName_ = '${project.name}', _projectId_ = '${project.id}', _docId_ = '${docId}';
-    if(!window.requirejs){
+    if (!window.requirejs) {
         location.reload();
     }
 </script>

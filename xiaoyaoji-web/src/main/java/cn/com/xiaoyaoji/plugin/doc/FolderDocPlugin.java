@@ -11,12 +11,12 @@ public class FolderDocPlugin extends DocEvPlugin{
 
     @Override
     public String getEditPage() {
-        return "folder/edit.jsp";
+        return "folder/edit.ftl";
     }
 
     @Override
     public String getViewPage() {
-        return "folder/view.jsp";
+        return "folder/view.ftl";
     }
 
 }

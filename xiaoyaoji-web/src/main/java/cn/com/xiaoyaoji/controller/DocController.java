@@ -26,7 +26,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: zhoujingjie
@@ -95,7 +97,7 @@ public class DocController {
             }
         }
         try {
-            BeanUtils.copyProperties(history, temp);
+            BeanUtils.copyProperties(temp, history);
             history.setName(doc.getName());
             history.setComment(comment);
             history.setUserId(user.getId());
@@ -282,6 +284,10 @@ public class DocController {
                 break;
             }
         }
+        List<Doc> docs = DocService.instance().getProjectDocs(project.getId());
+        request.setAttribute("docEvPluginInfos", PluginManager.getInstance().getPlugins(Event.DOC_EV));
+
+        pluginInfo.setRuntimeFolder(getFolderByType(doc.getType()));
         boolean isXHR = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
         return new ModelAndView("content/doc/view")
                 .addObject("project", project)
@@ -291,6 +297,7 @@ public class DocController {
                 .addObject("projectGlobal", ProjectService.instance().getProjectGlobal(doc.getProjectId()))
                 .addObject("pluginInfo", pluginInfo)
                 .addObject("isXHR", isXHR)
+                .addObject("docs", docs)
                 ;
     }
 
@@ -380,5 +387,16 @@ public class DocController {
         List<Doc> docs = DocService.instance().getDocsByParentId(projectId, "0");
         return new _HashMap<>()
                 .add("docs", docs);
+    }
+
+    private String getFolderByType(String type){
+        Map<String,String> map = new HashMap<>();
+        map.put("sys.http","http");
+        map.put("sys.websocket","websocket");
+        map.put("sys.doc,richtext","richtext");
+        map.put("sys.doc.md","markdown");
+        map.put("sys.folder","folder");
+        map.put("sys.thirdparth","thirdparty");
+        return map.get(type);
     }
 }
