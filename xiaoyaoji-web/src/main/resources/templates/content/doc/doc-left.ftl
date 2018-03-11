@@ -124,8 +124,6 @@
     </div>
 </div>
 <script>window._projectId_ = '${project.id}';
-<#if edit!false>
-window._edit_ = ${edit?c}
-</#if>
+window._edit_ = '${edit?c}';
 </script>
 <script src="/js/project/left.js"></script>

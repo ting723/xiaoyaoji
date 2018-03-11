@@ -178,7 +178,7 @@
                         <li class="ta-c">
                             <div>
                                 <img class="plugin-icon"
-                                     src="${ctx}/proxy/${item.id}/${item.icon.icon32x32}?v=${item.version}"/><br/>
+                                     src="/${item.icon.icon32x32}?v=${item.version}"/><br/>
                                 <span>${item.name}</span>
                             </div>
                             <input type="file" v-on:change="importFile('${item.id}',$event)" class="upload">

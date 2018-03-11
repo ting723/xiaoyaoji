@@ -1,17 +1,17 @@
-<%
-    Doc doc = (Doc) request.getAttribute("doc");
-    List
-<Doc> docs = DocService.instance().getDocsByParentId(doc.getProjectId(),doc.getId());
-    request.setAttribute("docs",docs);
-    %>
-    <div id="folder">
-        <div style="padding: 50px 100px;font-size: 16px">
-    <#if (docs?size>0)>
-        <ul class="uk-list uk-list-bullet"> ${root.getDocPath()}
-        <#list docs as item>
-            <li><a href="${fn.getDocViewURL(item.id)}">${item.name}</a></li>
+<div id="folder">
+    <div style="padding: 50px 100px;font-size: 16px">
+    <#if (folderDocs?size>0)>
+        <ul class="uk-list uk-list-bullet">
+        <#--<#list docs as item>-->
+            <#--<li><a href="${fn?getDocViewURL(item.id)}">${item.name}</a></li>-->
+        <#--</#list>-->
+
+        <#list fns as fnMap>
+            <#list fnMap?keys as key>
+            <li><a href="${key}">${fnMap[key]}</a></li>
+            </#list>
         </#list>
         </ul>
     </#if>
-        </div>
     </div>
+</div>

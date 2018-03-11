@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="${ctx}/proxy/${pluginInfo.id}/css/http.css?v=${v}"/>
+<link rel="stylesheet" href="/css/http.css?v=${v}"/>
 <div class="content-section" id="docApp" style="padding: 0 10px;">
 
 <span class="doc-update-time">更新时间: <span id="api-update-time">{{doc.lastUpdateTime}}</span></span>
@@ -15,7 +15,6 @@
             <p class="doc-item-section-title">接口描述</p>
             <div v-html="content.description"></div>
         </div>
-        <%--<#if test="${doc.attachs.size() > 0}">--%>
         <div class="doc-item-section" v-if="attachs && attachs.length>0">
             <p class="doc-item-section-title">附件</p>
             <div class="cb">
@@ -130,9 +129,9 @@
         </div>
     </div>
 </div>
-<jsp:include page="../includes/request-args.jsp"/>
-<jsp:include page="../includes/response-args.jsp"/>
+<#include "../http/request-args.ftl"/>
+<#include "../http/response-args.ftl"/>
 <script>
     var doc = ${doc},projectGlobal=${projectGlobal},pluginId='${pluginInfo.id}';
 </script>
-<script src="${ctx}/proxy/${pluginInfo.id}/web/websocket/view.js?v=${pluginInfo.version}"></script>
+<script src="/websocket/view.js?v=${pluginInfo.version}"></script>

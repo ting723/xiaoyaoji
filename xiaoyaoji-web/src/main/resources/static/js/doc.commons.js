@@ -1,5 +1,5 @@
 (function () {
-    define(['utils', ctx + '/proxy/' + pluginId + '/html5sortable/html.sortable.min.js'], function (utils, sortable) {
+    define(['utils', '/html5sortable/html.sortable.min.js'], function (utils, sortable) {
 
         //驼峰转横线拼接
         function formatCamelStr(str) {

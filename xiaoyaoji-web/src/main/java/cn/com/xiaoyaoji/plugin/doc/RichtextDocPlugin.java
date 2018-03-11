@@ -10,12 +10,12 @@ public class RichtextDocPlugin extends DocEvPlugin {
 
     @Override
     public String getEditPage() {
-        return "richtext/edit.ftl";
+        return "edit.ftl";
     }
 
     @Override
     public String getViewPage() {
-        return "richtext/view.ftl";
+        return "view.ftl";
     }
 
 }

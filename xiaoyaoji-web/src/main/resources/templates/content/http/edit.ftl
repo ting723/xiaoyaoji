@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="${ctx}/proxy/${pluginInfo.id}/css/http.css?v=${v}"/>
+<link rel="stylesheet" href="/css/http.css?v=${v}"/>
 <div id="doc" v-cloak>
     <div v-cloak>
         <datalist id="headerlist">
@@ -217,7 +217,8 @@
                             </ul>
                         </div>
                         <div class="div-table editing " id="responseArgs">
-                            <response-args-vue v-bind:response-args="content.responseArgs" :name="'responseArgs'" :pid="0"
+                            <response-args-vue v-bind:response-args="content.responseArgs" :name="'responseArgs'"
+                                               :pid="0"
                                                v-bind:editing="editing"></response-args-vue>
                         </div>
                         <div class="item">
@@ -280,8 +281,8 @@
 <script>
     var doc = ${doc}, projectGlobal =${projectGlobal}, pluginId = '${pluginInfo.id}';
 </script>
-<jsp:include page="../includes/request-args.jsp"/>
-<jsp:include page="../includes/request-headers.jsp"/>
-<jsp:include page="../includes/response-args.jsp"/>
-<jsp:include page="../includes/response-headers.jsp"/>
-<script src="${ctx}/proxy/${pluginInfo.id}/web/http/edit.js?v=${pluginInfo.version}"></script>
+<#include "request-args.ftl"/>
+<#include "request-headers.ftl"/>
+<#include "response-args.ftl"/>
+<#include "response-headers.ftl"/>
+<script src="/http/edit.js?v=${pluginInfo.version}"></script>

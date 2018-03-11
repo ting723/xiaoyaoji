@@ -14,7 +14,7 @@ public class ThirdpartyDocPlugin extends DocEvPlugin {
 
     @Override
     public String getViewPage() {
-        return "thirdparty/view.ftl";
+        return "view.ftl";
     }
 
 }

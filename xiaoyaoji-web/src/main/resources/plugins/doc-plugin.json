@@ -105,7 +105,7 @@
     "version": "2.1.5",
     "event":"doc.export",
     "icon":{
-      "icon32x32":"/assets/json.png"
+      "icon32x32":"/img/json.png"
     },
     "dependency":{
       "min":"2.1.5"
@@ -121,7 +121,7 @@
     "version": "2.1.5",
     "event":"doc.import",
     "icon":{
-      "icon32x32":"/assets/json.png"
+      "icon32x32":"/img/json.png"
     },
     "dependency":{
       "min":"2.1.5"

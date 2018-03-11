@@ -11,12 +11,12 @@ public class HttpDocPlugin extends DocEvPlugin{
 
     @Override
     public String getEditPage() {
-        return "http/edit.ftl";
+        return "edit.ftl";
     }
 
     @Override
     public String getViewPage() {
-        return "http/view.ftl";
+        return "view.ftl";
     }
 
 }

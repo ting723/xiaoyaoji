@@ -43,12 +43,12 @@
                 <div class="x-li">|</div>
             </li>
 
-            <#if edit!true && editPermission!false >
+            <#if !edit && editPermission!false >
                 <li v-on:click="sidebar('editpage')">
                     <div class="x-li"><a><i class="iconfont icon-edit1"></i>编辑项目</a></div>
                 </li>
             </#if>
-            <#if docId?? && edit!false>
+            <#if docId?? && edit>
                 <li v-on:click="sidebar('viewpage')">
                     <div class="x-li"><a><i class="iconfont icon-eye"></i>预览项目</a></div>
                 </li>

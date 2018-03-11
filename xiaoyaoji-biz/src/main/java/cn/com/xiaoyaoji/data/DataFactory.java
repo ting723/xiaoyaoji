@@ -1,7 +1,6 @@
 package cn.com.xiaoyaoji.data;
 
 import cn.com.xiaoyaoji.core.annotations.Ignore;
-import cn.com.xiaoyaoji.core.common.DocType;
 import cn.com.xiaoyaoji.core.common.Pagination;
 import cn.com.xiaoyaoji.core.exception.SystemErrorException;
 import cn.com.xiaoyaoji.core.util.AssertUtils;
@@ -608,7 +607,7 @@ public class DataFactory implements Data {
         return process(new Handler<List<Doc>>() {
             @Override
             public List<Doc> handle(Connection connection, QueryRunner qr) throws SQLException {
-                return qr.query(connection,"select id,name from doc where projectId=? and parentId=? order by sort asc",new BeanListHandler<>(Doc.class),projectId,parentId);
+                return qr.query(connection,"select id,name,type,sort from doc where projectId=? and parentId=? order by sort asc",new BeanListHandler<>(Doc.class),projectId,parentId);
             }
         });
     }

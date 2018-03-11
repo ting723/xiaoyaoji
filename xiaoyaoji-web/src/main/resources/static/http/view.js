@@ -1,10 +1,10 @@
 requirejs(['utils', 'vue',
-    x.cdn + '/jsonformat/jsonFormater.js',
-    x.cdn + '/clipboard/clipboard.min.js',
-    ctx+'/proxy/'+pluginId + '/js/chrome-extension.js',
-    x.cdn + '/ace/src-min/ace.js',
-    x.cdn + '/xml2json/2json.js',
-    x.cdn + '/xml2json/2xml.js'
+    '/jsonformat/jsonformat.js',
+    '/clipboard/clipboard.min.js',
+    '/js/chrome-extension.js',
+    '/ace/ace.js',
+    '/xml2json/2json.js',
+    '/xml2json/2xml.js'
 ], function (utils, Vue, xxx, Clipboard, Plugin) {
     var xml = new XML.ObjTree();
     //请求头
@@ -60,8 +60,8 @@ requirejs(['utils', 'vue',
     function Result() {
         var jf = new JsonFormater({
             dom: '#api-result',
-            imgCollapsed: x.cdn+'/jsonformat/images/Collapsed.gif',
-            imgExpanded: x.cdn+'/jsonformat/images/Expanded.gif'
+            imgCollapsed: '/img/Collapsed.gif',
+            imgExpanded: '/img/Expanded.gif'
         });
         var fn = {
             JSON: function (data) {

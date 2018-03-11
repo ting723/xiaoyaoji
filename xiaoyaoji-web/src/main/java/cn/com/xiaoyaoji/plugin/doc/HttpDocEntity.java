@@ -1,4 +1,4 @@
-package cn.com.xiaoyaoji.doc;
+package cn.com.xiaoyaoji.plugin.doc;
 
 import java.util.ArrayList;
 import java.util.List;

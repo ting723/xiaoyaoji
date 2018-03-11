@@ -7,7 +7,7 @@
         list-style:disc;
     }
 </style>
-<textarea class="hide" id="md-edit">${doc.content}</textarea>
+<textarea class="hide" id="md-edit">${doc.content?string(doc.content,"")}</textarea>
 <script>
     (function(){
         requirejs(['/simplemd/simplemde.min.js?v=${pluginInfo.version}'],function(SimpleMDE){

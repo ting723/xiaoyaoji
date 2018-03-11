@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="${ctx}/proxy/${pluginInfo.id}/css/http.css?v=${v}"/>
+<link rel="stylesheet" href="/css/http.css?v=${v}"/>
 <div id="doc">
     <div v-cloak>
         <datalist id="requestlist">
@@ -152,10 +152,10 @@
         </div>
     </div>
 </div>
-<jsp:include page="../includes/request-args.jsp"/>
-<jsp:include page="../includes/response-args.jsp"/>
+<#include "../http/request-args.ftl"/>
+<#include "../http/response-args.ftl"/>
 
 <script>
     var doc = ${doc},projectGlobal=${projectGlobal},pluginId='${pluginInfo.id}';
 </script>
-<script src="${ctx}/proxy/${pluginInfo.id}/web/websocket/edit.js?v=${pluginInfo.version}"></script>
+<script src="/websocket/edit.js?v=${pluginInfo.version}"></script>

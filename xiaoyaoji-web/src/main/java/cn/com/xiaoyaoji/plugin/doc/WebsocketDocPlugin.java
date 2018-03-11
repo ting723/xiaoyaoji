@@ -11,11 +11,11 @@ public class WebsocketDocPlugin extends DocEvPlugin{
 
     @Override
     public String getEditPage() {
-        return "websocket/edit.ftl";
+        return "edit.ftl";
     }
 
     @Override
     public String getViewPage() {
-        return "websocket/view.ftl";
+        return "view.ftl";
     }
 }

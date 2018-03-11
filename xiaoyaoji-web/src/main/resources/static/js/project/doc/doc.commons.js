@@ -1,5 +1,5 @@
 (function(){
-    define(['utils',x.ctx+'/html5sortable/html.sortable.min.js'],function(utils,sortable){
+    define(['utils','/html5sortable/html.sortable.min.js'],function(utils,sortable){
         function _initsort_(docApp){
             setTimeout(function () {
                 sortable('.div-editing-table', 'destroy');

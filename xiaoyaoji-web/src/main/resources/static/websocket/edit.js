@@ -1,13 +1,10 @@
-
-
 (function(){
     var thirds = [
         'vue',
         'utils',
-        ctx+'/proxy/'+pluginId+'/js/doc.commons.js?'+Date.now()
+        '/js/doc.commons.js'
     ];
     requirejs(thirds,function(Vue,utils,commons){
-
         var docApp = new Vue({
             el:'#doc',
             data:{
@@ -30,83 +27,6 @@
                 fileAccess:null,
                 attachs:null,
                 global:null
-            },
-            created:function(){
-                if(!this.doc.content){
-                    this.doc.content={};
-                }
-
-                var content = utils.toJSON(this.doc.content);
-
-                if(!content.requestMethod){
-                    content.requestMethod = 'GET';
-                }
-                if(!content.dataType){
-                    content.dataType = 'X-WWW-FORM-URLENCODED';
-                }
-                if(!content.contentType){
-                    content.contentType = 'JSON';
-                }
-                if(!content.requestArgs){
-                    content.requestArgs=[];
-                }
-                if(!content.requestHeaders){
-                    content.requestHeaders=[];
-                }
-                if(!content.responseHeaders){
-                    content.responseHeaders=[];
-                }
-                if(!content.responseArgs){
-                    content.responseArgs=[];
-                }
-                if(!content.url){
-                    content.url='';
-                }
-
-                commons.checkId(content.requestArgs);
-                commons.checkId(content.requestHeaders);
-                commons.checkId(content.responseHeaders);
-                commons.checkId(content.responseArgs);
-                
-                this.content = content;
-                this.loadAttach();
-
-                var g= projectGlobal;
-                if(!g.status){
-                    g.status=[];
-                }else{
-                    g.status = utils.toJSON(g.status);
-                }
-                if(!g.environment){
-                    g.environment = [];
-                }else{
-                    g.environment = utils.toJSON(g.environment);
-                }
-
-                if(!content.status){
-                    var status = '';
-                    if(g.status[0]){
-                        status = g.status[0].name;
-                    }
-                    content.status = status;
-                }
-                this.global = g;
-
-                _initsort_(this,'requestArgs');
-                _initsort_(this,'requestHeaders');
-                _initsort_(this,'responseArgs');
-                _initsort_(this,'responseHeaders');
-
-                this.currentEnv = g.environment[0] || {};
-                var urlArgs=[];
-                var match = this.content.url.match(/(\{[a-zA-Z0-9_]+\})/g);
-                if (match !== null && match.length > 0) {
-                    urlArgs = match;
-                    urlArgs = urlArgs.map(function (d) {
-                        return {name: d.substring(1, d.length - 1), value: null};
-                    });
-                }
-                this.urlArgs= urlArgs;
             },
             computed:{
                 requestURL: function () {
@@ -132,23 +52,86 @@
                     return temp;
                 }
             },
+            created:function(){
+                if(!this.doc.content){
+                    this.doc.content={};
+                }
+                var content = utils.toJSON(this.doc.content);
+                if(!content.requestArgs){
+                    content.requestArgs=[];
+                }
+                if(!content.requestHeaders){
+                    content.requestHeaders=[];
+                }
+                if(!content.responseHeaders){
+                    content.responseHeaders=[];
+                }
+                if(!content.responseArgs){
+                    content.responseArgs=[];
+                }
+                if(!content.url){
+                    content.url='';
+                }
+                commons.checkId(content.requestArgs);
+                commons.checkId(content.requestHeaders);
+                commons.checkId(content.responseHeaders);
+                commons.checkId(content.responseArgs);
+
+                this.content = content;
+                this.loadAttach();
+
+                var g= projectGlobal;
+                if(!g.status){
+                    g.status=[];
+                }else{
+                    g.status = utils.toJSON(g.status);
+                }
+                if(!g.environment){
+                    g.environment = [];
+                }else{
+                    g.environment = utils.toJSON(g.environment);
+                }
+                if(!content.status){
+                    var status = '';
+                    if(g.status[0]){
+                        status = g.status[0].name;
+                    }
+                    content.status = status;
+                }
+
+                this.global = g;
+
+                this.currentEnv = g.environment[0] || {};
+                var urlArgs=[];
+                var match = this.content.url.match(/(\{[a-zA-Z0-9_]+\})/g);
+                if (match != null && match.length > 0) {
+                    urlArgs = match;
+                    urlArgs = urlArgs.map(function (d) {
+                        return {name: d.substring(1, d.length - 1), value: null};
+                    });
+                }
+                this.urlArgs= urlArgs;
+
+                _initsort_(this);
+
+            },
             methods:{
                 newRow:function(type){
-                    if(type ==='requestHeaders'){
-                         this.content.requestHeaders.push({id:utils.generateUID(),require:'true',children:[]});
-                    }else if(type ==='requestArgs'){
+                    if(type ==='requestHeader'){
+                        this.content.requestHeaders.push({id:utils.generateUID(),require:'true',children:[]});
+                    }else if(type ==='requestArg'){
                         this.content.requestArgs.push({id:utils.generateUID(),require:'true',children:[],type:'string'});
-                    }else if(type ==='responseHeaders'){
+                    }else if(type ==='responseHeader'){
                         this.content.responseHeaders.push({id:utils.generateUID(),require:'true',children:[]});
-                    }else  if(type ==='responseArgs'){
+                    }else  if(type ==='responseArg'){
                         this.content.responseArgs.push({id:utils.generateUID(),require:'true',children:[],type:'string'});
                     }
-                    commons._initsort_(this,type);
+                    commons._initsort_(this);
                 },
                 importJSON:function(type){
                     this.importModal = true;
                     this.import = type;
-                 },
+                },
                 importOk:function(){
                     if (!this.importValue) {
                         toastr.error('导入内容为空');
@@ -166,19 +149,18 @@
                     commons.parseImportData(data, temp);
                     var self = this;
                     temp.forEach(function (d) {
-                        d.id=utils.generateUID();
-                        if(self.import ==='requestHeaders'){
+                        if(self.import ==='requestHeader'){
                             self.content.requestHeaders.push(d);
-                        }else if(self.import ==='requestArgs'){
+                        }else if(self.import ==='requestArg'){
                             self.content.requestArgs.push(d);
-                        }else if(self.import ==='responseHeaders'){
+                        }else if(self.import ==='responseHeader'){
                             self.content.responseHeaders.push(d);
-                        }else if(self.import ==='responseArgs'){
+                        }else if(self.import ==='responseArg'){
                             self.content.responseArgs.push(d);
                         }
                     });
                     this.importModal = false;
-                    commons._initsort_(this,self.import);
+                    commons._initsort_();
                 },
                 loadAttach:function(){
                     var self = this;
@@ -195,7 +177,7 @@
                         return;
                     }
                     var self=this;
-                    utils.delete('/attach/'+item.id+"?projectId="+_projectId_,function(rs){
+                    utils.delete('/attach/'+item.id+'?projectId='+_projectId_,function(rs){
                         self.attachs.splice(self.attachs.indexOf(item));
                     })
                 },
@@ -208,7 +190,7 @@
                     for(var i=0;i<files.length;i++){
                         fd.append('file',files[i]);
                     }
-                    fd.append("projectId",_projectId_);
+                    fd.append('projectId',_projectId_);
                     var self = this;
                     utils.fileloader('/attach',fd,function(){
                         self.loadAttach();
@@ -216,11 +198,11 @@
                 }
             }
         });
-
+        window.docApp = docApp;
         window.getDoc = function(){
             var description = $('#api-description').html();
             docApp.content.description = description;
-            var content = JSON.stringify(docApp.content);
+            var content= JSON.stringify(docApp.content);
             return {
                 name:docApp.doc.name,
                 content:content

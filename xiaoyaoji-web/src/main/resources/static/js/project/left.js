@@ -1,5 +1,5 @@
 $(function(){
-    requirejs(['vue','utils',x.ctx+'/html5sortable/html.sortable.min.js'],function(Vue,utils,sortable){
+    requirejs(['vue','utils','/html5sortable/html.sortable.min.js'],function(Vue,utils,sortable){
 
         function setDocContentHeight(){
             var $d=$('#doc-names');

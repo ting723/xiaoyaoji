@@ -6,7 +6,7 @@
     }
 </style>
 <div id="thirdparty">
-    <textarea class="tp-content" placeholder="请输入第三方链接地址">${doc.content}</textarea>
+    <textarea class="tp-content" placeholder="请输入第三方链接地址">${doc.content!""}</textarea>
 </div>
 <script>
     window.getDoc = function(){

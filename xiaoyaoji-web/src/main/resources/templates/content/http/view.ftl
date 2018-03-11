@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="${ctx}/proxy/${pluginInfo.id}/css/http.css?v=${v}"/>
+<link rel="stylesheet" href="/css/http.css?v=${v}"/>
 <div class="content-section" id="docApp" style="padding: 0 10px;" v-cloak>
 
 <span class="doc-update-time">更新时间: <span id="api-update-time">{{doc.lastUpdateTime}}</span></span>
@@ -20,7 +20,6 @@
             <p class="doc-item-section-title">接口描述</p>
             <div v-html="content.description"></div>
         </div>
-        <%--<#if test="${doc.attachs.size() > 0}">--%>
         <div class="doc-item-section" v-if="attachs && attachs.length>0">
             <p class="doc-item-section-title">附件</p>
             <div class="cb">
@@ -30,7 +29,6 @@
                 </div>
             </div>
         </div>
-        <%--</#if>--%>
         <div v-if="(global.http.requestHeaders&&global.http.requestHeaders.length>0 && !content.ignoreGHttpReqHeaders)">
             <p class="doc-item-section-title">全局请求头</p>
             <div class="div-table">
@@ -308,9 +306,6 @@
                             <input type="button" data-ignore v-on:click.stop="pluginSubmit"
                                    class="btn btn-primary" :value="apiLoading?'加载中':'运行'">
                                 </div>
-                            <%--<input type="button" data-ignore v-on:click.stop="apiMock" v-show="content.responseArgs && content.responseArgs.length>0"
-                                   class="btn btn-orange" value="mock">--%>
-
                         </div>
                     </div>
                 </div>
@@ -338,37 +333,17 @@
                     </div>
                 </div>
             </div>
-            <%--<div class="ta-c api-plugin-tip" v-if="!extVer">
-                <i class="iconfont icon-chrome"></i><br/>
-                <p>由于浏览器有跨域限制，如果您的服务器不支持CORS协议，需要安装我们开发的Chrome插件“小幺鸡”</p>
-                <p>安装的时候请注意勾选，安装后请刷新页面。</p>
-                <p>
-                    <a href="https://chrome.google.com/webstore/detail/%E5%B0%8F%E5%B9%BA%E9%B8%A1/omohfhadnbkakganodaofplinheljnbd" target="_blank" class="btn btn-default">Chrome应用商店</a>
-                </p>
-            </div>
-            <div v-else>
-                <div class="ta-c api-plugin-tip" v-if="extVer < 1.3">
-                    <i class="iconfont icon-chrome"></i><br/>
-                    <p>您安装的『小幺鸡』插件版本有更新,为了避免使用出现bug,请下载升级</p>
-                    <p>安装的时候请注意勾选，安装后请刷新页面。</p>
-                    <p>
-                        <a href="https://chrome.google.com/webstore/detail/%E5%B0%8F%E5%B9%BA%E9%B8%A1/omohfhadnbkakganodaofplinheljnbd" target="_blank" class="btn btn-default">Chrome应用商店</a>
-                        <a href="/extension/xiaoyaoji.crx" target="_blank" class="btn btn-default">本地下载</a>
-                        <a href="http://jingyan.baidu.com/article/e5c39bf56286ae39d6603374.html" target="_blank" class="btn btn-default">本地下载安装教程</a>
-                    </p>
-                </div>
-            </div>--%>
         </div>
     </div>
 </div>
-<jsp:include page="../includes/request-args.jsp"/>
-<jsp:include page="../includes/request-headers.jsp"/>
-<jsp:include page="../includes/response-args.jsp"/>
+<#include "request-args.ftl"/>
+<#include "request-headers.ftl"/>
+<#include "response-args.ftl"/>
 
 <script>
     var doc = ${doc},
         projectGlobal=${projectGlobal},
         pluginId='${pluginInfo.id}';
 </script>
-<link rel="stylesheet" type="text/css" href="/jsonformat/jsonFormater.css"/>
-<script src="${ctx}/proxy/${pluginInfo.id}/web/http/view.js?v=${pluginInfo.version}"></script>
+<link rel="stylesheet" type="text/css" href="/css/jsonFormater.css"/>
+<script src="/http/view.js?v=${pluginInfo.version}"></script>

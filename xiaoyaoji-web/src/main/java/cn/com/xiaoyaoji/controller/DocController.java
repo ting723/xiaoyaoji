@@ -17,6 +17,7 @@ import cn.com.xiaoyaoji.service.DocService;
 import cn.com.xiaoyaoji.service.ProjectService;
 import cn.com.xiaoyaoji.service.ServiceFactory;
 import cn.com.xiaoyaoji.service.ServiceTool;
+import cn.com.xiaoyaoji.utils.JspFn;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.log4j.Logger;
@@ -25,10 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author: zhoujingjie
@@ -288,6 +286,16 @@ public class DocController {
         request.setAttribute("docEvPluginInfos", PluginManager.getInstance().getPlugins(Event.DOC_EV));
 
         pluginInfo.setRuntimeFolder(getFolderByType(doc.getType()));
+        List<Doc> folderDocs= new ArrayList<>();
+        List<Map<String,String>> fns = new ArrayList<>();
+        if(getFolderByType(doc.getType()).equals("folder")){
+            folderDocs= DocService.instance().getDocsByParentId(doc.getProjectId(),doc.getId());
+            folderDocs.forEach(item->{
+                Map<String,String> tmp = new HashMap<>();
+                tmp.put(new JspFn(request).getDocViewURL(item.getId()),item.getName());
+                fns.add(tmp);
+            });
+        }
         boolean isXHR = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
         return new ModelAndView("content/doc/view")
                 .addObject("project", project)
@@ -298,6 +306,10 @@ public class DocController {
                 .addObject("pluginInfo", pluginInfo)
                 .addObject("isXHR", isXHR)
                 .addObject("docs", docs)
+                .addObject("fns", fns)
+                .addObject("folderDocs", folderDocs)
+                .addObject("edit", false)
+
                 ;
     }
 
@@ -393,10 +405,10 @@ public class DocController {
         Map<String,String> map = new HashMap<>();
         map.put("sys.http","http");
         map.put("sys.websocket","websocket");
-        map.put("sys.doc,richtext","richtext");
+        map.put("sys.doc.richtext","richtext");
         map.put("sys.doc.md","markdown");
         map.put("sys.folder","folder");
-        map.put("sys.thirdparth","thirdparty");
+        map.put("sys.thirdparty","thirdparty");
         return map.get(type);
     }
 }

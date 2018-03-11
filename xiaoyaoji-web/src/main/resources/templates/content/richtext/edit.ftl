@@ -1,5 +1,5 @@
 <div class="docWeApp" id="docWeApp">
-    <div id="we">${doc.content}</div>
+    <div id="we">${doc.content!""}</div>
 </div>
 <script>
 
