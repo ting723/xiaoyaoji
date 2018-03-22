@@ -1,5 +1,6 @@
 package cn.com.xiaoyaoji.interceptor;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -14,9 +15,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class MvcConfigurerAdapter extends WebMvcConfigurerAdapter {
 
+    @Bean
+    public AuthorityInterceptor authorityInterceptor(){
+        return new AuthorityInterceptor();
+    }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new AuthorityInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(authorityInterceptor()).addPathPatterns("/**");
         super.addInterceptors(registry);
     }
 }

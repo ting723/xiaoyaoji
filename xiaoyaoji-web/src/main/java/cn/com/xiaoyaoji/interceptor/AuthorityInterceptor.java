@@ -8,6 +8,7 @@ import cn.com.xiaoyaoji.core.util.ConfigUtils;
 import cn.com.xiaoyaoji.data.bean.User;
 import cn.com.xiaoyaoji.util.CacheUtils;
 import cn.com.xiaoyaoji.utils.JspFn;
+import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -20,11 +21,13 @@ import javax.servlet.http.HttpServletResponse;
  * @author zhoujingjie
  * @date 2016-07-22
  */
+@Component
 public class AuthorityInterceptor extends HandlerInterceptorAdapter {
-
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+
         if (!(handler instanceof HandlerMethod)) {
             return true;
         }
